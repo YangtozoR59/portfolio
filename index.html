@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Caleb Yang</title>
+    <link href="./style/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background-color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .about, .projects {
+            padding: 80px 0;
+            
+	position: relative;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+.card:hover{
+  color: white;
+	position: relative;
+	background: rgba(255, 255, 255, 0.01);
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-right: 1px solid rgba(255, 255, 255, 0.2);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+        .footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        /*!Animation*/
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+          }
+          p.visible{
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            animation: flyleft 1.5s;
+          }  
+          h2.visible, h3.visible{
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            animation: superfly 1.5s;
+          }
+
+         a.visible{
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            animation: easy 1.5s;
+          }
+          .card:hover{
+            color: white;
+            z-index: 1;
+            transition: 0.5s;
+            transform: scale(1.05)
+          }
+          .card:hover h3{
+            color: white;
+          }
+          .card:hover p{
+            color: white;
+          }
+          .hero{
+            background-color: transparent;
+            -webkit-backdrop-filter: blur(10px);
+            background-image: linear-gradient(
+              120deg, rgba(0, 183, 255, 0.3),rgba(255, 255, 255, 0.3)
+            );
+            background-size: 150px 150px;
+            backdrop-filter: blur(50px);
+            animation: heroo 7s infinite;
+          }
+          @keyframes heroo {
+            0%{
+            background-position-x: -500px;
+            background-position-y: -100px;
+
+            }50%{
+              background-position-x: 500px;
+              background-position-y: 100px;
+            }75%{
+
+              background-position-x: 100px;
+              background-position-y: 500px;
+            }
+            100%{
+
+              background-position-x: -500px;
+              background-position-y: -100px;
+            }
+          }
+          .card{
+            transition: 1s;
+            color: white;
+            border-radius: 200%;
+            background-color: transparent;
+            -webkit-backdrop-filter: blur(20px);
+            background-image: linear-gradient(
+              120deg, rgba(202, 40, 235, 0.3),rgba(253, 25, 25, 0.3)
+            );
+            backdrop-filter: blur(10px);
+          }
+          a:hover{
+            z-index: 1;
+            transition: 1s;
+            transform: scale(1.05)
+          }
+          a{
+            transition: 1s;
+          }
+          img{
+            transition: 1s;
+          }
+          img:hover{
+            z-index: 1;
+            transition: 1s;
+            transform: scale(1.2);
+          }
+          svg:hover{
+            z-index: 1;
+            transition: 1s;
+            transform: scale(1.5)
+          }
+          svg{
+            transition: 1s;
+          }
+          li{
+            transition: 1s;
+          }
+          .fade-in.visible {
+            opacity: 1;
+          }
+          .progress{
+            background: transparent;
+            backdrop-filter: blur(20px);
+              animation: flyleft 1s;
+          }
+          .progress-bar{
+            transition: 3s;
+            animation: poss 3s;
+          }
+          @keyframes poss {
+            0%{
+              width: 1px;
+            }100%{
+              scale: 1;
+            }
+          }
+          
+
+        @keyframes flyleft {
+            0%{
+                opacity: 0%;
+                transform: translateX(-30px);
+            }
+            100%{
+                opacity: 100%;
+            }
+        }
+
+
+            @keyframes superfly {
+                0%{
+                    opacity: 0%;
+                    transform:translate3d(50px,-30px,-30px)
+                }
+                100%{
+                    opacity: 100%;
+                }
+            }
+            @keyframes easy {
+                0%{
+                    opacity: 0%;
+                    transform:translateY(30px)
+                }
+                100%{
+                    opacity: 100%;
+                }
+            }
+
+            #btn{
+              
+            background-color: transparent;
+            -webkit-backdrop-filter: blur(20px);
+            background-image: linear-gradient(
+              120deg, rgba(255, 255, 255, 0.3),rgba(153, 0, 255, 0.3)
+            );
+            backdrop-filter: blur(10px);
+            }
+
+            input{
+              
+              background-color: transparent;
+              -webkit-backdrop-filter: blur(20px);
+              background-image: linear-gradient(
+                120deg, rgba(145, 255, 0, 0.3),rgba(153, 0, 255, 0.3)
+              );
+              backdrop-filter: blur(10px);
+              }
+              textarea{
+              
+                background-color: transparent;
+                -webkit-backdrop-filter: blur(20px);
+                background-image: linear-gradient(
+                  120deg, rgba(145, 255, 0, 0.3),rgba(153, 0, 255, 0.3)
+                );
+                backdrop-filter: blur(10px);
+                }
+    </style>
+</head>
+<body class="bg-dark">
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="./source/profil.png" width="150rem" alt="" class="img-fluid fade-in" id="profil"><br><br>
+        <div class="container" class="a">
+            <h1 class="display-8 fade-in text-light">Bonjour, je suis <b class="text-warning">Caleb Yang</b></h1>
+            <p class="lead fade-in text-light">Développeur web fullstack.</p>
+            <a href="#contact" class="btn btn-primary fade-in" id="btn">Me Contacter</a>    
+        </div>
+        
+    </section>
+    
+    <!-- À propos -->
+     
+    <section id="about" class="about text-light">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="apropos fade-in"">À propos de moi</h2>
+                    <p class="apropos fade-in"">Je m'appelle Caleb Yang et je suis un <b class="text-success">Cam</b><b class="text-danger">eroun</b><b class="text-warning">ais</b> passioné par l'informatique. J'ai une solide maîtrise de divers langages de programmation et frameworks, et je suis capable de travailler seul ou en equipe sur des projets de développement web.</p>
+                </div>
+                <div class="col-lg-6" id="test">
+                    <h2 class = "fade-in">Compétences</h2>
+                    <ul>
+                        <li class = "fade-in">Developpement de Site et d'Application web</li>
+                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-primary" style="width: 80%"></div>
+                        </div>
+                        <li class = "fade-in">FrontEnd</li>
+                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-warning" style="width: 60%"></div>
+                        </div>
+                        <li class = "fade-in">BackEnd</li>
+                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-secondary" style="width: 76%"></div>
+                        </div>
+                        <li class = "fade-in">Services de développement web. Rapides et abordables !</li>
+                        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                          <div class="progress-bar bg-success" style="width: 100%"></div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+tyy
+    <!-- Projets -->
+    <section id="projects" class="projects bg-light" style="background-image: url('./source/bg.jpg'); background-size:cover;">
+        <div class="container">
+            <h1 class = "fade-in text-white">Projets Professionnel</h2><br>
+            <div class="row">
+              <div class="col-lg-2 card fade-in m-1">
+                <h3 class = "fade-in">Générateur de Cartes</h3>
+                <p class = "fade-in">Création d'une application web pour générer des cartes de membre d'association pour l'AEFCA.</p><b><a class="text-warning" style="text-decoration: none;" href="http://aefca-cmr.fipf.org/accueil"><img src="./source/aefca.png" width="50rem" alt="" class="img-fluid fade-in"> AEFCA</a></b>
+            </div>
+            
+            <div class="col-lg-2 card fade-in m-1">
+              <h3 class = "fade-in">Système de Suivi</h3>
+              <p class = "fade-in">Développement d'un module de suivi statistique et de consultation de tickets dans l'application SYGALIN TVSAT.</p><b><a class="text-warning" style="text-decoration: none;" href="https://www.sygalin-tvsat.com/"><img src="./source/sygalin.png" width="50rem" alt="" class="img-fluid fade-in"> SYGALIN SAS</a></b>
+          </div>
+          <div class="col-lg-2 card fade-in m-1">
+            <h3 class = "fade-in">Site Web</h3>
+            <p class = "fade-in">Conception du site web de la startup Maths237</p><b><a class="text-warning" style="text-decoration: none;" href="https://www.maths237.com/"><img src="./source/maths237.jpg" width="50rem" alt="" class="img-fluid fade-in"> MATHS237</a></b>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact text-light">
+        <div class="container"><br><br><br>
+            <h2 class = "fade-in"> <img width="70mm" src="./source/contact.gif" class="img-thumbnail rounded-circle" alt="..."> Contact </h2>
+            
+            <p class = "fade-in blockquote">Besoin d'un developpeur ? Contactez-moi pour des solutions de développement web rapides et à prix abordables.</p>
+            <div class="container mt-5 text-light fade-in">
+              <form id="contactForm">
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Nom</label>
+                      <input type="text" class="form-control" id="name" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="message" class="form-label">Message</label>
+                      <textarea class="form-control" id="message" rows="4" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary fade-in">Envoyer un message</button>
+              </form>
+          </div><br><br>
+        
+          <script>
+              document.getElementById('contactForm').addEventListener('submit', function(e) {
+                  e.preventDefault();
+        
+                  const name = document.getElementById('name').value;
+                  const message = document.getElementById('message').value;
+                  const phoneNumber = '237698448024';  // Remplace par ton numéro de téléphone WhatsApp
+        
+                  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=Bonjour, je suis ${name}. ${message}`;
+                  window.open(whatsappUrl, '_blank');
+              });
+          </script>
+            
+            <a href="mailto:calebyangdamakoa@gmail.com" class="btn btn-secondary m-2 fade-in"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+              <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+            </svg> mail</a>
+
+            <a href="https://wa.me/qr/RF7T5PSLND5BL1" class="btn btn-success m-2 fade-in"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                </svg> WhatsApp</a>
+            
+            <a href="https://t.me/CydPlay" class="btn btn-info m-2 fade-in"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+            </svg> Telegram</a>
+
+            <a href="https://discord.gg/6jB4bMM7" class="btn btn-primary m-2 fade-in"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
+              <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+            </svg> Discord</a>
+        </div>
+    </section>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const elements = document.querySelectorAll('.fade-in');
+        
+          function checkVisibility() {
+            elements.forEach(element => {
+              const rect = element.getBoundingClientRect();
+              if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                element.classList.add('visible');
+              }
+            });
+          }
+        
+          window.addEventListener('scroll', checkVisibility);
+          checkVisibility(); // Vérifie l'état initial
+        });
+        </script>
+        
+
+    <!-- Footer -->
+    <!-- * FOOTER -->
+    <footer class="bg-dark text-white mt-5"">
+        <div class="container py-4">
+            <div class="row">
+                <!-- Section des réseaux sociaux -->
+            
+                
+            </div>
+        </div>
+        <div class="bg-danger text-center py-3">
+            &copy; 2024 <b><a style="text-decoration: none; color:rgb(50, 59, 63)" href="https://wa.me/qr/RF7T5PSLND5BL1">Caleb Yang</a></b>. Tous droits réservés.
+        </div>
+    </footer>
+    <!-- * FOOTER -->
+
+    <script src="./style/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
