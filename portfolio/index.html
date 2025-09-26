@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Caleb Yang - Développeur Web FullStack">
+  <meta property="og:description"
+    content="Découvrez mes services de développement Web & Mobile. Consultez mon portfolio pour en savoir plus sur mes compétences et expérience.">
+  <meta property="og:url" content="https://cyds.site">
+  <meta property="og:image" content="https://www.cyds.site/source/profil.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Portfolio - Caleb Yang</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary-dark: #1a1a1a;
+      --secondary-dark: #2d2d2d;
+      --accent-gray: #4a4a4a;
+      --light-gray: #e0e0e0;
+      --white: #ffffff;
+      --text-light: #f8f9fa;
+      --accent-color: #6c63ff;
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-secondary: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--primary-dark);
+      color: var(--text-light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid var(--accent-gray);
+    }
+
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      background-color: rgba(26, 26, 26, 0.98) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+      transform: translateY(-2px);
+    }
+
+    .brand-icon {
+      margin-right: 8px;
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      transition: transform 0.5s ease;
+    }
+
+    .navbar-brand:hover .brand-icon {
+      transform: rotate(15deg);
+    }
+
+    .nav-item {
+      margin: 0 0.5rem;
+      position: relative;
+    }
+
+    .nav-link {
+      color: var(--light-gray) !important;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem !important;
+      border-radius: 4px;
+    }
+
+    .nav-link i {
+      margin-right: 8px;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--white) !important;
+      background-color: rgba(108, 99, 255, 0.1);
+    }
+
+    .nav-link:hover i {
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      color: var(--accent-color) !important;
+    }
+
+    .nav-link.active i {
+      color: var(--accent-color);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-color), #8a84ff);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .navbar-toggler {
+      border: none;
+      padding: 0.25rem 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      transition: all 0.3s ease;
+    }
+
+    .navbar-toggler:hover .navbar-toggler-icon {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        background-color: rgba(26, 26, 26, 0.98);
+        border-radius: 8px;
+        margin-top: 10px;
+        padding: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .nav-item {
+        margin: 0.3rem 0;
+      }
+
+      .nav-link {
+        padding: 0.75rem 1rem !important;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(108, 99, 255, 0.15);
+        transform: translateX(5px);
+      }
+    }
+
+    /* Section Hero */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, #1f1f1f 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 0 50px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(224, 224, 224, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(108, 99, 255, 0.03) 0%, transparent 50%);
+      animation: backgroundPulse 8s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes backgroundPulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .floating-shape {
+      position: absolute;
+      opacity: 0.1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-shape:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 50%;
+      animation-delay: 0s;
+    }
+
+    .floating-shape:nth-child(2) {
+      top: 60%;
+      right: 15%;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(45deg, var(--accent-color), #8a84ff);
+      transform: rotate(45deg);
+      animation-delay: 1s;
+    }
+
+    .floating-shape:nth-child(3) {
+      bottom: 30%;
+      left: 20%;
+      width: 40px;
+      height: 40px;
+      background: var(--light-gray);
+      border-radius: 20%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(120deg); }
+      66% { transform: translateY(10px) rotate(240deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      animation: heroContentFadeIn 1.5s ease-out;
+    }
+
+    @keyframes heroContentFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      background: var(--gradient-secondary);
+      padding: 4px;
+      position: relative;
+      z-index: 2;
+      transition: all 0.5s ease;
+      animation: profilePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes profilePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .profile-img:hover {
+      transform: scale(1.1) rotate(5deg);
+      filter: brightness(1.1);
+    }
+
+    .profile-rings {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .ring {
+      position: absolute;
+      border: 2px solid var(--accent-color);
+      border-radius: 50%;
+      opacity: 0.3;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .ring:nth-child(1) {
+      width: 240px;
+      height: 240px;
+      animation: ringRotate 10s linear infinite;
+      border-style: dashed;
+    }
+
+    .ring:nth-child(2) {
+      width: 280px;
+      height: 280px;
+      animation: ringRotate 15s linear infinite reverse;
+      border-color: var(--light-gray);
+      opacity: 0.2;
+    }
+
+    @keyframes ringRotate {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--white), var(--light-gray), var(--accent-color));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: var(--light-gray);
+      opacity: 0;
+      animation: subtitleSlideIn 1s ease-out 0.5s forwards;
+    }
+
+    @keyframes subtitleSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      animation: descriptionFadeIn 1s ease-out 1s forwards;
+    }
+
+    @keyframes descriptionFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: buttonsFadeIn 1s ease-out 1.5s forwards;
+    }
+
+    @keyframes buttonsFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .hero-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .hero-btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary-custom {
+      background: var(--gradient-primary);
+      color: white;
+      border: none;
+      box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
+      color: white;
+    }
+
+    .btn-outline-custom {
+      background: transparent;
+      color: var(--light-gray);
+      border: 2px solid var(--light-gray);
+      position: relative;
+    }
+
+    .btn-outline-custom:hover {
+      background: var(--light-gray);
+      color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(224, 224, 224, 0.3);
+    }
+
+    /* Sections générales */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--light-gray);
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .about-section {
+      background-color: var(--secondary-dark);
+    }
+
+    .skills-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills-list li {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .skill-name {
+      min-width: 150px;
+      font-weight: 500;
+    }
+
+    .progress {
+      height: 8px;
+      background-color: var(--accent-gray);
+      border-radius: 4px;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--light-gray) 0%, #a0a0a0 100%);
+      border-radius: 4px;
+      transition: width 1.5s ease-in-out;
+    }
+
+    .tech-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .tech-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent-gray);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .tech-icon:hover {
+      transform: translateY(-5px);
+      background-color: var(--light-gray);
+    }
+
+    .tech-icon img {
+      max-width: 30px;
+      max-height: 30px;
+      filter: brightness(0) invert(1);
+    }
+
+    .services-section {
+      background-color: var(--primary-dark);
+    }
+
+    .service-card {
+      background-color: var(--secondary-dark);
+      border: 1px solid var(--accent-gray);
+      border-radius: 10px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .service-card:hover::before {
+      left: 100%;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--light-gray);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--light-gray);
+    }
+
+    .projects-section {
+      background-color: var(--secondary-dark);
+    }
+
+    .project-card {
+      background-color: var(--primary-dark);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--accent-gray);
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--light-gray);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .contact-section {
+      background-color: var(--primary-dark);
+    }
+
+    .contact-form {
+      background-color: var(--secondary-dark);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid var(--accent-gray);
+    }
+
+    .form-control {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--accent-gray);
+      color: var(--text-light);
+      padding: 0.75rem 1rem;
+    }
+
+    .form-control:focus {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--light-gray);
+      box-shadow: none;
+      color: var(--text-light);
+    }
+
+    .form-control::placeholder {
+      color: #aaa;
+    }
+
+    .contact-btn {
+      background-color: var(--light-gray);
+      color: var(--primary-dark);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover {
+      background-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .social-btn i {
+      margin-right: 10px;
+    }
+
+    .btn-mail {
+      background-color: #ea4335;
+      color: white;
+    }
+
+    .btn-github {
+      background-color: #333;
+      color: white;
+    }
+
+    .btn-linkedin {
+      background-color: #0077b5;
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: white;
+    }
+
+    .btn-telegram {
+      background-color: #0088cc;
+      color: white;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      color: white;
+    }
+
+    footer {
+      background-color: var(--secondary-dark);
+      border-top: 1px solid var(--accent-gray);
+      padding: 2rem 0;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Galerie d'images */
+    .gallery-item {
+      cursor: pointer;
+      transition: transform 0.2s;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    
+    .gallery-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+    
+    .modal-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 120px 0 80px;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .profile-img {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .ring:nth-child(1) { width: 190px; height: 190px; }
+      .ring:nth-child(2) { width: 220px; height: 220px; }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-btn {
+        width: 250px;
+        text-align: center;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .section-padding {
+        padding: 80px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Barre de navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-code-slash brand-icon"></i>
+        Caleb Yang
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#about">
+              <i class="bi bi-person-circle"></i>
+              À propos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">
+              <i class="bi bi-briefcase"></i>
+              Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">
+              <i class="bi bi-folder"></i>
+              Projets
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">
+              <i class="bi bi-envelope"></i>
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Section Hero -->
+  <section class="hero">
+    <!-- Éléments flottants -->
+    <div class="floating-elements">
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="container hero-content">
+      <!-- Image de profil avec anneaux animés -->
+      <div class="profile-container">
+        <div class="profile-rings">
+          <div class="ring"></div>
+          <div class="ring"></div>
+        </div>
+        <img src="./source/profil.jpg" alt="Profil" class="profile-img">
+      </div>
+
+      <!-- Contenu textuel -->
+      <h1 class="hero-title">Je suis Caleb Yang</h1>
+      <p class="hero-subtitle">Développeur Web & Mobile FullStack</p>
+      <p class="hero-description">
+        Passionné par la création d'expériences numériques exceptionnelles, je transforme vos idées en solutions technologiques innovantes et performantes.
+      </p>
+
+      <!-- Boutons d'action -->
+      <div class="hero-buttons">
+        <a href="#contact" class="hero-btn btn-primary-custom">
+          <i class="bi bi-envelope me-2"></i>
+          Me Contacter
+        </a>
+        <a href="./source/CV_Caleb_Yang.pdf" class="hero-btn btn-outline-custom" download>
+          <i class="bi bi-download me-2"></i>
+          Télécharger CV
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section id="about" class="about-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center fade-in">À propos de moi</h2>
+      
+      <div class="row align-items-center">
+        <div class="col-lg-6 fade-in">
+          <h3 class="mb-4">Bio</h3>
+          <p class="mb-4">Je suis un <b class="text-warning">Développeur Web Full-stack</b>, passionné par la création de solutions numériques modernes.
+             je maîtrise les bases de Laravel, Flutter et Bootstrap, et développe aussi bien pour le web que pour le mobile.
+              <b class="text-primary">Freelance</b> et membre actif de l'équipe <b class="text-danger">Evodevs 237</b>, j'ai déjà réalisé plusieurs projets concrets, allant de sites e-commerce, vitrine et de gestion administratives à des applications mobiles.
+              Curieux et ambitieux, je continue d'élargir mes compétences pour devenir un <b class="text-secondary">Développeur complet et polyvalent</b>.</p>
+          
+          <!-- Galerie d'images -->
+          <h3 class="mb-4">Certifications récentes</h3>
+
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl1.jpg" 
+                 data-img-alt="10 Sep, 2025">
+                <img src="./source/sl1.jpg" alt="Projet Web 1" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl2.jpg" 
+                 data-img-alt="27 Aug, 2025">
+                <img src="./source/sl2.jpg" alt="Application Mobile" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl3.jpg" 
+                 data-img-alt="26 Aug, 2025">
+                <img src="./source/sl3.jpg" alt="Dashboard Analytics" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl4.jpg" 
+                 data-img-alt="02 Sep, 2025">
+                <img src="./source/sl4.jpg" alt="E-commerce" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl5.jpg" 
+                 data-img-alt="08 Sep, 2025">
+                <img src="./source/sl5.jpg" alt="API REST" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl6.jpg" 
+                 data-img-alt="09 Sep, 2025">
+                <img src="./source/sl6.jpg" alt="Portfolio" class="img-fluid">
+            </div>
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                 data-img-src="./source/sl7.jpg" 
+                 data-img-alt="09 Sep, 2025">
+                <img src="./source/sl7.jpg" alt="Portfolio" class="img-fluid">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 fade-in">
+          <h3 class="mb-4">Compétences</h3>
+          <ul class="skills-list">
+            <li>
+              <span class="skill-name">Backend</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 85%"></div>
+              </div>
+            </li>
+            <li>
+              <span class="skill-name">Frontend</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 80%"></div>
+              </div>
+            </li>
+            <li>
+              <span class="skill-name">Intégration API</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+            </li>
+            <li>
+              <span class="skill-name">Versionning</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 85%"></div>
+              </div>
+            </li>
+          </ul>
+          
+          <h3 class="mt-5 mb-4">Outils & Softskills</h3>
+          <ul class="skills-list">
+            <li>
+              <span class="skill-name">Vibe Coding</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 90%"></div>
+              </div>
+            </li>
+            <li>
+              <span class="skill-name">DevOps</span>
+              <div class="progress">
+                <div class="progress-bar" style="width: 70%"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center fade-in">Mes Services</h2>
+      <div class="row g-4">
+        <div class="col-md-4 fade-in">
+          <div class="service-card text-center">
+            <div class="service-icon">
+              <i class="bi bi-server"></i>
+            </div>
+            <h4 class="mb-3">Développement Backend</h4>
+            <p>Conception de serveurs robustes, création de bases de données optimisées et performantes avec Laravel, PHP et MySQL.</p>
+          </div>
+        </div>
+        <div class="col-md-4 fade-in">
+          <div class="service-card text-center">
+            <div class="service-icon">
+              <i class="bi bi-globe"></i>
+            </div>
+            <h4 class="mb-3">Développement Frontend</h4>
+            <p>Création d'interfaces utilisateur modernes et responsives avec HTML/CSS, JavaScript, Bootstrap et Tailwind CSS.</p>
+          </div>
+        </div>
+        <div class="col-md-4 fade-in">
+          <div class="service-card text-center">
+            <div class="service-icon">
+              <i class="bi bi-phone"></i>
+            </div>
+            <h4 class="mb-3">Développement Mobile</h4>
+            <p>Création d'applications mobiles multiplateformes avec Flutter pour Android et iOS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projets -->
+  <section id="projects" class="projects-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center fade-in">Projets Professionnels</h2>
+      <div class="row g-4">
+        <!-- Projet Mutuelle IUT -->
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <img class="img-fluid" src="./source/c1.png" alt="EP" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Site Web Entreprise du pays - Maths237</h4>
+              <p class="text-secondary">Conception d'une application web de recherche d'entreprises et jobs au Cameroun.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper / <b class="text-danger">Evodevs 237</b></span>
+                <span class="badge bg-primary">Backend - Laravel</span>
+                <span class="badge bg-secondary">Frontend - Bootstrap</span>
+                <span class="badge bg-info">Backend - MySQL</span>
+              </div>
+              <p class="mt-2"><small>Août 2025</small></p>
+              <a href="https://www.maths237.com/" class="btn btn-outline-light mt-2" target="_blank">Visiter EP</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <img class="img-fluid" src="./source/c3.png" alt="MUIT" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Application Web de Gestion - Mutuelle IUT</h4>
+              <p class="text-secondary">Développement d'une application web de centralisation de la gestion des activités internes de la mutuelle et d'un site web vitrine dynamique.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-primary">Backend - Laravel</span>
+                <span class="badge bg-secondary">Frontend - Tailwind CSS</span>
+                <span class="badge bg-info">Backend - MySQL</span>
+              </div>
+              <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <img class="img-fluid" src="./source/c2.png" alt="MUIT" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Site Vitrine & e-commerce - Mutuelle IUT</h4>
+              <p class="text-secondary">Développement d'un site web de présentation de la mutuelle ainsi que ses activités, formations, produits et expertises.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-primary">Backend - Laravel</span>
+                <span class="badge bg-secondary">Frontend - Bootstrap</span>
+                <span class="badge bg-info">Backend - MySQL</span>
+              </div>
+              <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
+              <a href="https://www.maths237.com/" class="btn btn-outline-light mt-2" target="_blank">Visiter MUIT</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Projet MATHS237 -->
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <img class="img-fluid" src="./source/maths237.jpg" alt="MUIT" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Site Web - MATHS237</h4>
+              <p class="text-secondary">Chef de projet et développeur web pour la startup MATHS237, création d'une plateforme éducative en ligne.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-secondary">JavaScript</span>
+                <span class="badge bg-success">Bootstrap</span>
+              </div>
+              <p class="mt-2"><small>Septembre 2024</small></p>
+              <a href="https://www.maths237.com/" class="btn btn-outline-light mt-2" target="_blank">Visiter MATHS237</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              
+              <img class="img-fluid" src="./source/card.svg" alt="MUIT" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Application Web de Génération de Cartes - AEFCA</h4>
+              <p class="text-secondary">Développement d'une application web de génération de carte de membre d'association.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-primary">Backend - PHP</span>
+                <span class="badge bg-secondary">Frontend - Bootstrap</span>
+                <span class="badge bg-info">MySQL</span>
+              </div>
+              <p class="mt-2"><small>Août 2024</small></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Projet SYGALIN -->
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <i class="bi bi-graph-up text-light" style="font-size: 4rem;"></i>
+            </div>
+            <div class="project-content">
+              <h4>Module de Suivi Statistique - SYGALIN</h4>
+              <p class="text-secondary">Développement d'un module de système de suivi statistique des tickets sur les plateformes de l'entreprise.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-primary">Backend - CodeIgniter 3</span>
+                <span class="badge bg-warning text-dark">Frontend - Bootstrap</span>
+                <span class="badge bg-info">MySQL</span>
+              </div>
+              <p class="mt-2"><small>Mars 2024 - Mai 2024</small></p>
+             </div>
+          </div>
+        </div>
+
+         <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <img class="img-fluid" src="./source/c4.png" alt="MUIT" style="max-height: 180px;">
+            </div>
+            <div class="project-content">
+              <h4>Site Web - Grace Oil Gold</h4>
+              <p class="text-secondary">Chef de projet et développeur web pour la startup Grace Oil Gold.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+                <span class="badge bg-secondary">JavaScript</span>
+                <span class="badge bg-success">Bootstrap</span>
+              </div>
+              <p class="mt-2"><small>Septembre 2024</small></p>
+            </div>
+          </div>
+        </div>
+        <!-- Projet LiveChat -->
+        <div class="col-md-6 fade-in">
+          <div class="project-card">
+            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+              <i class="bi bi-chat-square-text-fill text-light" style="font-size: 4rem;"></i>
+            </div>
+            <div class="project-content">
+              <h4>Forum de Discussion - LiveChat</h4>
+              <p class="text-secondary">Développement d'un forum web thématique pour discussions interactives avec système de modération.</p>
+              <div class="mt-3">
+                <span class="badge bg-warning text-dark">Rôle - Développeur Web /  <b class="text-danger">Evodevs 237</b></span>
+                <span class="badge bg-primary">Backend - PHP</span>
+                <span class="badge bg-success">Frontend - Bootstrap</span>
+              </div>
+              <p class="mt-2"><small>Projet personnel d'equipe</small></p>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section section-padding">
+    <div class="container">
+      <h2 class="section-title text-center fade-in">Contact</h2>
+      <p class="text-center mb-5 fade-in">Besoin d'un développeur ? Contactez-moi pour des solutions de développement web rapides et abordables.</p>
+      
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="contact-form fade-in">
+            <form id="contactForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Votre email" required>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Votre message" required></textarea>
+              </div>
+              <button type="submit" class="btn contact-btn w-100">Envoyer le message</button>
+            </form>
+            <div id="formMessage" class="mt-3"></div>
+          </div>
+          
+          <div class="social-links mt-5 fade-in">
+            <a href="mailto:calebyangcyd@gmail.com" class="social-btn btn-mail">
+              <i class="bi bi-envelope-fill"></i> calebyangcyd@gmail.com
+            </a>
+            <a href="https://github.com/YangtozoR59" class="social-btn btn-github" target="_blank">
+              <i class="bi bi-github"></i> GitHub
+            </a>
+            <a href="https://wa.me/237698448024" class="social-btn btn-whatsapp" target="_blank">
+              <i class="bi bi-whatsapp"></i> +237 698 448 024
+            </a>
+            <a href="https://t.me/ItzCyd" class="social-btn btn-telegram" target="_blank">
+              <i class="bi bi-telegram"></i> Telegram
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; 2025 <a href="https://t.me/ItzCyd" class="text-decoration-none text-white">Caleb Yang</a>. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- Modal pour la prévisualisation -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: black;" id="imageModalLabel">Aperçu du projet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" alt="" class="modal-img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animation au défilement
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+      });
+      
+      // Animation des barres de progression
+      const progressBars = document.querySelectorAll('.progress-bar');
+      const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const width = entry.target.style.width;
+            entry.target.style.width = '0';
+            setTimeout(() => {
+              entry.target.style.width = width;
+            }, 300);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      progressBars.forEach(bar => {
+        progressObserver.observe(bar);
+      });
+      
+      // Animation de la navbar au défilement
+      const navbar = document.querySelector('.navbar');
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Mise à jour de l'élément actif dans la navbar
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      window.addEventListener('scroll', function() {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // Gestion du formulaire de contact
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const formMessage = document.getElementById('formMessage');
+      
+      // Simulation d'envoi
+      setTimeout(() => {
+        formMessage.innerHTML = '<div class="alert alert-success">Message envoyé avec succès! Je vous répondrai rapidement.</div>';
+        document.getElementById('contactForm').reset();
+      }, 1000);
+    });
+
+    // Script pour gérer l'ouverture de la modal avec la bonne image
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('imageModalLabel');
+
+    imageModal.addEventListener('show.bs.modal', function (event) {
+      const button = event.relatedTarget;
+      const imgSrc = button.getAttribute('data-img-src');
+      const imgAlt = button.getAttribute('data-img-alt');
+      
+      modalImage.src = imgSrc;
+      modalImage.alt = imgAlt;
+      modalTitle.textContent = imgAlt;
+    });
+  </script>
+</body>
+
+</html>
