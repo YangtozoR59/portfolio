@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://cyds.site/sitemap.xml
+Sitemap: https://itzcyd.vercel.app/sitemap.xml
