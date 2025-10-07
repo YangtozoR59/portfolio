@@ -32,8 +32,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Caleb Yang - Développeur Web & Mobile FullStack">
 <meta name="twitter:description" content="Développeur FullStack passionné créant des solutions web et mobiles innovantes.">
-<meta name="twitter:image" content="https://www.cyds.site/source/profil.jpg">
-<meta name="twitter:site" content="@VotreTwitter"> <!-- À remplacer -->
+<meta name="twitter:image" content="https://itzcyd.vercel.app/source/profil.jpg">
+<!-- <meta name="twitter:site" content="@VotreTwitter"> <!-- À remplacer --> -->
 
 <!-- Métadonnées supplémentaires -->
 <meta name="theme-color" content="#6c63ff">
@@ -104,8 +104,8 @@
   <meta property="og:title" content="Caleb Yang - Développeur Web FullStack">
   <meta property="og:description"
     content="Découvrez mes services de développement Web & Mobile. Consultez mon portfolio pour en savoir plus sur mes compétences et expérience.">
-  <meta property="og:url" content="https://cyds.site">
-  <meta property="og:image" content="https://www.cyds.site/source/profil.jpg">
+  <meta property="og:url" content="https://itzcyd.vercel.app">
+  <meta property="og:image" content="https://itzcyd.vercel.app/source/profil.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <title>Portfolio - Caleb Yang</title>
@@ -924,6 +924,64 @@
         padding: 80px 0;
       }
     }
+    /* Styles pour l'affichage progressif des projets */
+  .project-item.hidden {
+    display: none;
+  }
+  
+  .project-item.visible {
+    display: block;
+  }
+  
+  .project-item.show-animated {
+    display: block;
+    animation: slideInUp 0.5s ease-out;
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Style du bouton Voir plus/moins */
+  .btn-show-more {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-show-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+    color: white;
+  }
+  
+  .btn-show-more::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-show-more:hover::before {
+    left: 100%;
+  }
   </style>
 </head>
 
@@ -1151,168 +1209,184 @@
     </div>
   </section>
 
-  <!-- Projets -->
-  <section id="projects" class="projects-section section-padding">
-    <div class="container">
-      <h2 class="section-title text-center fade-in">Projets Professionnels</h2>
-      <div class="row g-4">
-        <!-- Projet Mutuelle IUT -->
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <img class="img-fluid" src="./source/c1.png" alt="EP" style="max-height: 180px;">
+<!-- Projets -->
+<section id="projects" class="projects-section section-padding">
+  <div class="container">
+    <h2 class="section-title text-center fade-in">Projets Professionnels</h2>
+    <div class="row g-4" id="projectsContainer">
+      <!-- Projet 1 - Visible par défaut -->
+      <div class="col-md-6 fade-in project-item visible">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/c1.png" alt="EP" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Site Web Entreprise du pays - Maths237</h4>
+            <p class="text-secondary">Conception d'une application web de recherche d'entreprises et jobs au Cameroun.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper / <b class="text-danger">Evodevs 237</b></span>
+              <span class="badge bg-primary">Backend - Laravel</span>
+              <span class="badge bg-secondary">Frontend - Bootstrap</span>
+              <span class="badge bg-info">Backend - MySQL</span>
             </div>
-            <div class="project-content">
-              <h4>Site Web Entreprise du pays - Maths237</h4>
-              <p class="text-secondary">Conception d'une application web de recherche d'entreprises et jobs au Cameroun.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper / <b class="text-danger">Evodevs 237</b></span>
-                <span class="badge bg-primary">Backend - Laravel</span>
-                <span class="badge bg-secondary">Frontend - Bootstrap</span>
-                <span class="badge bg-info">Backend - MySQL</span>
-              </div>
-              <p class="mt-2"><small>Août 2025</small></p>
-              <a href="https://www.entreprisedupays.maths237.cm/" class="btn btn-outline-light mt-2" target="_blank">Visiter EP</a>
-            </div>
+            <p class="mt-2"><small>Août 2025</small></p>
+            <a href="https://www.entreprisedupays.maths237.cm/" class="btn btn-outline-light mt-2" target="_blank">Visiter EP</a>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <img class="img-fluid" src="./source/c3.png" alt="MUIT" style="max-height: 180px;">
+      <!-- Projet 2 - Visible par défaut -->
+      <div class="col-md-6 fade-in project-item visible">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/c3.png" alt="MUIT" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Application Web de Gestion - Mutuelle IUT</h4>
+            <p class="text-secondary">Développement d'une application web de centralisation de la gestion des activités internes de la mutuelle et d'un site web vitrine dynamique.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-primary">Backend - Laravel</span>
+              <span class="badge bg-secondary">Frontend - Tailwind CSS</span>
+              <span class="badge bg-info">Backend - MySQL</span>
             </div>
-            <div class="project-content">
-              <h4>Application Web de Gestion - Mutuelle IUT</h4>
-              <p class="text-secondary">Développement d'une application web de centralisation de la gestion des activités internes de la mutuelle et d'un site web vitrine dynamique.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-primary">Backend - Laravel</span>
-                <span class="badge bg-secondary">Frontend - Tailwind CSS</span>
-                <span class="badge bg-info">Backend - MySQL</span>
-              </div>
-              <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
-            </div>
+            <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <img class="img-fluid" src="./source/c2.png" alt="MUIT" style="max-height: 180px;">
+      <!-- Projet 3 - Visible par défaut -->
+      <div class="col-md-6 fade-in project-item visible">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/c2.png" alt="MUIT" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Site Vitrine & e-commerce - Mutuelle IUT</h4>
+            <p class="text-secondary">Développement d'un site web de présentation de la mutuelle ainsi que ses activités, formations, produits et expertises.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-primary">Backend - Laravel</span>
+              <span class="badge bg-secondary">Frontend - Bootstrap</span>
+              <span class="badge bg-info">Backend - MySQL</span>
             </div>
-            <div class="project-content">
-              <h4>Site Vitrine & e-commerce - Mutuelle IUT</h4>
-              <p class="text-secondary">Développement d'un site web de présentation de la mutuelle ainsi que ses activités, formations, produits et expertises.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-primary">Backend - Laravel</span>
-                <span class="badge bg-secondary">Frontend - Bootstrap</span>
-                <span class="badge bg-info">Backend - MySQL</span>
-              </div>
-              <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
-              <a href="https://www.muit.iut-ndere.net/" class="btn btn-outline-light mt-2" target="_blank">Visiter MUIT</a>
-            </div>
+            <p class="mt-2"><small>Mai 2025 - Juillet 2025</small></p>
+            <a href="https://www.muit.iut-ndere.net/" class="btn btn-outline-light mt-2" target="_blank">Visiter MUIT</a>
           </div>
         </div>
-        
-        <!-- Projet MATHS237 -->
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <img class="img-fluid" src="./source/maths237.jpg" alt="MUIT" style="max-height: 180px;">
+      </div>
+      
+      <!-- Projet 4 - Caché par défaut -->
+      <div class="col-md-6 fade-in project-item hidden">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/maths237.jpg" alt="MUIT" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Site Web - MATHS237</h4>
+            <p class="text-secondary">Chef de projet et développeur web pour la startup MATHS237, création d'une plateforme éducative en ligne.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-secondary">JavaScript</span>
+              <span class="badge bg-success">Bootstrap</span>
             </div>
-            <div class="project-content">
-              <h4>Site Web - MATHS237</h4>
-              <p class="text-secondary">Chef de projet et développeur web pour la startup MATHS237, création d'une plateforme éducative en ligne.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-secondary">JavaScript</span>
-                <span class="badge bg-success">Bootstrap</span>
-              </div>
-              <p class="mt-2"><small>Septembre 2024</small></p>
-            </div>
+            <p class="mt-2"><small>Septembre 2024</small></p>
           </div>
         </div>
+      </div>
 
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              
-              <img class="img-fluid" src="./source/card.svg" alt="MUIT" style="max-height: 180px;">
+      <!-- Projet 5 - Caché par défaut -->
+      <div class="col-md-6 fade-in project-item hidden">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/card.svg" alt="MUIT" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Application Web de Génération de Cartes - AEFCA</h4>
+            <p class="text-secondary">Développement d'une application web de génération de carte de membre d'association.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-primary">Backend - PHP</span>
+              <span class="badge bg-secondary">Frontend - Bootstrap</span>
+              <span class="badge bg-info">MySQL</span>
             </div>
-            <div class="project-content">
-              <h4>Application Web de Génération de Cartes - AEFCA</h4>
-              <p class="text-secondary">Développement d'une application web de génération de carte de membre d'association.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-primary">Backend - PHP</span>
-                <span class="badge bg-secondary">Frontend - Bootstrap</span>
-                <span class="badge bg-info">MySQL</span>
-              </div>
-              <p class="mt-2"><small>Août 2024</small></p>
-            </div>
+            <p class="mt-2"><small>Août 2024</small></p>
           </div>
         </div>
-        
-        <!-- Projet SYGALIN -->
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <i class="bi bi-graph-up text-light" style="font-size: 4rem;"></i>
+      </div>
+      
+      <!-- Projet 6 - Caché par défaut -->
+      <div class="col-md-6 fade-in project-item hidden">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <i class="bi bi-graph-up text-light" style="font-size: 4rem;"></i>
+          </div>
+          <div class="project-content">
+            <h4>Module de Suivi Statistique - SYGALIN</h4>
+            <p class="text-secondary">Développement d'un module de système de suivi statistique des tickets sur les plateformes de l'entreprise.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-primary">Backend - CodeIgniter 3</span>
+              <span class="badge bg-warning text-dark">Frontend - Bootstrap</span>
+              <span class="badge bg-info">MySQL</span>
             </div>
-            <div class="project-content">
-              <h4>Module de Suivi Statistique - SYGALIN</h4>
-              <p class="text-secondary">Développement d'un module de système de suivi statistique des tickets sur les plateformes de l'entreprise.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-primary">Backend - CodeIgniter 3</span>
-                <span class="badge bg-warning text-dark">Frontend - Bootstrap</span>
-                <span class="badge bg-info">MySQL</span>
-              </div>
-              <p class="mt-2"><small>Mars 2024 - Mai 2024</small></p>
-             </div>
+            <p class="mt-2"><small>Mars 2024 - Mai 2024</small></p>
           </div>
         </div>
+      </div>
 
-         <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <img class="img-fluid" src="./source/c4.png" alt="MUIT" style="max-height: 180px;">
+      <!-- Projet 7 - Caché par défaut -->
+      <div class="col-md-6 fade-in project-item hidden">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <img class="img-fluid" src="./source/c4.png" alt="MUIT" style="max-height: 180px;">
+          </div>
+          <div class="project-content">
+            <h4>Site Web - Grace Oil Gold</h4>
+            <p class="text-secondary">Chef de projet et développeur web pour la startup Grace Oil Gold.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
+              <span class="badge bg-secondary">JavaScript</span>
+              <span class="badge bg-success">Bootstrap</span>
             </div>
-            <div class="project-content">
-              <h4>Site Web - Grace Oil Gold</h4>
-              <p class="text-secondary">Chef de projet et développeur web pour la startup Grace Oil Gold.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Chef de Projet & Lead Developper</span>
-                <span class="badge bg-secondary">JavaScript</span>
-                <span class="badge bg-success">Bootstrap</span>
-              </div>
-              <p class="mt-2"><small>Septembre 2024</small></p>
-            </div>
+            <p class="mt-2"><small>Septembre 2024</small></p>
           </div>
         </div>
-        <!-- Projet LiveChat -->
-        <div class="col-md-6 fade-in">
-          <div class="project-card">
-            <div class="project-img bg-dark d-flex align-items-center justify-content-center">
-              <i class="bi bi-chat-square-text-fill text-light" style="font-size: 4rem;"></i>
+      </div>
+
+      <!-- Projet 8 - Caché par défaut -->
+      <div class="col-md-6 fade-in project-item hidden">
+        <div class="project-card">
+          <div class="project-img bg-dark d-flex align-items-center justify-content-center">
+            <i class="bi bi-chat-square-text-fill text-light" style="font-size: 4rem;"></i>
+          </div>
+          <div class="project-content">
+            <h4>Forum de Discussion - LiveChat</h4>
+            <p class="text-secondary">Développement d'un forum web thématique pour discussions interactives avec système de modération.</p>
+            <div class="mt-3">
+              <span class="badge bg-warning text-dark">Rôle - Développeur Web / <b class="text-danger">Evodevs 237</b></span>
+              <span class="badge bg-primary">Backend - PHP</span>
+              <span class="badge bg-success">Frontend - Bootstrap</span>
             </div>
-            <div class="project-content">
-              <h4>Forum de Discussion - LiveChat</h4>
-              <p class="text-secondary">Développement d'un forum web thématique pour discussions interactives avec système de modération.</p>
-              <div class="mt-3">
-                <span class="badge bg-warning text-dark">Rôle - Développeur Web /  <b class="text-danger">Evodevs 237</b></span>
-                <span class="badge bg-primary">Backend - PHP</span>
-                <span class="badge bg-success">Frontend - Bootstrap</span>
-              </div>
-              <p class="mt-2"><small>Projet personnel d'equipe</small></p>
-             </div>
+            <p class="mt-2"><small>Projet personnel d'equipe</small></p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+    
+    <!-- Bouton Voir plus/moins -->
+    <div class="text-center mt-5">
+      <button id="toggleProjects" class="btn btn-show-more">
+        <span class="show-text">
+          <i class="bi bi-plus-circle me-2"></i>Voir plus de projets
+        </span>
+        <span class="hide-text" style="display: none;">
+          <i class="bi bi-dash-circle me-2"></i>Voir moins
+        </span>
+      </button>
+    </div>
+  </div>
+</section>
 
   <!-- Contact -->
   <section id="contact" class="contact-section section-padding">
@@ -1481,6 +1555,60 @@
       modalImage.alt = imgAlt;
       modalTitle.textContent = imgAlt;
     });
+
+    // Gestion du bouton Voir plus/moins pour les projets
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('toggleProjects');
+    const hiddenProjects = document.querySelectorAll('.project-item.hidden');
+    const showText = toggleButton.querySelector('.show-text');
+    const hideText = toggleButton.querySelector('.hide-text');
+    let projectsExpanded = false;
+    
+    toggleButton.addEventListener('click', function() {
+      if (!projectsExpanded) {
+        // Afficher les projets cachés avec animation
+        hiddenProjects.forEach((project, index) => {
+          setTimeout(() => {
+            project.classList.remove('hidden');
+            project.classList.add('show-animated');
+          }, index * 100); // Décalage pour effet cascade
+        });
+        
+        // Changer le texte du bouton
+        showText.style.display = 'none';
+        hideText.style.display = 'inline-block';
+        projectsExpanded = true;
+        
+        // Scroll smooth vers les nouveaux projets après un petit délai
+        setTimeout(() => {
+          const firstHiddenProject = hiddenProjects[0];
+          if (firstHiddenProject) {
+            firstHiddenProject.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }
+        }, 200);
+      } else {
+        // Masquer les projets supplémentaires
+        hiddenProjects.forEach(project => {
+          project.classList.add('hidden');
+          project.classList.remove('show-animated');
+        });
+        
+        // Changer le texte du bouton
+        showText.style.display = 'inline-block';
+        hideText.style.display = 'none';
+        projectsExpanded = false;
+        
+        // Scroll vers le haut de la section projets
+        document.getElementById('projects').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    });
+  });
   </script>
 </body>
 
