@@ -1051,6 +1051,316 @@
       .section-padding {
         padding: 80px 0;
       }
+          .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--darker-gray) 0%, var(--dark-gray) 50%, #332f2b 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(235, 94, 40, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(204, 197, 185, 0.05) 0%, transparent 50%);
+      animation: backgroundPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes backgroundPulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .profile-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+      width: 400px;
+      height: 400px;
+    }
+
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--orange);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      box-shadow: 0 10px 40px rgba(235, 94, 40, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* Orbite des technologies */
+    .tech-orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      animation: rotate 30s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .tech-icon {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--dark-gray);
+      border: 2px solid var(--orange);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .tech-icon:hover {
+      transform: scale(1.2);
+      background: var(--orange);
+      border-color: var(--cream);
+      box-shadow: 0 8px 25px rgba(235, 94, 40, 0.5);
+    }
+
+    .tech-icon img {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .tech-icon:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Positionnement des icônes en cercle */
+    .tech-icon:nth-child(1) {
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .tech-icon:nth-child(2) {
+      top: 14.6%;
+      right: 14.6%;
+      transform: translate(50%, -50%);
+    }
+
+    .tech-icon:nth-child(3) {
+      top: 50%;
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+
+    .tech-icon:nth-child(4) {
+      bottom: 14.6%;
+      right: 14.6%;
+      transform: translate(50%, 50%);
+    }
+
+    .tech-icon:nth-child(5) {
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+    }
+
+    .tech-icon:nth-child(6) {
+      bottom: 14.6%;
+      left: 14.6%;
+      transform: translate(-50%, 50%);
+    }
+
+    .tech-icon:nth-child(7) {
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .tech-icon:nth-child(8) {
+      top: 14.6%;
+      left: 14.6%;
+      transform: translate(-50%, -50%);
+    }
+
+    .tech-icon:nth-child(9) {
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Anneau décoratif */
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border: 2px dashed var(--orange);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { 
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      50% { 
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--cream), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: var(--light-gray);
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--light-gray);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary-custom {
+      background: linear-gradient(135deg, #EB5E28 0%, #d04a1f 100%);
+      color: var(--cream);
+      border: none;
+      box-shadow: 0 10px 30px rgba(235, 94, 40, 0.3);
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(235, 94, 40, 0.4);
+      color: var(--cream);
+    }
+
+    .btn-outline-custom {
+      background: transparent;
+      color: var(--light-gray);
+      border: 2px solid var(--light-gray);
+    }
+
+    .btn-outline-custom:hover {
+      background: var(--light-gray);
+      color: var(--darker-gray);
+      transform: translateY(-3px);
+    }
+
+    /* Tooltip pour les technologies */
+    .tech-tooltip {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--darker-gray);
+      color: var(--cream);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      border: 1px solid var(--orange);
+    }
+
+    .tech-icon:hover .tech-tooltip {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .profile-container {
+        width: 300px;
+        height: 300px;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .tech-icon {
+        width: 45px;
+        height: 45px;
+      }
+
+      .tech-icon img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -1098,42 +1408,72 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <!-- Floating elements -->
-    <div class="floating-elements">
-      <div class="floating-shape"></div>
-      <div class="floating-shape"></div>
-      <div class="floating-shape"></div>
-    </div>
-
-    <!-- Main content -->
     <div class="container hero-content">
-      <!-- Profile image with animated rings -->
+      <!-- Profile avec technologies gravitantes -->
       <div class="profile-container">
-        <div class="profile-rings">
-          <div class="ring"></div>
-          <div class="ring"></div>
+        <div class="orbit-ring"></div>
+        
+        <!-- Photo de profil -->
+        <img src="./source/profil.jpg" alt="Profile de Caleb Yang" class="profile-img">
+        
+        <!-- Technologies en orbite -->
+        <div class="tech-orbit">
+          <div class="tech-icon" data-tech="Laravel">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" alt="Laravel">
+            <span class="tech-tooltip">Laravel</span>
+          </div>
+          <div class="tech-icon" data-tech="Tailwind">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" alt="Tailwind">
+            <span class="tech-tooltip">Tailwind CSS</span>
+          </div>
+          <div class="tech-icon" data-tech="Bootstrap">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap">
+            <span class="tech-tooltip">Bootstrap</span>
+          </div>
+          <div class="tech-icon" data-tech="MySQL">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+            <span class="tech-tooltip">MySQL</span>
+          </div>
+          <div class="tech-icon" data-tech="PostgreSQL">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+            <span class="tech-tooltip">PostgreSQL</span>
+          </div>
+          <div class="tech-icon" data-tech="NodeJS">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="NodeJS">
+            <span class="tech-tooltip">Node.js</span>
+          </div>
+          <div class="tech-icon" data-tech="Flutter">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
+            <span class="tech-tooltip">Flutter</span>
+          </div>
+          <div class="tech-icon" data-tech="Git">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+            <span class="tech-tooltip">Git</span>
+          </div>
+          <div class="tech-icon" data-tech="GitHub">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+            <span class="tech-tooltip">GitHub</span>
+          </div>
         </div>
-        <img src="./source/profil.jpg" alt="Profile photo of Caleb Yang, FullStack Developer" class="profile-img">
       </div>
 
-      <!-- Text content -->
-      <h1 class="hero-title">I am Caleb Yang</h1>
-      <p class="hero-subtitle">FullStack Web & Mobile Developer</p>
+      <!-- Texte -->
+      <h1 class="hero-title">Je suis Caleb Yang</h1>
+      <p class="hero-subtitle">Développeur FullStack Web & Mobile</p>
       <p class="hero-description">
-        Passionate about creating exceptional digital experiences, I turn your ideas into innovative and high-performance technological solutions.
+        Passionné par la création d'expériences numériques exceptionnelles, je transforme vos idées en solutions technologiques innovantes et performantes.
       </p>
 
-      <!-- Action buttons -->
+      <!-- Boutons -->
       <div class="hero-buttons">
         <a href="#contact" class="hero-btn btn-primary-custom">
           <i class="bi bi-envelope me-2"></i>
-          Contact Me
+          Me Contacter
         </a>
-        <a href="./source/CV_Caleb_Yang en-US.pdf" class="hero-btn btn-outline-custom" download>
+        <a href="#" class="hero-btn btn-outline-custom">
           <i class="bi bi-download me-2"></i>
-          Download CV
+          Télécharger CV
         </a>
       </div>
     </div>
