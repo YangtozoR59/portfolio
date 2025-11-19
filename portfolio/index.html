@@ -30,8 +30,8 @@
   <meta name="twitter:image" content="https://itzcyd.vercel.app/source/profil.jpg">
 
   <!-- Additional metadata -->
-  <meta name="theme-color" content="#6c63ff">
-  <meta name="msapplication-TileColor" content="#6c63ff">
+  <meta name="theme-color" content="#EB5E28">
+  <meta name="msapplication-TileColor" content="#EB5E28">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Caleb Yang Portfolio">
@@ -97,15 +97,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
   <style>
     :root {
-      --primary-dark: #1a1a1a;
-      --secondary-dark: #2d2d2d;
-      --accent-gray: #4a4a4a;
-      --light-gray: #e0e0e0;
-      --white: #ffffff;
-      --text-light: #f8f9fa;
-      --accent-color: #6c63ff;
-      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      --gradient-secondary: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+      --cream: #FFFCF2;
+      --light-gray: #CCC5B9;
+      --dark-gray: #403D39;
+      --darker-gray: #252422;
+      --orange: #EB5E28;
+      --gradient-primary: linear-gradient(135deg, #EB5E28 0%, #d04a1f 100%);
+      --gradient-secondary: linear-gradient(45deg, #EB5E28, #ff7a4d, #CCC5B9, #FFFCF2);
     }
 
     * {
@@ -115,8 +113,8 @@
     }
 
     body {
-      background-color: var(--primary-dark);
-      color: var(--text-light);
+      background-color: var(--darker-gray);
+      color: var(--cream);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       overflow-x: hidden;
@@ -124,7 +122,7 @@
 
     /* Navbar */
     .navbar {
-      background-color: rgba(26, 26, 26, 0.95);
+      background-color: rgba(37, 36, 34, 0.95);
       backdrop-filter: blur(10px);
       padding: 1rem 0;
       position: fixed;
@@ -132,19 +130,19 @@
       top: 0;
       z-index: 1000;
       transition: all 0.3s ease;
-      border-bottom: 1px solid var(--accent-gray);
+      border-bottom: 1px solid var(--dark-gray);
     }
 
     .navbar.scrolled {
       padding: 0.5rem 0;
-      background-color: rgba(26, 26, 26, 0.98) !important;
+      background-color: rgba(37, 36, 34, 0.98) !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 
     .navbar-brand {
       font-weight: 700;
       font-size: 1.5rem;
-      color: var(--white);
+      color: var(--cream);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -153,12 +151,13 @@
 
     .navbar-brand:hover {
       transform: translateY(-2px);
+      color: var(--cream);
     }
 
     .brand-icon {
       margin-right: 8px;
       font-size: 1.3rem;
-      color: var(--accent-color);
+      color: var(--orange);
       transition: transform 0.5s ease;
     }
 
@@ -189,8 +188,8 @@
     }
 
     .nav-link:hover {
-      color: var(--white) !important;
-      background-color: rgba(108, 99, 255, 0.1);
+      color: var(--cream) !important;
+      background-color: rgba(235, 94, 40, 0.1);
     }
 
     .nav-link:hover i {
@@ -198,11 +197,11 @@
     }
 
     .nav-link.active {
-      color: var(--accent-color) !important;
+      color: var(--orange) !important;
     }
 
     .nav-link.active i {
-      color: var(--accent-color);
+      color: var(--orange);
     }
 
     .nav-link::after {
@@ -212,7 +211,7 @@
       left: 50%;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--accent-color), #8a84ff);
+      background: linear-gradient(90deg, var(--orange), #ff7a4d);
       transition: all 0.3s ease;
       transform: translateX(-50%);
     }
@@ -236,7 +235,7 @@
     }
 
     .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 252, 242, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
       transition: all 0.3s ease;
     }
 
@@ -246,7 +245,7 @@
 
     @media (max-width: 991px) {
       .navbar-collapse {
-        background-color: rgba(26, 26, 26, 0.98);
+        background-color: rgba(37, 36, 34, 0.98);
         border-radius: 8px;
         margin-top: 10px;
         padding: 1rem;
@@ -264,7 +263,7 @@
       }
 
       .nav-link:hover {
-        background-color: rgba(108, 99, 255, 0.15);
+        background-color: rgba(235, 94, 40, 0.15);
         transform: translateX(5px);
       }
     }
@@ -272,7 +271,7 @@
     /* Hero Section */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 50%, #1f1f1f 100%);
+      background: linear-gradient(135deg, var(--darker-gray) 0%, var(--dark-gray) 50%, #332f2b 100%);
       position: relative;
       overflow: hidden;
       display: flex;
@@ -289,9 +288,9 @@
       width: 100%;
       height: 100%;
       background-image: 
-        radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(224, 224, 224, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(108, 99, 255, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(235, 94, 40, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(204, 197, 185, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(235, 94, 40, 0.03) 0%, transparent 50%);
       animation: backgroundPulse 8s ease-in-out infinite alternate;
       z-index: 0;
     }
@@ -332,7 +331,7 @@
       right: 15%;
       width: 80px;
       height: 80px;
-      background: linear-gradient(45deg, var(--accent-color), #8a84ff);
+      background: linear-gradient(45deg, var(--orange), #ff7a4d);
       transform: rotate(45deg);
       animation-delay: 1s;
     }
@@ -411,7 +410,7 @@
 
     .ring {
       position: absolute;
-      border: 2px solid var(--accent-color);
+      border: 2px solid var(--orange);
       border-radius: 50%;
       opacity: 0.3;
       top: 50%;
@@ -443,7 +442,7 @@
       font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 1rem;
-      background: linear-gradient(45deg, var(--white), var(--light-gray), var(--accent-color));
+      background: linear-gradient(45deg, var(--cream), var(--light-gray), var(--orange));
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -478,7 +477,7 @@
 
     .hero-description {
       font-size: 1.1rem;
-      color: #aaa;
+      color: var(--light-gray);
       margin-bottom: 2rem;
       max-width: 600px;
       margin-left: auto;
@@ -548,15 +547,15 @@
 
     .btn-primary-custom {
       background: var(--gradient-primary);
-      color: white;
+      color: var(--cream);
       border: none;
-      box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(235, 94, 40, 0.3);
     }
 
     .btn-primary-custom:hover {
       transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(108, 99, 255, 0.4);
-      color: white;
+      box-shadow: 0 15px 40px rgba(235, 94, 40, 0.4);
+      color: var(--cream);
     }
 
     .btn-outline-custom {
@@ -568,9 +567,9 @@
 
     .btn-outline-custom:hover {
       background: var(--light-gray);
-      color: var(--primary-dark);
+      color: var(--darker-gray);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(224, 224, 224, 0.3);
+      box-shadow: 0 10px 30px rgba(204, 197, 185, 0.3);
     }
 
     /* General sections */
@@ -580,6 +579,7 @@
       margin-bottom: 2rem;
       position: relative;
       display: inline-block;
+      color: var(--cream);
     }
 
     .section-title::after {
@@ -589,7 +589,7 @@
       left: 0;
       width: 60px;
       height: 4px;
-      background-color: var(--light-gray);
+      background-color: var(--orange);
     }
 
     .section-padding {
@@ -597,7 +597,7 @@
     }
 
     .about-section {
-      background-color: var(--secondary-dark);
+      background-color: var(--dark-gray);
     }
 
     .skills-list {
@@ -614,18 +614,19 @@
     .skill-name {
       min-width: 150px;
       font-weight: 500;
+      color: var(--cream);
     }
 
     .progress {
       height: 8px;
-      background-color: var(--accent-gray);
+      background-color: rgba(64, 61, 57, 0.5);
       border-radius: 4px;
       flex-grow: 1;
       overflow: hidden;
     }
 
     .progress-bar {
-      background: linear-gradient(90deg, var(--light-gray) 0%, #a0a0a0 100%);
+      background: linear-gradient(90deg, var(--orange) 0%, #ff7a4d 100%);
       border-radius: 4px;
       transition: width 1.5s ease-in-out;
     }
@@ -643,14 +644,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--accent-gray);
+      background-color: var(--darker-gray);
+      border: 1px solid var(--orange);
       border-radius: 8px;
       transition: all 0.3s ease;
     }
 
     .tech-icon:hover {
       transform: translateY(-5px);
-      background-color: var(--light-gray);
+      background-color: var(--orange);
     }
 
     .tech-icon img {
@@ -660,12 +662,12 @@
     }
 
     .services-section {
-      background-color: var(--primary-dark);
+      background-color: var(--darker-gray);
     }
 
     .service-card {
-      background-color: var(--secondary-dark);
-      border: 1px solid var(--accent-gray);
+      background-color: var(--dark-gray);
+      border: 1px solid var(--orange);
       border-radius: 10px;
       padding: 2rem;
       height: 100%;
@@ -681,7 +683,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(235, 94, 40, 0.1), transparent);
       transition: left 0.5s;
     }
 
@@ -691,77 +693,128 @@
 
     .service-card:hover {
       transform: translateY(-10px);
-      border-color: var(--light-gray);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: var(--orange);
+      box-shadow: 0 15px 30px rgba(235, 94, 40, 0.2);
     }
 
     .service-icon {
       font-size: 2.5rem;
       margin-bottom: 1rem;
+      color: var(--orange);
+    }
+
+    .service-card h4 {
+      color: var(--cream);
+    }
+
+    .service-card p {
       color: var(--light-gray);
     }
 
     .projects-section {
-      background-color: var(--secondary-dark);
+      background-color: var(--dark-gray);
     }
 
     .project-card {
-      background-color: var(--primary-dark);
+      background-color: var(--darker-gray);
       border-radius: 10px;
       overflow: hidden;
       transition: all 0.3s ease;
-      border: 1px solid var(--accent-gray);
+      border: 1px solid var(--dark-gray);
       height: 100%;
     }
 
     .project-card:hover {
       transform: translateY(-10px);
-      border-color: var(--light-gray);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: var(--orange);
+      box-shadow: 0 15px 30px rgba(235, 94, 40, 0.2);
     }
 
     .project-img {
       height: 200px;
       object-fit: cover;
       width: 100%;
+      background-color: var(--dark-gray);
     }
 
     .project-content {
       padding: 1.5rem;
     }
 
+    .project-content h4 {
+      color: var(--cream);
+    }
+
+    .project-content .text-secondary {
+      color: var(--light-gray) !important;
+    }
+
+    .badge {
+      font-weight: 500;
+    }
+
+    .bg-warning {
+      background-color: var(--orange) !important;
+    }
+
+    .bg-primary {
+      background-color: var(--dark-gray) !important;
+    }
+
+    .bg-secondary {
+      background-color: var(--light-gray) !important;
+      color: var(--darker-gray) !important;
+    }
+
+    .bg-info {
+      background-color: #CCC5B9 !important;
+      color: var(--darker-gray) !important;
+    }
+
+    .bg-success {
+      background-color: var(--orange) !important;
+    }
+
+    .text-danger {
+      color: var(--orange) !important;
+    }
+
     .contact-section {
-      background-color: var(--primary-dark);
+      background-color: var(--darker-gray);
     }
 
     .contact-form {
-      background-color: var(--secondary-dark);
+      background-color: var(--dark-gray);
       padding: 2rem;
       border-radius: 10px;
-      border: 1px solid var(--accent-gray);
+      border: 1px solid var(--orange);
+    }
+
+    .form-label {
+      color: var(--cream);
     }
 
     .form-control {
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--accent-gray);
-      color: var(--text-light);
+      background-color: rgba(255, 252, 242, 0.05);
+      border: 1px solid var(--light-gray);
+      color: var(--cream);
       padding: 0.75rem 1rem;
     }
 
     .form-control:focus {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-color: var(--light-gray);
+      background-color: rgba(255, 252, 242, 0.1);
+      border-color: var(--orange);
       box-shadow: none;
-      color: var(--text-light);
+      color: var(--cream);
     }
 
     .form-control::placeholder {
-      color: #aaa;
+      color: var(--light-gray);
     }
 
     .contact-btn {
-      background-color: var(--light-gray);
-      color: var(--primary-dark);
+      background-color: var(--orange);
+      color: var(--cream);
       border: none;
       padding: 0.75rem 2rem;
       font-weight: 600;
@@ -769,8 +822,9 @@
     }
 
     .contact-btn:hover {
-      background-color: var(--white);
+      background-color: #d04a1f;
       transform: translateY(-2px);
+      color: var(--cream);
     }
 
     .social-links {
@@ -795,40 +849,54 @@
     }
 
     .btn-mail {
-      background-color: #ea4335;
-      color: white;
+      background-color: var(--orange);
+      color: var(--cream);
     }
 
     .btn-github {
-      background-color: #333;
-      color: white;
+      background-color: var(--darker-gray);
+      color: var(--cream);
+      border: 1px solid var(--light-gray);
     }
 
     .btn-linkedin {
-      background-color: #0077b5;
-      color: white;
+      background-color: var(--dark-gray);
+      color: var(--cream);
+      border: 1px solid var(--orange);
     }
 
     .btn-whatsapp {
       background-color: #25d366;
-      color: white;
+      color: var(--cream);
     }
 
     .btn-telegram {
       background-color: #0088cc;
-      color: white;
+      color: var(--cream);
     }
 
     .social-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      color: white;
+      box-shadow: 0 5px 15px rgba(235, 94, 40, 0.3);
+      color: var(--cream);
     }
 
     footer {
-      background-color: var(--secondary-dark);
-      border-top: 1px solid var(--accent-gray);
+      background-color: var(--dark-gray);
+      border-top: 1px solid var(--orange);
       padding: 2rem 0;
+    }
+
+    footer p {
+      color: var(--light-gray);
+    }
+
+    footer a {
+      color: var(--orange) !important;
+    }
+
+    footer a:hover {
+      color: #ff7a4d !important;
     }
 
     .fade-in {
@@ -848,6 +916,7 @@
       transition: transform 0.2s;
       border-radius: 8px;
       overflow: hidden;
+      border: 2px solid var(--orange);
     }
 
     .gallery-item:hover {
@@ -866,6 +935,82 @@
       max-height: 80vh;
       object-fit: contain;
     }
+
+    .modal-content {
+      background-color: var(--darker-gray);
+      border: 1px solid var(--orange);
+    }
+
+    .modal-header {
+      border-bottom: 1px solid var(--dark-gray);
+    }
+
+    .modal-title {
+      color: var(--cream) !important;
+    }
+
+    .btn-close {
+      filter: brightness(0) invert(1);
+    }
+
+    /* Styles for progressive project display */
+  .project-item.hidden {
+    display: none;
+  }
+
+  .project-item.visible {
+    display: block;
+  }
+
+  .project-item.show-animated {
+    display: block;
+    animation: slideInUp 0.5s ease-out;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Show more/less button style */
+  .btn-show-more {
+    background: linear-gradient(135deg, #EB5E28 0%, #d04a1f 100%);
+    color: var(--cream);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-show-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(235, 94, 40, 0.3);
+    color: var(--cream);
+  }
+
+  .btn-show-more::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-show-more:hover::before {
+    left: 100%;
+  }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -907,64 +1052,6 @@
         padding: 80px 0;
       }
     }
-    /* Styles for progressive project display */
-  .project-item.hidden {
-    display: none;
-  }
-
-  .project-item.visible {
-    display: block;
-  }
-
-  .project-item.show-animated {
-    display: block;
-    animation: slideInUp 0.5s ease-out;
-  }
-
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Show more/less button style */
-  .btn-show-more {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 12px 30px;
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-show-more:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
-    color: white;
-  }
-
-  .btn-show-more::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-  }
-
-  .btn-show-more:hover::before {
-    left: 100%;
-  }
   </style>
 </head>
 
@@ -1059,14 +1146,14 @@
 
       <div class="row align-items-center">
         <div class="col-lg-6 fade-in">
-          <h3 class="mb-4">Bio</h3>
-          <p class="mb-4">I am a <b class="text-warning">Full-stack Web Developer</b>, passionate about creating modern digital solutions.
+          <h3 class="mb-4" style="color: var(--cream);">Bio</h3>
+          <p class="mb-4" style="color: var(--light-gray);">I am a <b style="color: var(--orange);">Full-stack Web Developer</b>, passionate about creating modern digital solutions.
              I master the basics of Laravel, Flutter and Bootstrap, and develop for both web and mobile.
-              <b class="text-primary">Freelance</b> and active member of the <b class="text-danger">Evodevs 237</b> team, I have already completed several concrete projects, ranging from e-commerce sites, showcases and administrative management to mobile applications.
-              Curious and ambitious, I continue to expand my skills to become a <b class="text-secondary">complete and versatile Developer</b>.</p>
+              <b style="color: var(--orange);">Freelance</b> and active member of the <b style="color: var(--orange);">Evodevs 237</b> team, I have already completed several concrete projects, ranging from e-commerce sites, showcases and administrative management to mobile applications.
+              Curious and ambitious, I continue to expand my skills to become a <b style="color: var(--cream);">complete and versatile Developer</b>.</p>
 
           <!-- Image gallery -->
-          <h3 class="mb-4">Recent Certifications</h3>
+          <h3 class="mb-4" style="color: var(--cream);">Recent Certifications</h3>
 
           <div class="d-flex flex-wrap gap-2 mt-3">
             <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
@@ -1108,7 +1195,7 @@
         </div>
 
         <div class="col-lg-6 fade-in">
-          <h3 class="mb-4">Skills</h3>
+          <h3 class="mb-4" style="color: var(--cream);">Skills</h3>
           <ul class="skills-list">
             <li>
               <span class="skill-name">Backend</span>
@@ -1136,7 +1223,7 @@
             </li>
           </ul>
 
-          <h3 class="mt-5 mb-4">Tools & Soft Skills</h3>
+          <h3 class="mt-5 mb-4" style="color: var(--cream);">Tools & Soft Skills</h3>
           <ul class="skills-list">
             <li>
               <span class="skill-name">Coding Vibe</span>
@@ -1212,8 +1299,8 @@
               <span class="badge bg-secondary">Frontend - Tailwind CSS</span>
               <span class="badge bg-info">Database - MySQL</span>
             </div>
-            <p class="mt-2"><small>October 2025</small></p>
-            <a href="https://egem-ndere.com/" class="btn btn-outline-light mt-2" target="_blank">Visit EGEM</a>
+            <p class="mt-2" style="color: var(--light-gray);"><small>October 2025</small></p>
+            <a href="https://egem-ndere.com/" class="btn btn-outline-light mt-2" target="_blank" style="border-color: var(--orange); color: var(--orange);">Visit EGEM</a>
           </div>
         </div>
       </div>
@@ -1233,8 +1320,8 @@
               <span class="badge bg-secondary">Frontend - Bootstrap</span>
               <span class="badge bg-info">Database - MySQL</span>
             </div>
-            <p class="mt-2"><small>August 2025</small></p>
-            <a href="https://www.entreprisedupays.maths237.cm/" class="btn btn-outline-light mt-2" target="_blank">Visit EP</a>
+            <p class="mt-2" style="color: var(--light-gray);"><small>August 2025</small></p>
+            <a href="https://www.entreprisedupays.maths237.cm/" class="btn btn-outline-light mt-2" target="_blank" style="border-color: var(--orange); color: var(--orange);">Visit EP</a>
           </div>
         </div>
       </div>
@@ -1254,7 +1341,7 @@
               <span class="badge bg-secondary">Frontend - Tailwind CSS</span>
               <span class="badge bg-info">Database - MySQL</span>
             </div>
-            <p class="mt-2"><small>May 2025 - July 2025</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>May 2025 - July 2025</small></p>
           </div>
         </div>
       </div>
@@ -1274,8 +1361,8 @@
               <span class="badge bg-secondary">Frontend - Bootstrap</span>
               <span class="badge bg-info">Database - MySQL</span>
             </div>
-            <p class="mt-2"><small>May 2025 - July 2025</small></p>
-            <a href="https://www.muit.iut-ndere.net/" class="btn btn-outline-light mt-2" target="_blank">Visit MUIT</a>
+            <p class="mt-2" style="color: var(--light-gray);"><small>May 2025 - July 2025</small></p>
+            <a href="https://www.muit.iut-ndere.net/" class="btn btn-outline-light mt-2" target="_blank" style="border-color: var(--orange); color: var(--orange);">Visit MUIT</a>
           </div>
         </div>
       </div>
@@ -1294,7 +1381,7 @@
               <span class="badge bg-secondary">JavaScript</span>
               <span class="badge bg-success">Bootstrap</span>
             </div>
-            <p class="mt-2"><small>September 2024</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>September 2024</small></p>
           </div>
         </div>
       </div>
@@ -1314,7 +1401,7 @@
               <span class="badge bg-secondary">Frontend - Bootstrap</span>
               <span class="badge bg-info">MySQL</span>
             </div>
-            <p class="mt-2"><small>August 2024</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>August 2024</small></p>
           </div>
         </div>
       </div>
@@ -1323,7 +1410,7 @@
       <div class="col-md-6 fade-in project-item hidden">
         <div class="project-card">
           <div class="project-img d-flex align-items-center justify-content-center">
-            <i class="bi bi-graph-up text-light" style="font-size: 4rem;"></i>
+            <i class="bi bi-graph-up" style="font-size: 4rem; color: var(--orange);"></i>
           </div>
           <div class="project-content">
             <h4>Statistical Tracking Module - SYGALIN</h4>
@@ -1331,10 +1418,10 @@
             <div class="mt-3">
               <span class="badge bg-warning text-dark">Role - Project Manager & Lead Developer</span>
               <span class="badge bg-primary">Backend - CodeIgniter 3</span>
-              <span class="badge bg-warning text-dark">Frontend - Bootstrap</span>
+              <span class="badge bg-secondary">Frontend - Bootstrap</span>
               <span class="badge bg-info">MySQL</span>
             </div>
-            <p class="mt-2"><small>March 2024 - May 2024</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>March 2024 - May 2024</small></p>
           </div>
         </div>
       </div>
@@ -1353,7 +1440,7 @@
               <span class="badge bg-secondary">JavaScript</span>
               <span class="badge bg-success">Bootstrap</span>
             </div>
-            <p class="mt-2"><small>September 2024</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>September 2024</small></p>
           </div>
         </div>
       </div>
@@ -1362,7 +1449,7 @@
       <div class="col-md-6 fade-in project-item hidden">
         <div class="project-card">
           <div class="project-img d-flex align-items-center justify-content-center">
-            <i class="bi bi-chat-square-text-fill text-light" style="font-size: 4rem;"></i>
+            <i class="bi bi-chat-square-text-fill" style="font-size: 4rem; color: var(--orange);"></i>
           </div>
           <div class="project-content">
             <h4>Discussion Forum - LiveChat</h4>
@@ -1372,7 +1459,7 @@
               <span class="badge bg-primary">Backend - PHP</span>
               <span class="badge bg-success">Frontend - Bootstrap</span>
             </div>
-            <p class="mt-2"><small>Team personal project</small></p>
+            <p class="mt-2" style="color: var(--light-gray);"><small>Team personal project</small></p>
           </div>
         </div>
       </div>
@@ -1396,7 +1483,7 @@
   <section id="contact" class="contact-section section-padding">
     <div class="container">
       <h2 class="section-title text-center fade-in">Contact</h2>
-      <p class="text-center mb-5 fade-in">Need a developer? Contact me for fast and affordable web development solutions.</p>
+      <p class="text-center mb-5 fade-in" style="color: var(--light-gray);">Need a developer? Contact me for fast and affordable web development solutions.</p>
 
       <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -1441,7 +1528,7 @@
   <!-- Footer -->
   <footer class="text-center">
     <div class="container">
-      <p>&copy; 2025 <a href="https://t.me/ItzCyd" class="text-decoration-none text-white">Caleb Yang</a>. All rights reserved.</p>
+      <p>&copy; 2025 <a href="https://t.me/ItzCyd" class="text-decoration-none">Caleb Yang</a>. All rights reserved.</p>
     </div>
   </footer>
 
@@ -1450,7 +1537,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" style="color: black;" id="imageModalLabel">Project Preview</h5>
+          <h5 class="modal-title" id="imageModalLabel">Project Preview</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
@@ -1538,6 +1625,7 @@
       const message = document.getElementById('message').value;
       const formMessage = document.getElementById('formMessage');
 
+      // Simulation of sending
       // Simulation of sending
       setTimeout(() => {
         formMessage.innerHTML = '<div class="alert alert-success">Message sent successfully! I will reply soon.</div>';
