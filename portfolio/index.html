@@ -1719,14 +1719,6 @@ footer a:hover {
     // Contact form handling
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      const formMessage = document.getElementById('formMessage');
-
-      // Simulation of sending
-      // Simulation of sending
       setTimeout(() => {
         formMessage.innerHTML = '<div class="alert alert-success">Message sent successfully! I will reply soon.</div>';
         document.getElementById('contactForm').reset();
