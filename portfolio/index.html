@@ -1717,13 +1717,44 @@ footer a:hover {
     });
 
     // Contact form handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      setTimeout(() => {
-        formMessage.innerHTML = '<div class="alert alert-success">Message sent successfully! I will reply soon.</div>';
-        document.getElementById('contactForm').reset();
-      }, 1000);
-    });
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const formMessage = document.getElementById('formMessage');
+  const submitButton = this.querySelector('button[type="submit"]');
+
+  // Désactiver le bouton
+  submitButton.disabled = true;
+  submitButton.textContent = 'Envoi en cours...';
+  formMessage.innerHTML = '<div class="alert alert-info">Envoi en cours...</div>';
+
+  // Remplacez par votre vrai FORM_ID
+  fetch('https://formspree.io/f/xpwbvrod', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      formMessage.innerHTML = '<div class="alert alert-success"><i class="bi bi-check-circle me-2"></i>Message envoyé avec succès ! Je vous répondrai bientôt.</div>';
+      document.getElementById('contactForm').reset();
+    } else {
+      return response.json().then(data => {
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      });
+    }
+  })
+  .catch(error => {
+    formMessage.innerHTML = '<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>Erreur : ' + error.message + '</div>';
+  })
+  .finally(() => {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Envoyer le message';
+  });
+});
 
     // Script to handle modal opening with the right image
     const imageModal = document.getElementById('imageModal');
