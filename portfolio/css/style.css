@@ -433,30 +433,7 @@ body {
     left: 14.6%;
 }
 
-.tech-icon:nth-child(9) {
-    top: 29.02%;
-    right: 29.02%;
-}
-
-.tech-icon:nth-child(10) {
-    top: 50%;
-    right: 50%;
-}
-
-.tech-icon:nth-child(11) {
-    bottom: 29.02%;
-    right: 29.02%;
-}
-
-.tech-icon:nth-child(12) {
-    bottom: 50%;
-    right: 50%;
-}
-
-.tech-icon:nth-child(13) {
-    bottom: 29.02%;
-    left: 29.02%;
-}
+/* Duplicate? Fixed below */
 
 /* 
 Original 12 items logic might have been duplicated or erratic 
@@ -1467,5 +1444,135 @@ footer a:hover {
 
     .section-padding {
         padding: 80px 0;
+    }
+}
+
+/* =========================================
+   Advanced Animations & Interactions
+   ================================********* */
+
+/* Custom Cursor */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    display: none;
+    /* Hidden by default, shown via JS on desktop */
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--orange);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--orange);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+body.hovering .cursor-outline {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(235, 94, 40, 0.1);
+    border-color: transparent;
+}
+
+@media (pointer: coarse) {
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+}
+
+/* Scroll Reveal Animations */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered Delays for Lists */
+.stagger-1 {
+    transition-delay: 100ms;
+}
+
+.stagger-2 {
+    transition-delay: 200ms;
+}
+
+.stagger-3 {
+    transition-delay: 300ms;
+}
+
+.stagger-4 {
+    transition-delay: 400ms;
+}
+
+/* 3D Tilt Effect */
+.project-card,
+.service-card {
+    transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+    /* Fast transform for mouse move */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.project-card:hover,
+.service-card:hover {
+    z-index: 10;
+}
+
+/* Typing Effect Cursor */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: var(--orange);
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
     }
 }
