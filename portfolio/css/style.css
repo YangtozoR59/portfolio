@@ -310,18 +310,29 @@ body {
     filter: brightness(1.1);
 }
 
-/* Tech Orbit */
+/* Tech Orbit - Base Styles */
 .tech-orbit {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    animation: rotate 30s linear infinite;
 }
 
-@keyframes rotate {
+/* Outer Orbit - 8 icons, clockwise rotation */
+.tech-orbit.outer {
+    width: 100%;
+    height: 100%;
+    animation: rotate-clockwise 30s linear infinite;
+}
+
+/* Inner Orbit - 5 icons, counter-clockwise rotation */
+.tech-orbit.inner {
+    width: 75%;
+    height: 75%;
+    animation: rotate-counter-clockwise 25s linear infinite;
+}
+
+@keyframes rotate-clockwise {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
@@ -331,6 +342,17 @@ body {
     }
 }
 
+@keyframes rotate-counter-clockwise {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+/* Tech Icon Base Styles */
 .tech-icon {
     position: absolute;
     width: 60px;
@@ -344,16 +366,21 @@ body {
     transition: var(--transition-base);
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-    /* Centering adjustment (replacing translate transform) */
     margin-left: -30px;
     margin-top: -30px;
-
-    /* Counter-rotation to keep icons upright */
-    animation: counter-rotate 30s linear infinite;
 }
 
-@keyframes counter-rotate {
+/* Counter-rotation for outer orbit icons */
+.tech-orbit.outer .tech-icon {
+    animation: counter-rotate-clockwise 30s linear infinite;
+}
+
+/* Counter-rotation for inner orbit icons */
+.tech-orbit.inner .tech-icon {
+    animation: counter-rotate-counter-clockwise 25s linear infinite;
+}
+
+@keyframes counter-rotate-clockwise {
     from {
         transform: rotate(0deg);
     }
@@ -361,24 +388,25 @@ body {
     to {
         transform: rotate(-360deg);
     }
+}
 
-    /* Rotate opposite to parent */
+@keyframes counter-rotate-counter-clockwise {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .tech-icon:hover {
-    transform: scale(1.2) rotate(-360deg);
-    /* Maintain rotation on hover */
+    transform: scale(1.2);
     background: var(--orange);
     border-color: var(--cream);
     box-shadow: 0 8px 25px rgba(235, 94, 40, 0.5);
     animation-play-state: paused;
 }
-
-/* Pause parent too when hovering a child is tricky without :has() 
-   but pausing child means it will rotate with parent (fixed relative to parent).
-   If parent continues, child rotates with it.
-   Ideally we pause both or neither. 
-   For now, let's keep it simple. */
 
 .tech-icon img {
     width: 35px;
@@ -391,322 +419,72 @@ body {
     transform: scale(1.1);
 }
 
-/* Tech Icon Positions (Circle Layout) */
-/* Replacing transform: translate(...) with exact positioning since we use margins for centering now */
-.tech-icon:nth-child(1) {
-    top: 0;
-    left: 50%;
-}
-
-.tech-icon:nth-child(2) {
-    top: 14.6%;
-    right: 14.6%;
-}
-
-.tech-icon:nth-child(3) {
-    top: 50%;
-    right: 0;
-}
-
-.tech-icon:nth-child(4) {
-    bottom: 14.6%;
-    right: 14.6%;
-}
-
-.tech-icon:nth-child(5) {
-    bottom: 0;
-    left: 50%;
-}
-
-.tech-icon:nth-child(6) {
-    bottom: 14.6%;
-    left: 14.6%;
-}
-
-.tech-icon:nth-child(7) {
-    top: 50%;
-    left: 0;
-}
-
-.tech-icon:nth-child(8) {
-    top: 14.6%;
-    left: 14.6%;
-}
-
-/* Duplicate? Fixed below */
-
-/* 
-Original 12 items logic might have been duplicated or erratic 
-Let's fix the distribution for 13 items if possible, or keep the original positions but fix duplicates.
-Original code had duplicates for nth-child(7,8,9,10,11,12,13) all at 14.6% left/top?
-Let's look at the HTML.
-There are 13 items.
-12 items on a clock face would be 30deg apart.
-Position x = 50% + r * cos(a), y = 50% + r * sin(a)
-r = 50% (of container).
-Container is 400x400.
-Let's trust the user's layout mostly but fix the duplicates if they were obvious errors.
-The original code had:
-7: top 14.6 left 14.6
-8: top 14.6 left 14.6
-...
-This looks like they copy-pasted and didn't finish positioning.
-I should distribute them evenly.
-13 items.
-Angle step = 360 / 13 ~= 27.7 deg.
-That's hard to calc in CSS percent without trig.
-If I assume 12 items (clock):
-1 (12h): Top 0, Left 50%
-2 (1h): Top 6.7%, Right 25% ... messy.
-
-Let's stick to the ones that looked "deliberate":
-1: 12 o'clock
-2: 1:30 (45deg) -> top 14.6%, right 14.6%
-3: 3 o'clock -> right 0, top 50%
-4: 4:30 -> bottom 14.6%, right 14.6%
-5: 6 o'clock -> bottom 0, left 50%
-6: 7:30 -> bottom 14.6%, left 14.6%
-7: 9 o'clock -> left 0, top 50%
-8: 10:30 -> top 14.6%, left 14.6%
-
-That covers 8 items.
-The user has 13 items in HTML.
-If I use 8 points, 5 stack on top of each other.
-I'll try to distribute them better or accept stack.
-For now, let's fix the obvious "all on top of each other" bug by distributing them roughly.
-I will distribute 12 items (30 deg steps) and put the 13th in center or somewhere?
-Or just 12 items on ring. 13th?
-HTML has: Laravel, Flutter, Node, Postgres, MySQL, Docker, GitHub, Git, Firebase, Postman, Tailwind, Bootstrap, VS Code. (13 items).
-
-I'll calculate positions for 12 items on the ring + 1 maybe double up or something.
-Or just 13 items.
-I'll use `calc()` for positions?
-r = 50%.
-x = 50% + 50% * cos(angle)
-y = 50% + 50% * sin(angle)
-*/
-
-.tech-icon:nth-child(1) {
+/* Outer Orbit Icon Positions - 8 icons at 45° intervals */
+.tech-orbit.outer .tech-icon:nth-child(1) {
     top: 0%;
     left: 50%;
 }
 
-/* 270deg (top) */
-.tech-icon:nth-child(2) {
-    top: 6.2%;
-    left: 73.0%;
+.tech-orbit.outer .tech-icon:nth-child(2) {
+    top: 14.6%;
+    left: 85.4%;
 }
 
-/* 300deg */
-.tech-icon:nth-child(3) {
-    top: 22.6%;
-    left: 90.5%;
-}
-
-/* 330deg */
-.tech-icon:nth-child(4) {
+.tech-orbit.outer .tech-icon:nth-child(3) {
     top: 50%;
     left: 100%;
 }
 
-/* 0deg (right) */
-.tech-icon:nth-child(5) {
-    top: 77.4%;
-    left: 90.5%;
+.tech-orbit.outer .tech-icon:nth-child(4) {
+    top: 85.4%;
+    left: 85.4%;
 }
 
-/* 30deg */
-.tech-icon:nth-child(6) {
-    top: 93.8%;
-    left: 73.0%;
-}
-
-/* 60deg */
-.tech-icon:nth-child(7) {
+.tech-orbit.outer .tech-icon:nth-child(5) {
     top: 100%;
     left: 50%;
 }
 
-/* 90deg (bottom) */
-.tech-icon:nth-child(8) {
-    top: 93.8%;
-    left: 27.0%;
+.tech-orbit.outer .tech-icon:nth-child(6) {
+    top: 85.4%;
+    left: 14.6%;
 }
 
-/* 120deg */
-.tech-icon:nth-child(9) {
-    top: 77.4%;
-    left: 9.5%;
-}
-
-/* 150deg */
-.tech-icon:nth-child(10) {
+.tech-orbit.outer .tech-icon:nth-child(7) {
     top: 50%;
     left: 0%;
 }
 
-/* 180deg (left) */
-.tech-icon:nth-child(11) {
-    top: 22.6%;
+.tech-orbit.outer .tech-icon:nth-child(8) {
+    top: 14.6%;
+    left: 14.6%;
+}
+
+/* Inner Orbit Icon Positions - 5 icons at 72° intervals */
+.tech-orbit.inner .tech-icon:nth-child(1) {
+    top: 0%;
+    left: 50%;
+}
+
+.tech-orbit.inner .tech-icon:nth-child(2) {
+    top: 34.5%;
+    left: 90.5%;
+}
+
+.tech-orbit.inner .tech-icon:nth-child(3) {
+    top: 90.5%;
+    left: 65.5%;
+}
+
+.tech-orbit.inner .tech-icon:nth-child(4) {
+    top: 90.5%;
+    left: 34.5%;
+}
+
+.tech-orbit.inner .tech-icon:nth-child(5) {
+    top: 34.5%;
     left: 9.5%;
 }
-
-/* 210deg */
-.tech-icon:nth-child(12) {
-    top: 6.2%;
-    left: 27.0%;
-}
-
-/* 240deg */
-.tech-icon:nth-child(13) {
-    top: 50%;
-    left: 50%;
-    animation: none;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Hide the 13th or place it? Let's hide for symmetry or place it on top of 1? */
-/* Actually let's use 13 divisions if we want all visible. 
-   360/13 = 27.7deg.
-   This is getting complex to hand-calc.
-   Let's stick to 12 items on the ring and ignore the 13th (VS Code) or put it with the 1st.
-   Or maybe just put VS Code at 12 o'clock overlapping Laravel?
-   Let's try to fit 13.
-*/
-/*
-   Simplification:
-   Let's just use the 8-point compass + 4 intermediates?
-   The original code had 8 defined points.
-   I'll assume the user wants them distributed.
-   I will write a cleaner CSS that places them.
-   Or I can trust the user's intent was 8 points.
-   But there are 13 items.
-   Let's place 12 items in a circle and 1 in the center? No, center is profile.
-   
-   Let's stick to the 8 explicit positions from the original code (with corrections for the bugged ones) 
-   and then maybe pile the rest?
-   The original code had:
-   1: top-center
-   2: top-right diag
-   3: right-center
-   4: bot-right diag
-   5: bot-center
-   6: bot-left diag
-   7-13: top-left diag (bugged bunch)
-   
-   Correction:
-   7: left-center
-   8: top-left diag
-   
-   That makes 8 positions.
-   Items 9, 10, 11, 12, 13 need homes.
-   I'll double them up?
-   9 -> top-center
-   10 -> top-right diag
-   11 -> right-center
-   12 -> bot-right diag
-   13 -> bot-center
-*/
-
-.tech-icon:nth-child(1) {
-    top: 0%;
-    left: 50%;
-}
-
-.tech-icon:nth-child(2) {
-    top: 14.6%;
-    left: 85.4%;
-}
-
-.tech-icon:nth-child(3) {
-    top: 50%;
-    left: 100%;
-}
-
-.tech-icon:nth-child(4) {
-    top: 85.4%;
-    left: 85.4%;
-}
-
-.tech-icon:nth-child(5) {
-    top: 100%;
-    left: 50%;
-}
-
-.tech-icon:nth-child(6) {
-    top: 85.4%;
-    left: 14.6%;
-}
-
-.tech-icon:nth-child(7) {
-    top: 50%;
-    left: 0%;
-}
-
-.tech-icon:nth-child(8) {
-    top: 14.6%;
-    left: 14.6%;
-}
-
-/* Recycling positions for extras */
-.tech-icon:nth-child(9) {
-    top: 0%;
-    left: 50%;
-    display: none;
-}
-
-.tech-icon:nth-child(10) {
-    top: 14.6%;
-    left: 85.4%;
-    display: none;
-}
-
-.tech-icon:nth-child(11) {
-    top: 50%;
-    left: 100%;
-    display: none;
-}
-
-.tech-icon:nth-child(12) {
-    top: 85.4%;
-    left: 85.4%;
-    display: none;
-}
-
-.tech-icon:nth-child(13) {
-    top: 100%;
-    left: 50%;
-    display: none;
-}
-
-/* Hiding the extras to avoid clutter for now, as 13 is too many for one ring without overlaps.
-   Unless I reduce size?
-   I'll enable them but offset them slightly? No, looks bad.
-   I'll just show the first 8 for now, as per the layout limitation.
-   Wait, the user lists 13 techs. Hiding them is bad.
-   
-   Better idea: Animate them to pulse in/out? Too complex.
-   
-   I'll just space 13 items.
-   I'll use approximate values for 13 items.
-   0 deg: top (50, 0) -> top:0, left:50%
-   27.7 deg: top: 3.4%, left: 73%
-   ... 
-   Actually, let's just stick to 12 items and hide the last one or put it effectively at 0.
-*/
-.tech-icon:nth-child(9) {
-    display: flex;
-    top: 0%;
-    left: 50%;
-    transform: scale(0.8);
-    z-index: -1;
-}
-
-/* Just behind? */
-
-/* Let's go with the 8 positions for simplicity and robustness, and maybe hide the overflow or accept the stack. */
-
 
 
 /* Orbit Ring */
