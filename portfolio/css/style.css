@@ -164,6 +164,18 @@ body {
     padding: 100px 0 50px;
 }
 
+/* Three.js 3D Background Canvas */
+.three-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
 .hero::before {
     content: '';
     position: absolute;
@@ -173,7 +185,7 @@ body {
         radial-gradient(circle at 80% 20%, rgba(204, 197, 185, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 40% 40%, rgba(235, 94, 40, 0.03) 0%, transparent 50%);
     animation: backgroundPulse 8s ease-in-out infinite alternate;
-    z-index: 0;
+    z-index: 2;
 }
 
 @keyframes backgroundPulse {
@@ -191,7 +203,7 @@ body {
 .floating-elements {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 3;
     pointer-events: none;
 }
 
