@@ -1,14 +1,17 @@
 // Three.js 3D Background Effect
-// Only initialize on non-mobile devices for performance
-if (matchMedia('(pointer:fine)').matches && window.innerWidth > 768) {
-    document.addEventListener('DOMContentLoaded', function () {
-        initThreeBackground();
-    });
-}
+// Now enabled on all devices including mobile
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize 3D backgrounds for all sections
+    initThreeBackground('three-canvas', 'hero');
+    initThreeBackground('three-canvas-about', 'about');
+    initThreeBackground('three-canvas-services', 'services');
+    initThreeBackground('three-canvas-projects', 'projects');
+    initThreeBackground('three-canvas-contact', 'contact');
+});
 
-function initThreeBackground() {
+function initThreeBackground(canvasId, sectionName) {
     // Get the canvas container
-    const container = document.getElementById('three-canvas');
+    const container = document.getElementById(canvasId);
     if (!container) return;
 
     // Scene setup
@@ -29,12 +32,20 @@ function initThreeBackground() {
         alpha: true,
         antialias: true
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Get container dimensions
+    const containerRect = container.getBoundingClientRect();
+    const containerWidth = containerRect.width || window.innerWidth;
+    const containerHeight = containerRect.height || window.innerHeight;
+
+    renderer.setSize(containerWidth, containerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Particle system
+    // Particle system - adaptive count based on device
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 1500;
+    // Reduce particles on smaller screens for performance
+    const isMobile = window.innerWidth < 768;
+    const particlesCount = isMobile ? 800 : 1500;
 
     const posArray = new Float32Array(particlesCount * 3);
     const colorArray = new Float32Array(particlesCount * 3);
@@ -63,9 +74,9 @@ function initThreeBackground() {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
 
-    // Particle material
+    // Particle material - adaptive size for mobile
     const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.15,
+        size: isMobile ? 0.25 : 0.15, // Larger particles on mobile for visibility
         vertexColors: true,
         transparent: true,
         opacity: 0.8,
@@ -86,15 +97,25 @@ function initThreeBackground() {
         blending: THREE.AdditiveBlending
     });
 
-    // Mouse interaction
+    // Mouse and touch interaction
     let mouseX = 0;
     let mouseY = 0;
     let targetX = 0;
     let targetY = 0;
 
+    // Mouse events
     document.addEventListener('mousemove', (event) => {
         mouseX = (event.clientX / window.innerWidth) * 2 - 1;
         mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Touch events for mobile
+    document.addEventListener('touchmove', (event) => {
+        if (event.touches.length > 0) {
+            const touch = event.touches[0];
+            mouseX = (touch.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(touch.clientY / window.innerHeight) * 2 + 1;
+        }
     });
 
     // Animation
@@ -139,8 +160,8 @@ function initThreeBackground() {
         const linePositions = [];
         const maxDistance = 8; // Maximum distance to connect particles
 
-        // Only check a subset of particles for performance
-        const step = 10; // Check every 10th particle
+        // Adjust step based on device for performance
+        const step = isMobile ? 15 : 10; // Fewer connections on mobile
         for (let i = 0; i < particlesCount; i += step) {
             const i3 = i * 3;
             const x1 = positions[i3];
@@ -187,9 +208,13 @@ function initThreeBackground() {
 
     // Handle window resize
     window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        const containerRect = container.getBoundingClientRect();
+        const containerWidth = containerRect.width || window.innerWidth;
+        const containerHeight = containerRect.height || window.innerHeight;
+
+        camera.aspect = containerWidth / containerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(containerWidth, containerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
 

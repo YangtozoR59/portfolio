@@ -758,6 +758,8 @@ body {
 
 .about-section {
     background-color: var(--dark-gray);
+    position: relative;
+    overflow: hidden;
 }
 
 /* Skills */
@@ -795,6 +797,8 @@ body {
 /* Services */
 .services-section {
     background-color: var(--darker-gray);
+    position: relative;
+    overflow: hidden;
 }
 
 .service-card {
@@ -844,6 +848,8 @@ body {
 /* Projects */
 .projects-section {
     background-color: var(--dark-gray);
+    position: relative;
+    overflow: hidden;
 }
 
 .project-card {
@@ -971,6 +977,8 @@ body {
 /* Contact */
 .contact-section {
     background-color: var(--darker-gray);
+    position: relative;
+    overflow: hidden;
 }
 
 .contact-form {
