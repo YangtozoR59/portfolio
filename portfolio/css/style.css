@@ -165,7 +165,7 @@ body {
 }
 
 /* Three.js 3D Background Canvas */
-/* .three-background {
+.three-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -174,7 +174,7 @@ body {
     z-index: 1;
     pointer-events: none;
     opacity: 0.6;
-} */
+}
 
 .hero::before {
     content: '';
