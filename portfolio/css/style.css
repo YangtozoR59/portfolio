@@ -1,38 +1,49 @@
 /* ==========================================
-   Modern Minimalist Portfolio - Redesign 2026
-   Color Palette Preserved:
-   - Cream: #FFFCF2
-   - Light Gray: #CCC5B9
-   - Dark Gray: #403D39
-   - Darker Gray: #252422
-   - Orange: #EB5E28
+   Modern Minimalist Portfolio - 2026
+   Palette stricte utilisée :
+   #CCD0CF, #9BA8AB, #4A5C6A, #253745, #11212D, #06141B
    ========================================== */
 
 :root {
-    /* New Palette */
-    --rich-black: #061E29;
-    --deep-blue: #1D546D;
-    --teal-glaze: #5F9598;
-    --anti-flash-white: #F3F4F4;
+    /* Palette de base (noms descriptifs) */
+    --tone-1: #CCD0CF; /* texte principal / éléments clairs */
+    --tone-2: #9BA8AB; /* texte secondaire / bordures légères */
+    --tone-3: #4A5C6A; /* accent principal / tags / boutons */
+    --tone-4: #253745; /* panneaux, cartes */
+    --tone-5: #11212D; /* arrière‑plan intermédiaire */
+    --tone-6: #06141B; /* fond principal très sombre */
 
-    /* Theme Aliases */
-    --primary: var(--teal-glaze);
-    --primary-glow: rgba(95, 149, 152, 0.4);
-    --secondary: var(--deep-blue);
-    --accent: var(--anti-flash-white);
+    /* Alias thématiques */
+    --bg-main: var(--tone-6);
+    --bg-panel: rgba(37, 55, 69, 0.9); /* dérivé de --tone-4 */
+    --border-color: rgba(155, 168, 171, 0.25); /* basé sur --tone-2 */
+    --text: var(--tone-1);
+    --subtext1: var(--tone-2);
+    --subtext0: rgba(155, 168, 171, 0.8);
 
-    --bg-main: var(--rich-black);
-    --bg-panel: rgba(29, 84, 109, 0.8);
-    --border-color: rgba(243, 244, 244, 0.1);
-    --text: var(--anti-flash-white);
-    --subtext1: #c5d4d6;
-    --subtext0: #a1b8bc;
+    --primary: var(--tone-3);
+    --primary-glow: rgba(74, 92, 106, 0.55);
+    --secondary: var(--tone-4);
+    --accent: var(--tone-1);
 
+    /* Compatibilité avec les anciennes variables du thème */
+    --cream: var(--tone-1);
+    --light-gray: var(--tone-2);
+    --dark-gray: var(--tone-4);
+    --darker-gray: var(--tone-5);
+    --orange: var(--tone-3);
+    --mauve: var(--tone-3);
+    --base: var(--tone-6);
+
+    --gradient-primary: linear-gradient(135deg, var(--tone-3), var(--tone-2));
+
+    --transition-base: all 0.25s ease-out;
     --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --transition-glass: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --shadow-neon: 0 0 20px var(--primary-glow);
-    --radius-window: 12px;
+    --shadow-neon: 0 0 22px rgba(74, 92, 106, 0.6);
+    --shadow-subtle: 0 14px 35px rgba(0, 0, 0, 0.55);
+    --radius-window: 16px;
     --radius-md: 12px;
     --radius-sm: 8px;
 }
@@ -53,7 +64,7 @@ html {
 body {
     background-color: var(--bg-main);
     color: var(--text);
-    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Poppins', 'Roboto', 'Josefin Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.7;
     overflow-x: hidden;
     font-size: 16px;
@@ -720,6 +731,30 @@ h6 {
     position: relative;
 }
 
+.projects-carousel {
+    margin-top: 3rem;
+}
+
+.projects-carousel .carousel-inner {
+    padding: 1rem 0 0;
+}
+
+.projects-carousel .carousel-indicators [data-bs-target] {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: rgba(204, 208, 207, 0.3);
+}
+
+.projects-carousel .carousel-indicators .active {
+    background-color: var(--primary);
+}
+
+.projects-carousel .carousel-control-prev-icon,
+.projects-carousel .carousel-control-next-icon {
+    filter: invert(80%) sepia(5%) saturate(200%) hue-rotate(160deg);
+}
+
 .project-card {
     background: var(--bg-panel);
     border-radius: var(--radius-window);
@@ -759,44 +794,6 @@ h6 {
 /* Project visibility */
 .project-item.hidden {
     display: none;
-}
-
-.project-item.visible,
-.project-item.show-animated {
-    display: block;
-}
-
-.project-item.show-animated {
-    animation: slideUp 0.5s ease-out;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.btn-show-more {
-    background: var(--gradient-primary);
-    color: var(--cream);
-    padding: 12px 28px;
-    border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: var(--transition-base);
-}
-
-.btn-show-more:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(235, 94, 40, 0.3);
-    color: var(--cream);
 }
 
 /* Badges */

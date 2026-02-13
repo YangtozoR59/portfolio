@@ -64,58 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Handling the Show more/less button for projects
-    const toggleButton = document.getElementById('toggleProjects');
-    const hiddenProjects = document.querySelectorAll('.project-item.hidden');
-    const showText = toggleButton.querySelector('.show-text');
-    const hideText = toggleButton.querySelector('.hide-text');
-    let projectsExpanded = false;
-
-    toggleButton.addEventListener('click', function () {
-        if (!projectsExpanded) {
-            // Show hidden projects with animation
-            hiddenProjects.forEach((project, index) => {
-                setTimeout(() => {
-                    project.classList.remove('hidden');
-                    project.classList.add('show-animated');
-                }, index * 100); // Cascade effect
-            });
-
-            // Change button text
-            showText.style.display = 'none';
-            hideText.style.display = 'inline-block';
-            projectsExpanded = true;
-
-            // Smooth scroll to new projects after a short delay
-            setTimeout(() => {
-                const firstHiddenProject = hiddenProjects[0];
-                if (firstHiddenProject) {
-                    firstHiddenProject.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
-            }, 200);
-        } else {
-            // Hide additional projects
-            hiddenProjects.forEach(project => {
-                project.classList.add('hidden');
-                project.classList.remove('show-animated');
-            });
-
-            // Change button text
-            showText.style.display = 'inline-block';
-            hideText.style.display = 'none';
-            projectsExpanded = false;
-
-            // Scroll to the top of the projects section
-            document.getElementById('projects').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-
     // Modal Image Handling
     const imageModal = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
@@ -256,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Selector for the subtitle text to replace or append cursor
     const subtitle = document.querySelector('.hero-subtitle');
     if (subtitle) {
-        const text = "FullStack Web & Mobile Developer"; // Hardcoded for safety or read from element
+        const text = "Ingénieur Logiciel · FullStack Web & Mobile"; // Texte aligné avec le sous-titre actuel
         // Let's reuse existing text if needed, but it's cleaner to reset it.
         subtitle.innerHTML = '<span class="typing-text"></span><span class="typing-cursor"></span>';
         const typingText = subtitle.querySelector('.typing-text');
