@@ -8,7 +8,7 @@
     /* Palette de base (noms descriptifs) - LIGHT MODE */
     --tone-1: #CCD0CF; /* fond principal clair */
     --tone-2: #9BA8AB; /* bordures / éléments secondaires */
-    --tone-3: #2bff01; /* accent principal / tags / boutons */
+    --tone-3: #ff0000c0; /* accent principal / tags / boutons */
     --tone-4: #253745; /* panneaux, cartes */
     --tone-5: #11212D; /* arrière‑plan intermédiaire */
     --tone-6: #06141B; /* texte principal sombre */
