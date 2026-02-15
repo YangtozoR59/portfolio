@@ -896,6 +896,31 @@ h6 {
     animation: glass-sweep 5s ease-in-out infinite;
 }
 
+
+
+/* Animation de lumière qui passe sur la vitre */
+.profile-img::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+        105deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(255, 255, 255, 0.4) 45%,
+        rgba(255, 255, 255, 0.55) 50%,
+        rgba(255, 255, 255, 0.4) 55%,
+        transparent 65%,
+        transparent 100%
+    );
+    animation: glass-sweep 5s ease-in-out infinite;
+}
+
 @keyframes glass-sweep {
     0% {
         transform: translateX(-120%);
@@ -907,7 +932,6 @@ h6 {
         transform: translateX(320%);
     }
 }
-
 .project-content {
     padding: 2rem;
 }
