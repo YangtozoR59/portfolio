@@ -337,15 +337,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!devQuestLevel) return;
             const count = visitedGoals.size;
             if (count === 0) {
-                devQuestLevel.textContent = 'Niveau 1 — Découverte';
+                devQuestLevel.textContent = 'Rang F — Village de départ';
             } else if (count === 1) {
-                devQuestLevel.textContent = 'Niveau 2 — Backend & Profil';
+                devQuestLevel.textContent = 'Rang E — Apprentissage';
             } else if (count === 2) {
-                devQuestLevel.textContent = 'Niveau 3 — Interface & UX';
+                devQuestLevel.textContent = 'Rang D — Mage Backend';
             } else if (count === 3) {
-                devQuestLevel.textContent = 'Niveau 4 — Projets réels';
+                devQuestLevel.textContent = 'Rang C — Architecte des Royaumes Web';
             } else if (count >= 4) {
-                devQuestLevel.textContent = 'Niveau 5 — Portfolio maîtrisé';
+                devQuestLevel.textContent = 'Rang S — Maître du Donjon Portfolio';
             }
         }
 
@@ -382,16 +382,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const allUnlocked = visitedGoals.size >= Object.keys(goalMap).length;
 
-            const tag = `<span class="dev-quest-tag">${allUnlocked ? 'GG' : 'Section débloquée'}</span>`;
+            const tag = `<span class="dev-quest-tag">${allUnlocked ? 'Quête terminée' : 'Section débloquée'}</span>`;
             const text = {
-                A: "Tu viens de débloquer la zone About — découvre rapidement qui tu es.",
-                S: "Tu arrives sur les Services — ce que tu peux apporter à un client.",
-                J: "Tu entres dans les Projets — les cas concrets que tu as livrés.",
-                C: "Tu atteins Contact — dernier niveau pour discuter d’un projet."
+                A: "Tu entres dans la taverne des mages (About) — fiche ton personnage.",
+                S: "Tu atteins le tableau de quêtes (Services) — ce que tu proposes aux guildes.",
+                J: "Tu explores la salle des reliques (Projets) — la preuve de tes exploits.",
+                C: "Tu atteins le cristal de contact (Contact) — invoque le mage pour une mission."
             }[goalChar] || '';
 
             const bonus = allUnlocked
-                ? ' Tu as débloqué tout le parcours — tu peux maintenant parcourir librement les sections.'
+                ? ' Tu as débloqué tout le donjon du portfolio — le Royaume connaît désormais tes compétences.'
                 : '';
 
             setMessage(`${tag}${text}${bonus}`);
@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Message initial
-        setMessage('<span class="dev-quest-tag">Tutoriel</span>Utilise les flèches ou les boutons pour explorer la carte et débloquer chaque section du portfolio. Chaque zone atteinte te fait monter de niveau.');
+        setMessage('<span class="dev-quest-tag">Tutoriel</span>Utilise les flèches ou les boutons pour traverser le donjon et débloquer chaque salle du portfolio. Chaque zone atteinte augmente ton rang.');
         updateMoves();
         updateLevel();
     }

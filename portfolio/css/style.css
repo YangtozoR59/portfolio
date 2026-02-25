@@ -585,18 +585,21 @@ h6 {
 }
 
 /* ==========================================
-   MINI‑JEU · DEV QUEST
+   MINI‑JEU · DEV QUEST (PIXEL DUNGEON)
    ========================================== */
 
 .dev-quest {
     margin-top: 3rem;
     padding: 1.8rem 1.5rem 1.8rem;
-    border-radius: var(--radius-window);
-    background: rgba(255, 251, 247, 0.9);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 18px 45px rgba(68, 68, 40, 0.18);
+    border-radius: 8px;
+    background: #151015;
+    border: 3px solid #3b283f;
+    box-shadow:
+        0 0 0 2px #0b060c,
+        0 18px 45px rgba(10, 4, 16, 0.7);
     max-width: 640px;
     margin-inline: auto;
+    position: relative;
 }
 
 .dev-quest-header {
@@ -605,17 +608,17 @@ h6 {
 }
 
 .dev-quest-title {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.4rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: #f9e7b0;
 }
 
 .dev-quest-text {
     font-size: 0.9rem;
-    color: var(--subtext0);
+    color: #d3c6ff;
 }
 
 .dev-quest-hud {
@@ -625,12 +628,12 @@ h6 {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--subtext1);
+    color: #f9e7b0;
     margin-bottom: 0.8rem;
 }
 
 .dev-quest-hud span {
-    background: rgba(213, 198, 183, 0.55);
+    background: #241526;
     padding: 0.3rem 0.7rem;
     border-radius: 999px;
 }
@@ -647,19 +650,20 @@ h6 {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 6px;
-    background: rgba(213, 198, 183, 0.7);
-    border: 1px solid rgba(94, 68, 44, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-radius: 0;
+    background: #1b151f;
+    border: 1px solid #2e1e39;
+    box-shadow: inset 0 0 0 1px rgba(9, 3, 18, 0.8);
     overflow: hidden;
 }
 
 .dev-quest-cell-wall {
-    background: rgba(94, 68, 44, 0.2);
+    background: #120b18;
+    border-color: #000;
 }
 
 .dev-quest-cell-player {
-    background: var(--primary);
+    background: #5de8b4;
     box-shadow:
         0 0 12px rgba(94, 68, 44, 0.7),
         inset 0 0 0 2px rgba(255, 255, 255, 0.4);
@@ -674,8 +678,8 @@ h6 {
 }
 
 .dev-quest-cell-goal {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(94, 68, 44, 0.35);
+    background: #2b1e32;
+    border-color: #8a6bff;
     box-shadow:
         0 0 10px rgba(94, 68, 44, 0.25),
         inset 0 0 0 1px rgba(255, 255, 255, 0.6);
@@ -711,10 +715,10 @@ h6 {
 .dev-quest-btn {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
-    border: 1px solid rgba(94, 68, 44, 0.3);
-    background: rgba(213, 198, 183, 0.8);
-    color: var(--olive);
+    border-radius: 0;
+    border: 2px solid #3b283f;
+    background: #241526;
+    color: #f9e7b0;
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
@@ -725,8 +729,8 @@ h6 {
 }
 
 .dev-quest-btn:hover {
-    background: rgba(94, 68, 44, 0.1);
-    border-color: var(--primary);
+    background: #3b283f;
+    border-color: #f9e7b0;
 }
 
 .dev-quest-btn:active {
@@ -738,7 +742,7 @@ h6 {
     flex-wrap: wrap;
     gap: 0.4rem 0.8rem;
     font-size: 0.75rem;
-    color: var(--subtext1);
+    color: #d3c6ff;
     align-items: center;
 }
 
@@ -756,41 +760,41 @@ h6 {
     display: inline-block;
     width: 14px;
     height: 14px;
-    border-radius: 4px;
-    border: 1px solid rgba(94, 68, 44, 0.3);
+    border-radius: 0;
+    border: 1px solid #3b283f;
 }
 
 .dev-quest-legend-player {
-    background: var(--primary);
+    background: #5de8b4;
 }
 
 .dev-quest-legend-goal-about {
-    background: #fdf2d0;
+    background: #f6d781;
 }
 
 .dev-quest-legend-goal-services {
-    background: #d5f5df;
+    background: #7be4b1;
 }
 
 .dev-quest-legend-goal-projects {
-    background: #e1e9ff;
+    background: #9dc2ff;
 }
 
 .dev-quest-legend-goal-contact {
-    background: #ffe1e1;
+    background: #f497b8;
 }
 
 .dev-quest-message {
     margin-top: 0.8rem;
     font-size: 0.85rem;
-    color: var(--subtext1);
+    color: #f9e7b0;
 }
 
 .dev-quest-message span.dev-quest-tag {
     display: inline-block;
     padding: 0.2rem 0.5rem;
-    border-radius: 999px;
-    background: rgba(94, 68, 44, 0.12);
+    border-radius: 0;
+    background: #3b283f;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
@@ -1023,28 +1027,8 @@ h6 {
     position: relative;
 }
 
-.projects-carousel {
+.projects-grid {
     margin-top: 3rem;
-}
-
-.projects-carousel .carousel-inner {
-    padding: 1rem 0 0;
-}
-
-.projects-carousel .carousel-indicators [data-bs-target] {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background-color: rgba(158, 140, 124, 0.5);
-}
-
-.projects-carousel .carousel-indicators .active {
-    background-color: var(--primary);
-}
-
-.projects-carousel .carousel-control-prev-icon,
-.projects-carousel .carousel-control-next-icon {
-    filter: invert(20%) sepia(15%) saturate(2000%) hue-rotate(30deg);
 }
 
 .project-card {
@@ -1054,6 +1038,8 @@ h6 {
     transition: var(--transition-spring);
     border: 1px solid var(--border-color);
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-card:hover {
@@ -1164,7 +1150,10 @@ h6 {
     }
 }
 .project-content {
-    padding: 2rem;
+    padding: 1.6rem 1.6rem 1.3rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .project-content h4 {
@@ -1174,6 +1163,11 @@ h6 {
 
 .project-content .text-secondary {
     color: var(--subtext1) !important;
+}
+
+.project-date {
+    color: var(--light-gray);
+    margin-top: auto;
 }
 
 /* Project visibility */
