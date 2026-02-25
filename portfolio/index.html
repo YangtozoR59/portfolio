@@ -255,7 +255,7 @@
     </div>
   </nav>
 
-  <section class="hero">
+  <section class="hero" id="about">
     <!-- Minimalist Background -->
     <div class="hero-bg-pattern"></div>
     
@@ -350,6 +350,47 @@ DevOps/Cloud; bilingue FR/EN.
           <i class="bi bi-download me-2"></i>
           Télécharger mon CV
         </a>
+      </div>
+
+      <!-- Mini‑jeu Dev Quest -->
+      <div class="dev-quest" id="devQuest">
+        <div class="dev-quest-header">
+          <h3 class="dev-quest-title">Mini‑jeu · Dev Quest</h3>
+          <p class="dev-quest-text">
+            Déplace le pion <span class="dev-quest-legend dev-quest-legend-player"></span> avec les flèches du clavier
+            ou les boutons pour atteindre les zones <strong>About</strong>, <strong>Services</strong>,
+            <strong>Projets</strong> et <strong>Contact</strong>. Chaque zone atteinte te fait
+            “débloquer” la section correspondante du portfolio.
+          </p>
+        </div>
+
+        <div class="dev-quest-hud">
+          <span id="devQuestLevel">Niveau 1 — Découverte</span>
+          <span id="devQuestMoves">0 coups</span>
+        </div>
+
+        <div class="dev-quest-grid" id="devQuestGrid" aria-label="Mini‑jeu Dev Quest" role="group"></div>
+
+        <div class="dev-quest-controls" aria-label="Contrôles du mini‑jeu">
+          <div class="dev-quest-controls-row">
+            <button type="button" class="dev-quest-btn" data-dir="up" aria-label="Aller en haut">↑</button>
+          </div>
+          <div class="dev-quest-controls-row">
+            <button type="button" class="dev-quest-btn" data-dir="left" aria-label="Aller à gauche">←</button>
+            <button type="button" class="dev-quest-btn" data-dir="down" aria-label="Aller en bas">↓</button>
+            <button type="button" class="dev-quest-btn" data-dir="right" aria-label="Aller à droite">→</button>
+          </div>
+        </div>
+
+        <div class="dev-quest-legend-row">
+          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-player"></span> Toi</span>
+          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-about"></span> About</span>
+          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-services"></span> Services</span>
+          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-projects"></span> Projets</span>
+          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-contact"></span> Contact</span>
+        </div>
+
+        <div class="dev-quest-message" id="devQuestMessage" aria-live="polite"></div>
       </div>
     </div>
   </section>

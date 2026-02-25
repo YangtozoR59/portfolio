@@ -584,6 +584,237 @@ h6 {
     line-height: 1.8;
 }
 
+/* ==========================================
+   MINI‑JEU · DEV QUEST
+   ========================================== */
+
+.dev-quest {
+    margin-top: 3rem;
+    padding: 1.8rem 1.5rem 1.8rem;
+    border-radius: var(--radius-window);
+    background: rgba(255, 251, 247, 0.9);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 18px 45px rgba(68, 68, 40, 0.18);
+    max-width: 640px;
+    margin-inline: auto;
+}
+
+.dev-quest-header {
+    text-align: left;
+    margin-bottom: 1.3rem;
+}
+
+.dev-quest-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.dev-quest-text {
+    font-size: 0.9rem;
+    color: var(--subtext0);
+}
+
+.dev-quest-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--subtext1);
+    margin-bottom: 0.8rem;
+}
+
+.dev-quest-hud span {
+    background: rgba(213, 198, 183, 0.55);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+}
+
+.dev-quest-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    max-width: 360px;
+    margin: 0.5rem auto 1rem;
+}
+
+.dev-quest-cell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 6px;
+    background: rgba(213, 198, 183, 0.7);
+    border: 1px solid rgba(94, 68, 44, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+
+.dev-quest-cell-wall {
+    background: rgba(94, 68, 44, 0.2);
+}
+
+.dev-quest-cell-player {
+    background: var(--primary);
+    box-shadow:
+        0 0 12px rgba(94, 68, 44, 0.7),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.dev-quest-cell-player::after {
+    content: '';
+    position: absolute;
+    inset: 20%;
+    border-radius: 4px;
+    background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
+}
+
+.dev-quest-cell-goal {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(94, 68, 44, 0.35);
+    box-shadow:
+        0 0 10px rgba(94, 68, 44, 0.25),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.dev-quest-cell-goal::after {
+    content: attr(data-label);
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--olive);
+}
+
+.dev-quest-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.dev-quest-controls-row {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.dev-quest-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(94, 68, 44, 0.3);
+    background: rgba(213, 198, 183, 0.8);
+    color: var(--olive);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-base);
+}
+
+.dev-quest-btn:hover {
+    background: rgba(94, 68, 44, 0.1);
+    border-color: var(--primary);
+}
+
+.dev-quest-btn:active {
+    transform: translateY(1px);
+}
+
+.dev-quest-legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    color: var(--subtext1);
+    align-items: center;
+}
+
+.dev-quest-legend {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.dev-quest-legend-player,
+.dev-quest-legend-goal-about,
+.dev-quest-legend-goal-services,
+.dev-quest-legend-goal-projects,
+.dev-quest-legend-goal-contact {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    border: 1px solid rgba(94, 68, 44, 0.3);
+}
+
+.dev-quest-legend-player {
+    background: var(--primary);
+}
+
+.dev-quest-legend-goal-about {
+    background: #fdf2d0;
+}
+
+.dev-quest-legend-goal-services {
+    background: #d5f5df;
+}
+
+.dev-quest-legend-goal-projects {
+    background: #e1e9ff;
+}
+
+.dev-quest-legend-goal-contact {
+    background: #ffe1e1;
+}
+
+.dev-quest-message {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--subtext1);
+}
+
+.dev-quest-message span.dev-quest-tag {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: rgba(94, 68, 44, 0.12);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-right: 0.4rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .dev-quest {
+        padding: 1.4rem 1.1rem 1.5rem;
+        margin-top: 2.2rem;
+    }
+
+    .dev-quest-grid {
+        max-width: 320px;
+    }
+
+    .dev-quest-hud {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+}
+
 /* Hero Buttons */
 .hero-buttons {
     display: flex;

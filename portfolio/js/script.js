@@ -268,4 +268,205 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.1 });
 
     revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- 6. Mini‑jeu Dev Quest ---
+    const devQuestGrid = document.getElementById('devQuestGrid');
+    const devQuestMessage = document.getElementById('devQuestMessage');
+    const devQuestMoves = document.getElementById('devQuestMoves');
+    const devQuestLevel = document.getElementById('devQuestLevel');
+
+    if (devQuestGrid) {
+        // Carte 5x5
+        // . = vide, # = mur, P = player, A/S/J/C = objectifs (About/Services/Projets/Contact)
+        const mapLayout = [
+            'P...A',
+            '.#.#.',
+            '..#..',
+            'S.#.J',
+            '..#C.'
+        ];
+
+        const rows = mapLayout.length;
+        const cols = mapLayout[0].length;
+
+        let playerPos = { row: 0, col: 0 };
+        let movesCount = 0;
+        const visitedGoals = new Set();
+
+        const goalMap = {
+            A: { id: 'about', label: 'About' },
+            S: { id: 'services', label: 'Services' },
+            J: { id: 'projects', label: 'Projets' },
+            C: { id: 'contact', label: 'Contact' }
+        };
+
+        // Crée la grille DOM
+        const cells = [];
+        for (let r = 0; r < rows; r++) {
+            cells[r] = [];
+            for (let c = 0; c < cols; c++) {
+                const cell = document.createElement('div');
+                cell.classList.add('dev-quest-cell');
+                cell.dataset.row = String(r);
+                cell.dataset.col = String(c);
+
+                const value = mapLayout[r][c];
+
+                if (value === '#') {
+                    cell.classList.add('dev-quest-cell-wall');
+                } else if (value === 'P') {
+                    playerPos = { row: r, col: c };
+                    cell.classList.add('dev-quest-cell-player');
+                } else if (goalMap[value]) {
+                    cell.classList.add('dev-quest-cell-goal');
+                    cell.dataset.label = goalMap[value].label;
+                    cell.dataset.goal = value;
+                }
+
+                devQuestGrid.appendChild(cell);
+                cells[r][c] = cell;
+            }
+        }
+
+        function updateMoves() {
+            if (!devQuestMoves) return;
+            devQuestMoves.textContent = `${movesCount} coup${movesCount > 1 ? 's' : ''}`;
+        }
+
+        function updateLevel() {
+            if (!devQuestLevel) return;
+            const count = visitedGoals.size;
+            if (count === 0) {
+                devQuestLevel.textContent = 'Niveau 1 — Découverte';
+            } else if (count === 1) {
+                devQuestLevel.textContent = 'Niveau 2 — Backend & Profil';
+            } else if (count === 2) {
+                devQuestLevel.textContent = 'Niveau 3 — Interface & UX';
+            } else if (count === 3) {
+                devQuestLevel.textContent = 'Niveau 4 — Projets réels';
+            } else if (count >= 4) {
+                devQuestLevel.textContent = 'Niveau 5 — Portfolio maîtrisé';
+            }
+        }
+
+        function setMessage(html) {
+            if (!devQuestMessage) return;
+            devQuestMessage.innerHTML = html;
+        }
+
+        function highlightNav(targetId) {
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === `#${targetId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        function scrollToSection(targetId) {
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                highlightNav(targetId);
+            }
+        }
+
+        function handleGoal(goalChar) {
+            const goal = goalMap[goalChar];
+            if (!goal) return;
+
+            visitedGoals.add(goalChar);
+            updateLevel();
+
+            const allUnlocked = visitedGoals.size >= Object.keys(goalMap).length;
+
+            const tag = `<span class="dev-quest-tag">${allUnlocked ? 'GG' : 'Section débloquée'}</span>`;
+            const text = {
+                A: "Tu viens de débloquer la zone About — découvre rapidement qui tu es.",
+                S: "Tu arrives sur les Services — ce que tu peux apporter à un client.",
+                J: "Tu entres dans les Projets — les cas concrets que tu as livrés.",
+                C: "Tu atteins Contact — dernier niveau pour discuter d’un projet."
+            }[goalChar] || '';
+
+            const bonus = allUnlocked
+                ? ' Tu as débloqué tout le parcours — tu peux maintenant parcourir librement les sections.'
+                : '';
+
+            setMessage(`${tag}${text}${bonus}`);
+
+            // Scroll léger après une petite pause pour que le joueur voie le feedback
+            setTimeout(() => scrollToSection(goal.id), 600);
+        }
+
+        function movePlayer(deltaRow, deltaCol) {
+            const newRow = playerPos.row + deltaRow;
+            const newCol = playerPos.col + deltaCol;
+
+            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) return;
+
+            const targetValue = mapLayout[newRow][newCol];
+            if (targetValue === '#') return;
+
+            const currentCell = cells[playerPos.row][playerPos.col];
+            currentCell.classList.remove('dev-quest-cell-player');
+
+            const newCell = cells[newRow][newCol];
+            newCell.classList.add('dev-quest-cell-player');
+
+            playerPos = { row: newRow, col: newCol };
+            movesCount += 1;
+            updateMoves();
+
+            if (goalMap[targetValue]) {
+                handleGoal(targetValue);
+            } else if (devQuestMessage) {
+                // message léger si pas d’objectif
+                setMessage('');
+            }
+        }
+
+        // Contrôles clavier
+        window.addEventListener('keydown', (e) => {
+            const arrows = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+            if (!arrows.includes(e.key)) return;
+
+            // Empêche le scroll lors du jeu
+            e.preventDefault();
+
+            switch (e.key) {
+                case 'ArrowUp':
+                    movePlayer(-1, 0);
+                    break;
+                case 'ArrowDown':
+                    movePlayer(1, 0);
+                    break;
+                case 'ArrowLeft':
+                    movePlayer(0, -1);
+                    break;
+                case 'ArrowRight':
+                    movePlayer(0, 1);
+                    break;
+            }
+        });
+
+        // Contrôles boutons (mobile / clic)
+        const devQuestButtons = document.querySelectorAll('.dev-quest-btn');
+        devQuestButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const dir = btn.getAttribute('data-dir');
+                if (!dir) return;
+                if (dir === 'up') movePlayer(-1, 0);
+                if (dir === 'down') movePlayer(1, 0);
+                if (dir === 'left') movePlayer(0, -1);
+                if (dir === 'right') movePlayer(0, 1);
+            });
+        });
+
+        // Message initial
+        setMessage('<span class="dev-quest-tag">Tutoriel</span>Utilise les flèches ou les boutons pour explorer la carte et débloquer chaque section du portfolio. Chaque zone atteinte te fait monter de niveau.');
+        updateMoves();
+        updateLevel();
+    }
 });
