@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let isPlaying = false;
         let animationId;
         let lastTime = 0;
-        
+
         const SECTIONS = [
             { id: 'about', label: 'ABOUT_SYS' },
             { id: 'services', label: 'SRV_SYS' },
@@ -308,15 +308,82 @@ document.addEventListener('DOMContentLoaded', function () {
         let particles = [];
         let unlockedCount = 0;
 
-        // Input
-        const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, ' ': false };
-        const mouse = { x: cw/2, y: ch/2, down: false };
+        // Joystick Input
+        const joysticks = {
+            left: { active: false, x: 0, y: 0, id: null, originX: 0, originY: 0, el: document.getElementById('joystickLeft'), base: null, stick: null },
+            right: { active: false, x: 0, y: 0, id: null, originX: 0, originY: 0, el: document.getElementById('joystickRight'), base: null, stick: null }
+        };
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-        window.addEventListener('keydown', e => { if(keys.hasOwnProperty(e.key)) keys[e.key] = true; });
-        window.addEventListener('keyup', e => { if(keys.hasOwnProperty(e.key)) keys[e.key] = false; });
+        ['left', 'right'].forEach(side => {
+            const joy = joysticks[side];
+            if (joy.el) {
+                joy.base = joy.el.querySelector('.joystick-base');
+                joy.stick = joy.el.querySelector('.joystick-stick');
+
+                joy.el.addEventListener('touchstart', e => {
+                    e.preventDefault();
+                    const touch = e.changedTouches[0];
+                    joy.active = true;
+                    joy.id = touch.identifier;
+                    joy.originX = touch.clientX;
+                    joy.originY = touch.clientY;
+
+                    const rect = joy.el.getBoundingClientRect();
+                    joy.el.classList.add('active');
+                    joy.base.style.left = `${touch.clientX - rect.left}px`;
+                    joy.base.style.top = `${touch.clientY - rect.top}px`;
+                    joy.x = 0;
+                    joy.y = 0;
+                    joy.stick.style.transform = `translate(-50%, -50%)`;
+                }, { passive: false });
+
+                joy.el.addEventListener('touchmove', e => {
+                    e.preventDefault();
+                    if (!joy.active) return;
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        const touch = e.changedTouches[i];
+                        if (touch.identifier === joy.id) {
+                            const dx = touch.clientX - joy.originX;
+                            const dy = touch.clientY - joy.originY;
+                            const dist = Math.min(Math.hypot(dx, dy), 50);
+                            const angle = Math.atan2(dy, dx);
+
+                            joy.x = Math.cos(angle) * (dist / 50);
+                            joy.y = Math.sin(angle) * (dist / 50);
+                            joy.stick.style.transform = `translate(calc(-50% + ${Math.cos(angle) * dist}px), calc(-50% + ${Math.sin(angle) * dist}px))`;
+                        }
+                    }
+                }, { passive: false });
+
+                const endTouch = e => {
+                    e.preventDefault();
+                    if (!joy.active) return;
+                    for (let i = 0; i < e.changedTouches.length; i++) {
+                        if (e.changedTouches[i].identifier === joy.id) {
+                            joy.active = false;
+                            joy.el.classList.remove('active');
+                            joy.x = 0;
+                            joy.y = 0;
+                            joy.stick.style.transform = `translate(-50%, -50%)`;
+                        }
+                    }
+                };
+
+                joy.el.addEventListener('touchend', endTouch, { passive: false });
+                joy.el.addEventListener('touchcancel', endTouch, { passive: false });
+            }
+        });
+
+        // Keyboard & Mouse Input
+        const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, ' ': false };
+        const mouse = { x: cw / 2, y: ch / 2, down: false };
+
+        window.addEventListener('keydown', e => { if (keys.hasOwnProperty(e.key)) keys[e.key] = true; });
+        window.addEventListener('keyup', e => { if (keys.hasOwnProperty(e.key)) keys[e.key] = false; });
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mousedown', e => { if(e.button === 0) mouse.down = true; });
-        window.addEventListener('mouseup', e => { if(e.button === 0) mouse.down = false; });
+        window.addEventListener('mousedown', e => { if (e.button === 0) mouse.down = true; });
+        window.addEventListener('mouseup', e => { if (e.button === 0) mouse.down = false; });
 
         // Player Ship
         class Player {
@@ -331,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.angle = 0;
                 this.radius = 15;
                 this.cooldown = 0;
-                this.color = '#00F3FF';
+                this.color = '#e2e8f0';
             }
 
             update(dt) {
@@ -342,9 +409,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (keys.a || keys.ArrowLeft) ax -= this.accel;
                 if (keys.d || keys.ArrowRight) ax += this.accel;
 
+                if (joysticks.left.active) {
+                    ax += joysticks.left.x * this.accel;
+                    ay += joysticks.left.y * this.accel;
+                }
+
                 this.vx += ax;
                 this.vy += ay;
-                
+
                 // Friction
                 this.vx *= this.friction;
                 this.vy *= this.friction;
@@ -367,11 +439,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (this.y > ch) this.y = 0;
 
                 // Aiming angle
-                this.angle = Math.atan2(mouse.y - this.y, mouse.x - this.x);
+                if (joysticks.right.active && (joysticks.right.x !== 0 || joysticks.right.y !== 0)) {
+                    this.angle = Math.atan2(joysticks.right.y, joysticks.right.x);
+                } else if (!isTouchDevice || mouse.down) {
+                    this.angle = Math.atan2(mouse.y - this.y, mouse.x - this.x);
+                }
 
                 // Shooting
                 if (this.cooldown > 0) this.cooldown -= dt;
-                if ((mouse.down || keys[' ']) && this.cooldown <= 0) {
+                if ((mouse.down || keys[' '] || (joysticks.right.active && (joysticks.right.x !== 0 || joysticks.right.y !== 0))) && this.cooldown <= 0) {
                     this.shoot();
                     this.cooldown = 150; // ms
                 }
@@ -382,7 +458,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const px = this.x + Math.cos(this.angle) * 20;
                 const py = this.y + Math.sin(this.angle) * 20;
                 projectiles.push(new Projectile(px, py, Math.cos(this.angle) * speed, Math.sin(this.angle) * speed));
-                
+
                 // Gun recoil effect
                 this.vx -= Math.cos(this.angle) * 1.5;
                 this.vy -= Math.sin(this.angle) * 1.5;
@@ -392,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.angle);
-                
+
                 // Add neon glow
                 ctx.shadowBlur = 15;
                 ctx.shadowColor = this.color;
@@ -412,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     ctx.moveTo(-5, 0);
                     ctx.lineTo(-20, (Math.random() - 0.5) * 10);
                     ctx.lineTo(-12, (Math.random() - 0.5) * 5);
-                    ctx.fillStyle = '#FF003C';
+                    ctx.fillStyle = '#94a3b8';
                     ctx.fill();
                 }
 
@@ -431,15 +507,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.radius = 3;
             }
             update(dt) {
-                this.x += this.vx * (dt/16);
-                this.y += this.vy * (dt/16);
+                this.x += this.vx * (dt / 16);
+                this.y += this.vy * (dt / 16);
                 this.life--;
             }
             draw(ctx) {
                 ctx.save();
                 ctx.shadowBlur = 10;
-                ctx.shadowColor = '#FCEE09';
-                ctx.fillStyle = '#FCEE09';
+                ctx.shadowColor = '#f8fafc';
+                ctx.fillStyle = '#f8fafc';
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
@@ -457,10 +533,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.hp = 10;
                 this.maxHp = 10;
                 this.angle = 0;
-                this.color = '#FF003C';
-                
+                this.color = '#94a3b8';
+
                 // Ensure it's not too close to center
-                const d = Math.hypot(this.x - cw/2, this.y - ch/2);
+                const d = Math.hypot(this.x - cw / 2, this.y - ch / 2);
                 if (d < 150) {
                     this.x += 200;
                     this.y += 200;
@@ -468,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             update() {
                 this.angle += 0.02;
-                
+
                 // Keep in bounds
                 if (this.x < 30) this.x = 30;
                 if (this.x > cw - 30) this.x = cw - 30;
@@ -479,10 +555,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.save();
                 ctx.translate(this.x, this.y);
                 ctx.rotate(this.angle);
-                
+
                 ctx.shadowBlur = 20;
                 ctx.shadowColor = this.color;
-                
+
                 // Hexagon shape
                 ctx.beginPath();
                 for (let i = 0; i < 6; i++) {
@@ -495,10 +571,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Inner core
                 ctx.beginPath();
-                ctx.arc(0, 0, this.radius * 0.5 * (this.hp/this.maxHp), 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 0, 60, 0.5)';
+                ctx.arc(0, 0, this.radius * 0.5 * (this.hp / this.maxHp), 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(148, 163, 184, 0.5)';
                 ctx.fill();
-                
+
                 ctx.restore();
 
                 // Text label
@@ -508,9 +584,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.fillText(this.section.label, this.x, this.y - 45);
 
                 // Health Bar
-                ctx.fillStyle = "rgba(255,0,0,0.5)";
+                ctx.fillStyle = "rgba(148,163,184,0.5)";
                 ctx.fillRect(this.x - 20, this.y - 35, 40, 4);
-                ctx.fillStyle = "#00F3FF";
+                ctx.fillStyle = "#e2e8f0";
                 ctx.fillRect(this.x - 20, this.y - 35, 40 * (this.hp / this.maxHp), 4);
             }
         }
@@ -552,7 +628,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function unlockSection(sectionId) {
             unlockedCount++;
             coresCountEl.textContent = (4 - unlockedCount).toString();
-            
+
             // visually unlock in DOM
             const sectionTarget = document.getElementById(sectionId);
             if (sectionTarget) {
@@ -564,11 +640,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.body.classList.remove('game-active');
                 portfolioContainer.classList.remove('locked');
                 gameRoot.classList.add('game-finished');
-                
+
+                if (joysticks.left.el) joysticks.left.el.classList.remove('visible');
+                if (joysticks.right.el) joysticks.right.el.classList.remove('visible');
+
                 // Style all nav links to normal
                 const navLinks = document.querySelectorAll('.nav-link');
                 navLinks.forEach(link => link.classList.add('unlocked'));
-                
+
                 // Add cyber-section class to hero
                 const heroTarget = document.getElementById('about');
                 if (heroTarget) {
@@ -604,10 +683,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         // Hit
                         c.hp -= 1;
                         projectiles.splice(i, 1);
-                        spawnExplosion(p.x, p.y, '#00F3FF', 5);
-                        
+                        spawnExplosion(p.x, p.y, '#e2e8f0', 5);
+
                         if (c.hp <= 0) {
-                            spawnExplosion(c.x, c.y, '#FF003C', 30);
+                            spawnExplosion(c.x, c.y, '#94a3b8', 30);
                             unlockSection(c.section.id);
                             cores.splice(j, 1);
                         }
@@ -644,12 +723,17 @@ document.addEventListener('DOMContentLoaded', function () {
             startGameBtn.addEventListener('click', () => {
                 gameUI.classList.add('hidden');
                 gameHUD.classList.remove('hidden');
-                
+
+                if (isTouchDevice) {
+                    if (joysticks.left.el) joysticks.left.el.classList.add('visible');
+                    if (joysticks.right.el) joysticks.right.el.classList.add('visible');
+                }
+
                 // Reset state
                 cores = SECTIONS.map(s => new Core(s));
                 unlockedCount = 0;
                 coresCountEl.textContent = '4';
-                
+
                 // Show portfolio container (which consists of locked sections)
                 if (portfolioContainer) {
                     portfolioContainer.classList.remove('locked');

@@ -4,13 +4,17 @@
    ========================================== */
 
 :root {
-    /* Cyberpunk Palette 2026 */
-    --cyber-black: #050814;
-    --cyber-dark: #0f172a;
-    --neon-cyan: #00F3FF;
-    --neon-magenta: #FF003C;
-    --neon-purple: #BC13FE;
-    --neon-yellow: #FCEE09;
+    /* Sophisticated Silver Palette 2026 */
+    --cyber-black: #08090a;
+    --cyber-dark: #121418;
+    --neon-cyan: #e2e8f0;
+    /* Silver */
+    --neon-magenta: #94a3b8;
+    /* Medium Silver */
+    --neon-purple: #64748b;
+    /* Dark Silver */
+    --neon-yellow: #f8fafc;
+    /* Bright White Silver */
     --text-main: #E0F2FE;
     --text-muted: #64748b;
 
@@ -31,12 +35,12 @@
 
     --transition-base: all 0.2s ease-out;
     --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    
-    --shadow-neon: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0,243,255,0.5);
-    --shadow-neon-magenta: 0 0 10px var(--neon-magenta), 0 0 20px rgba(255,0,60,0.5);
+
+    --shadow-neon: 0 0 10px var(--neon-cyan), 0 0 20px rgba(226, 232, 240, 0.5);
+    --shadow-neon-magenta: 0 0 10px var(--neon-magenta), 0 0 20px rgba(148, 163, 184, 0.5);
     --clip-path-box: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
     --clip-path-btn: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-    
+
     --radius-window: 0px;
     --radius-md: 0px;
     --radius-sm: 0px;
@@ -512,6 +516,7 @@ h6 {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
@@ -521,6 +526,7 @@ h6 {
     from {
         transform: translate(-50%, -50%) rotate(0deg);
     }
+
     to {
         transform: translate(-50%, -50%) rotate(-360deg);
     }
@@ -644,7 +650,7 @@ h6 {
     text-transform: uppercase;
     letter-spacing: 3px;
     font-family: 'Courier New', Courier, monospace;
-    text-shadow: 0 0 10px rgba(0,243,255,0.5);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
 }
 
 .cyber-btn {
@@ -684,10 +690,72 @@ h6 {
     text-shadow: 2px 2px 0 #000;
 }
 
-.text-cyan { color: var(--neon-cyan); }
+.text-cyan {
+    color: var(--neon-cyan);
+}
 
 #gameHUD.hidden {
     opacity: 0;
+}
+
+/* Virtual Joysticks */
+.joystick-zone {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 50vh;
+    z-index: 20;
+    display: none;
+    touch-action: none;
+}
+
+.joystick-zone.left {
+    left: 0;
+}
+
+.joystick-zone.right {
+    right: 0;
+}
+
+.joystick-zone.visible {
+    display: block;
+}
+
+.joystick-base {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(226, 232, 240, 0.1);
+    border: 2px solid rgba(226, 232, 240, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.joystick-zone.active .joystick-base {
+    opacity: 1;
+}
+
+.joystick-stick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgba(226, 232, 240, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(226, 232, 240, 0.5);
+}
+
+@media (max-width: 768px) {
+    #gameHUD {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 1rem;
+    }
 }
 
 /* Portfolio Content Locking Mechanism */
@@ -720,9 +788,20 @@ body.game-active {
 }
 
 @keyframes hack-reveal {
-    0% { transform: scale(0.95) skewX(5deg); filter: hue-rotate(90deg) drop-shadow(0 0 50px var(--neon-cyan)); }
-    50% { transform: scale(1.02) skewX(-2deg); filter: hue-rotate(-45deg); }
-    100% { transform: scale(1) skewX(0); filter: none; }
+    0% {
+        transform: scale(0.95) skewX(5deg);
+        filter: hue-rotate(90deg) drop-shadow(0 0 50px var(--neon-cyan));
+    }
+
+    50% {
+        transform: scale(1.02) skewX(-2deg);
+        filter: hue-rotate(-45deg);
+    }
+
+    100% {
+        transform: scale(1) skewX(0);
+        filter: none;
+    }
 }
 
 /* Hero Buttons */
@@ -1006,16 +1085,14 @@ body.game-active {
     height: 100%;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(
-        105deg,
-        transparent 0%,
-        transparent 35%,
-        rgba(255, 255, 255, 0.4) 45%,
-        rgba(255, 255, 255, 0.55) 50%,
-        rgba(255, 255, 255, 0.4) 55%,
-        transparent 65%,
-        transparent 100%
-    );
+    background: linear-gradient(105deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255, 255, 255, 0.4) 45%,
+            rgba(255, 255, 255, 0.55) 50%,
+            rgba(255, 255, 255, 0.4) 55%,
+            transparent 65%,
+            transparent 100%);
     animation: glass-sweep 5s ease-in-out infinite;
 }
 
@@ -1031,16 +1108,14 @@ body.game-active {
     height: 100%;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(
-        105deg,
-        transparent 0%,
-        transparent 35%,
-        rgba(255, 255, 255, 0.4) 45%,
-        rgba(255, 255, 255, 0.55) 50%,
-        rgba(255, 255, 255, 0.4) 55%,
-        transparent 65%,
-        transparent 100%
-    );
+    background: linear-gradient(105deg,
+            transparent 0%,
+            transparent 35%,
+            rgba(255, 255, 255, 0.4) 45%,
+            rgba(255, 255, 255, 0.55) 50%,
+            rgba(255, 255, 255, 0.4) 55%,
+            transparent 65%,
+            transparent 100%);
     animation: glass-sweep 5s ease-in-out infinite;
 }
 
@@ -1048,13 +1123,16 @@ body.game-active {
     0% {
         transform: translateX(-120%);
     }
+
     70% {
         transform: translateX(320%);
     }
+
     100% {
         transform: translateX(320%);
     }
 }
+
 .project-content {
     padding: 1.6rem 1.6rem 1.3rem;
     display: flex;
