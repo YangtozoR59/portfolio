@@ -269,204 +269,398 @@ document.addEventListener('DOMContentLoaded', function () {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // --- 6. Mini‑jeu Dev Quest ---
-    const devQuestGrid = document.getElementById('devQuestGrid');
-    const devQuestMessage = document.getElementById('devQuestMessage');
-    const devQuestMoves = document.getElementById('devQuestMoves');
-    const devQuestLevel = document.getElementById('devQuestLevel');
+    // --- 6. Cyberpunk Space Shooter Engine ---
+    const gameRoot = document.getElementById('gameRoot');
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    const gameUI = document.getElementById('gameUI');
+    const gameHUD = document.getElementById('gameHUD');
+    const startGameBtn = document.getElementById('startGameBtn');
+    const coresCountEl = document.getElementById('coresCount');
+    const portfolioContainer = document.getElementById('portfolioContainer');
 
-    if (devQuestGrid) {
-        // Carte 5x5
-        // . = vide, # = mur, P = player, A/S/J/C = objectifs (About/Services/Projets/Contact)
-        const mapLayout = [
-            'P...A',
-            '.#.#.',
-            '..#..',
-            'S.#.J',
-            '..#C.'
+    if (canvas && gameRoot) {
+        // Init Canvas Size
+        let cw, ch;
+        function resizeCanvas() {
+            cw = window.innerWidth;
+            ch = window.innerHeight;
+            canvas.width = cw;
+            canvas.height = ch;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Game State Variables
+        let isPlaying = false;
+        let animationId;
+        let lastTime = 0;
+        
+        const SECTIONS = [
+            { id: 'about', label: 'ABOUT_SYS' },
+            { id: 'services', label: 'SRV_SYS' },
+            { id: 'projects', label: 'PRJ_SYS' },
+            { id: 'contact', label: 'COM_SYS' }
         ];
 
-        const rows = mapLayout.length;
-        const cols = mapLayout[0].length;
+        let cores = [];
+        let projectiles = [];
+        let particles = [];
+        let unlockedCount = 0;
 
-        let playerPos = { row: 0, col: 0 };
-        let movesCount = 0;
-        const visitedGoals = new Set();
+        // Input
+        const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, ' ': false };
+        const mouse = { x: cw/2, y: ch/2, down: false };
 
-        const goalMap = {
-            A: { id: 'about', label: 'About' },
-            S: { id: 'services', label: 'Services' },
-            J: { id: 'projects', label: 'Projets' },
-            C: { id: 'contact', label: 'Contact' }
-        };
+        window.addEventListener('keydown', e => { if(keys.hasOwnProperty(e.key)) keys[e.key] = true; });
+        window.addEventListener('keyup', e => { if(keys.hasOwnProperty(e.key)) keys[e.key] = false; });
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        window.addEventListener('mousedown', e => { if(e.button === 0) mouse.down = true; });
+        window.addEventListener('mouseup', e => { if(e.button === 0) mouse.down = false; });
 
-        // Crée la grille DOM
-        const cells = [];
-        for (let r = 0; r < rows; r++) {
-            cells[r] = [];
-            for (let c = 0; c < cols; c++) {
-                const cell = document.createElement('div');
-                cell.classList.add('dev-quest-cell');
-                cell.dataset.row = String(r);
-                cell.dataset.col = String(c);
+        // Player Ship
+        class Player {
+            constructor() {
+                this.x = cw / 2;
+                this.y = ch / 2;
+                this.vx = 0;
+                this.vy = 0;
+                this.friction = 0.92;
+                this.accel = 0.6;
+                this.maxSpeed = 8;
+                this.angle = 0;
+                this.radius = 15;
+                this.cooldown = 0;
+                this.color = '#00F3FF';
+            }
 
-                const value = mapLayout[r][c];
+            update(dt) {
+                // Acceleration
+                let ax = 0, ay = 0;
+                if (keys.w || keys.ArrowUp) ay -= this.accel;
+                if (keys.s || keys.ArrowDown) ay += this.accel;
+                if (keys.a || keys.ArrowLeft) ax -= this.accel;
+                if (keys.d || keys.ArrowRight) ax += this.accel;
 
-                if (value === '#') {
-                    cell.classList.add('dev-quest-cell-wall');
-                } else if (value === 'P') {
-                    playerPos = { row: r, col: c };
-                    cell.classList.add('dev-quest-cell-player');
-                } else if (goalMap[value]) {
-                    cell.classList.add('dev-quest-cell-goal');
-                    cell.dataset.label = goalMap[value].label;
-                    cell.dataset.goal = value;
+                this.vx += ax;
+                this.vy += ay;
+                
+                // Friction
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+
+                // Speed limit
+                const speed = Math.hypot(this.vx, this.vy);
+                if (speed > this.maxSpeed) {
+                    this.vx = (this.vx / speed) * this.maxSpeed;
+                    this.vy = (this.vy / speed) * this.maxSpeed;
                 }
 
-                devQuestGrid.appendChild(cell);
-                cells[r][c] = cell;
-            }
-        }
+                // Move
+                this.x += this.vx;
+                this.y += this.vy;
 
-        function updateMoves() {
-            if (!devQuestMoves) return;
-            devQuestMoves.textContent = `${movesCount} coup${movesCount > 1 ? 's' : ''}`;
-        }
+                // Bounds wrapper
+                if (this.x < 0) this.x = cw;
+                if (this.x > cw) this.x = 0;
+                if (this.y < 0) this.y = ch;
+                if (this.y > ch) this.y = 0;
 
-        function updateLevel() {
-            if (!devQuestLevel) return;
-            const count = visitedGoals.size;
-            if (count === 0) {
-                devQuestLevel.textContent = 'Rang F — Village de départ';
-            } else if (count === 1) {
-                devQuestLevel.textContent = 'Rang E — Apprentissage';
-            } else if (count === 2) {
-                devQuestLevel.textContent = 'Rang D — Mage Backend';
-            } else if (count === 3) {
-                devQuestLevel.textContent = 'Rang C — Architecte des Royaumes Web';
-            } else if (count >= 4) {
-                devQuestLevel.textContent = 'Rang S — Maître du Donjon Portfolio';
-            }
-        }
+                // Aiming angle
+                this.angle = Math.atan2(mouse.y - this.y, mouse.x - this.x);
 
-        function setMessage(html) {
-            if (!devQuestMessage) return;
-            devQuestMessage.innerHTML = html;
-        }
-
-        function highlightNav(targetId) {
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href === `#${targetId}`) {
-                    link.classList.add('active');
+                // Shooting
+                if (this.cooldown > 0) this.cooldown -= dt;
+                if ((mouse.down || keys[' ']) && this.cooldown <= 0) {
+                    this.shoot();
+                    this.cooldown = 150; // ms
                 }
+            }
+
+            shoot() {
+                const speed = 15;
+                const px = this.x + Math.cos(this.angle) * 20;
+                const py = this.y + Math.sin(this.angle) * 20;
+                projectiles.push(new Projectile(px, py, Math.cos(this.angle) * speed, Math.sin(this.angle) * speed));
+                
+                // Gun recoil effect
+                this.vx -= Math.cos(this.angle) * 1.5;
+                this.vy -= Math.sin(this.angle) * 1.5;
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                
+                // Add neon glow
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = this.color;
+
+                ctx.beginPath();
+                ctx.moveTo(20, 0);
+                ctx.lineTo(-10, 15);
+                ctx.lineTo(-5, 0);
+                ctx.lineTo(-10, -15);
+                ctx.closePath();
+                ctx.fillStyle = this.color;
+                ctx.fill();
+
+                // Engine flame
+                if (Math.abs(this.vx) > 0.5 || Math.abs(this.vy) > 0.5) {
+                    ctx.beginPath();
+                    ctx.moveTo(-5, 0);
+                    ctx.lineTo(-20, (Math.random() - 0.5) * 10);
+                    ctx.lineTo(-12, (Math.random() - 0.5) * 5);
+                    ctx.fillStyle = '#FF003C';
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Projectile
+        class Projectile {
+            constructor(x, y, vx, vy) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.life = 100;
+                this.radius = 3;
+            }
+            update(dt) {
+                this.x += this.vx * (dt/16);
+                this.y += this.vy * (dt/16);
+                this.life--;
+            }
+            draw(ctx) {
+                ctx.save();
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#FCEE09';
+                ctx.fillStyle = '#FCEE09';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Target Core
+        class Core {
+            constructor(section) {
+                this.section = section;
+                this.x = Math.random() * (cw - 100) + 50;
+                this.y = Math.random() * (ch - 100) + 50;
+                this.radius = 30;
+                this.hp = 10;
+                this.maxHp = 10;
+                this.angle = 0;
+                this.color = '#FF003C';
+                
+                // Ensure it's not too close to center
+                const d = Math.hypot(this.x - cw/2, this.y - ch/2);
+                if (d < 150) {
+                    this.x += 200;
+                    this.y += 200;
+                }
+            }
+            update() {
+                this.angle += 0.02;
+                
+                // Keep in bounds
+                if (this.x < 30) this.x = 30;
+                if (this.x > cw - 30) this.x = cw - 30;
+                if (this.y < 30) this.y = 30;
+                if (this.y > ch - 30) this.y = ch - 30;
+            }
+            draw(ctx) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = this.color;
+                
+                // Hexagon shape
+                ctx.beginPath();
+                for (let i = 0; i < 6; i++) {
+                    ctx.lineTo(this.radius * Math.cos(i * Math.PI / 3), this.radius * Math.sin(i * Math.PI / 3));
+                }
+                ctx.closePath();
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 3;
+                ctx.stroke();
+
+                // Inner core
+                ctx.beginPath();
+                ctx.arc(0, 0, this.radius * 0.5 * (this.hp/this.maxHp), 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 0, 60, 0.5)';
+                ctx.fill();
+                
+                ctx.restore();
+
+                // Text label
+                ctx.font = "14px Courier New, monospace";
+                ctx.fillStyle = "#E0F2FE";
+                ctx.textAlign = "center";
+                ctx.fillText(this.section.label, this.x, this.y - 45);
+
+                // Health Bar
+                ctx.fillStyle = "rgba(255,0,0,0.5)";
+                ctx.fillRect(this.x - 20, this.y - 35, 40, 4);
+                ctx.fillStyle = "#00F3FF";
+                ctx.fillRect(this.x - 20, this.y - 35, 40 * (this.hp / this.maxHp), 4);
+            }
+        }
+
+        // Explosion Particle
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 8;
+                this.vy = (Math.random() - 0.5) * 8;
+                this.life = 1;
+                this.decay = Math.random() * 0.02 + 0.02;
+                this.color = color;
+                this.size = Math.random() * 3 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= this.decay;
+            }
+            draw(ctx) {
+                ctx.globalAlpha = this.life;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        // Create player
+        const player = new Player();
+
+        function spawnExplosion(x, y, color, count) {
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function unlockSection(sectionId) {
+            unlockedCount++;
+            coresCountEl.textContent = (4 - unlockedCount).toString();
+            
+            // visually unlock in DOM
+            const sectionTarget = document.getElementById(sectionId);
+            if (sectionTarget) {
+                sectionTarget.classList.add('cyber-section', 'unlocked');
+            }
+
+            if (unlockedCount === 4) {
+                // Game completely won
+                document.body.classList.remove('game-active');
+                portfolioContainer.classList.remove('locked');
+                gameRoot.classList.add('game-finished');
+                
+                // Style all nav links to normal
+                const navLinks = document.querySelectorAll('.nav-link');
+                navLinks.forEach(link => link.classList.add('unlocked'));
+                
+                // Add cyber-section class to hero
+                const heroTarget = document.getElementById('about');
+                if (heroTarget) {
+                    heroTarget.classList.add('cyber-section', 'unlocked');
+                }
+            }
+        }
+
+        // Loop
+        function loop(timestamp) {
+            if (!isPlaying) return;
+            const dt = timestamp - lastTime || 16;
+            lastTime = timestamp;
+
+            // Clear
+            ctx.fillStyle = 'rgba(5, 8, 20, 0.2)'; // trailing effect
+            ctx.fillRect(0, 0, cw, ch);
+
+            player.update(dt);
+            player.draw(ctx);
+
+            // Projectiles
+            for (let i = projectiles.length - 1; i >= 0; i--) {
+                const p = projectiles[i];
+                p.update(dt);
+                p.draw(ctx);
+
+                // Collision with Cores
+                for (let j = cores.length - 1; j >= 0; j--) {
+                    const c = cores[j];
+                    const d = Math.hypot(p.x - c.x, p.y - c.y);
+                    if (d < c.radius + p.radius) {
+                        // Hit
+                        c.hp -= 1;
+                        projectiles.splice(i, 1);
+                        spawnExplosion(p.x, p.y, '#00F3FF', 5);
+                        
+                        if (c.hp <= 0) {
+                            spawnExplosion(c.x, c.y, '#FF003C', 30);
+                            unlockSection(c.section.id);
+                            cores.splice(j, 1);
+                        }
+                        break;
+                    }
+                }
+
+                if (p.life <= 0) {
+                    projectiles.splice(i, 1);
+                }
+            }
+
+            // Cores
+            for (const c of cores) {
+                c.update();
+                c.draw(ctx);
+            }
+
+            // Particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw(ctx);
+                if (p.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            animationId = requestAnimationFrame(loop);
+        }
+
+        // Start initialization
+        if (startGameBtn) {
+            startGameBtn.addEventListener('click', () => {
+                gameUI.classList.add('hidden');
+                gameHUD.classList.remove('hidden');
+                
+                // Reset state
+                cores = SECTIONS.map(s => new Core(s));
+                unlockedCount = 0;
+                coresCountEl.textContent = '4';
+                
+                // Show portfolio container (which consists of locked sections)
+                if (portfolioContainer) {
+                    portfolioContainer.classList.remove('locked');
+                    const sections = portfolioContainer.querySelectorAll('section');
+                    sections.forEach(sec => sec.classList.add('cyber-section'));
+                }
+
+                isPlaying = true;
+                lastTime = performance.now();
+                animationId = requestAnimationFrame(loop);
             });
         }
-
-        function scrollToSection(targetId) {
-            const target = document.getElementById(targetId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                highlightNav(targetId);
-            }
-        }
-
-        function handleGoal(goalChar) {
-            const goal = goalMap[goalChar];
-            if (!goal) return;
-
-            visitedGoals.add(goalChar);
-            updateLevel();
-
-            const allUnlocked = visitedGoals.size >= Object.keys(goalMap).length;
-
-            const tag = `<span class="dev-quest-tag">${allUnlocked ? 'Quête terminée' : 'Section débloquée'}</span>`;
-            const text = {
-                A: "Tu entres dans la taverne des mages (About) — fiche ton personnage.",
-                S: "Tu atteins le tableau de quêtes (Services) — ce que tu proposes aux guildes.",
-                J: "Tu explores la salle des reliques (Projets) — la preuve de tes exploits.",
-                C: "Tu atteins le cristal de contact (Contact) — invoque le mage pour une mission."
-            }[goalChar] || '';
-
-            const bonus = allUnlocked
-                ? ' Tu as débloqué tout le donjon du portfolio — le Royaume connaît désormais tes compétences.'
-                : '';
-
-            setMessage(`${tag}${text}${bonus}`);
-
-            // Scroll léger après une petite pause pour que le joueur voie le feedback
-            setTimeout(() => scrollToSection(goal.id), 600);
-        }
-
-        function movePlayer(deltaRow, deltaCol) {
-            const newRow = playerPos.row + deltaRow;
-            const newCol = playerPos.col + deltaCol;
-
-            if (newRow < 0 || newRow >= rows || newCol < 0 || newCol >= cols) return;
-
-            const targetValue = mapLayout[newRow][newCol];
-            if (targetValue === '#') return;
-
-            const currentCell = cells[playerPos.row][playerPos.col];
-            currentCell.classList.remove('dev-quest-cell-player');
-
-            const newCell = cells[newRow][newCol];
-            newCell.classList.add('dev-quest-cell-player');
-
-            playerPos = { row: newRow, col: newCol };
-            movesCount += 1;
-            updateMoves();
-
-            if (goalMap[targetValue]) {
-                handleGoal(targetValue);
-            } else if (devQuestMessage) {
-                // message léger si pas d’objectif
-                setMessage('');
-            }
-        }
-
-        // Contrôles clavier
-        window.addEventListener('keydown', (e) => {
-            const arrows = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-            if (!arrows.includes(e.key)) return;
-
-            // Empêche le scroll lors du jeu
-            e.preventDefault();
-
-            switch (e.key) {
-                case 'ArrowUp':
-                    movePlayer(-1, 0);
-                    break;
-                case 'ArrowDown':
-                    movePlayer(1, 0);
-                    break;
-                case 'ArrowLeft':
-                    movePlayer(0, -1);
-                    break;
-                case 'ArrowRight':
-                    movePlayer(0, 1);
-                    break;
-            }
-        });
-
-        // Contrôles boutons (mobile / clic)
-        const devQuestButtons = document.querySelectorAll('.dev-quest-btn');
-        devQuestButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const dir = btn.getAttribute('data-dir');
-                if (!dir) return;
-                if (dir === 'up') movePlayer(-1, 0);
-                if (dir === 'down') movePlayer(1, 0);
-                if (dir === 'left') movePlayer(0, -1);
-                if (dir === 'right') movePlayer(0, 1);
-            });
-        });
-
-        // Message initial
-        setMessage('<span class="dev-quest-tag">Tutoriel</span>Utilise les flèches ou les boutons pour traverser le donjon et débloquer chaque salle du portfolio. Chaque zone atteinte augmente ton rang.');
-        updateMoves();
-        updateLevel();
     }
 });

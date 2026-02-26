@@ -4,48 +4,42 @@
    ========================================== */
 
 :root {
-    /* Palette stricte */
-    --sand: #d5c6b7;   /* fond clair, surfaces */
-    --taupe: #9e8c7c;  /* bordures, secondaire */
-    --brown: #5e442c;   /* accent, boutons */
-    --olive: #444428;   /* texte principal */
+    /* Cyberpunk Palette 2026 */
+    --cyber-black: #050814;
+    --cyber-dark: #0f172a;
+    --neon-cyan: #00F3FF;
+    --neon-magenta: #FF003C;
+    --neon-purple: #BC13FE;
+    --neon-yellow: #FCEE09;
+    --text-main: #E0F2FE;
+    --text-muted: #64748b;
 
-    --tone-1: var(--sand);
-    --tone-2: var(--taupe);
-    --tone-3: var(--brown);
-    --tone-4: var(--olive);
+    --bg-main: var(--cyber-black);
+    --bg-panel: rgba(15, 23, 42, 0.75);
+    --border-color: rgba(0, 243, 255, 0.3);
+    --text: var(--text-main);
+    --subtext1: var(--neon-cyan);
+    --subtext0: var(--text-muted);
 
-    --bg-main: var(--sand);
-    --bg-panel: rgba(255, 251, 247, 0.98);
-    --border-color: rgba(94, 68, 44, 0.2);
-    --text: var(--olive);
-    --subtext1: var(--brown);
-    --subtext0: rgba(68, 68, 40, 0.75);
+    --primary: var(--neon-cyan);
+    --primary-glow: rgba(0, 243, 255, 0.6);
+    --secondary: var(--neon-magenta);
+    --accent: var(--neon-purple);
 
-    --primary: var(--brown);
-    --primary-glow: rgba(94, 68, 44, 0.35);
-    --secondary: var(--taupe);
-    --accent: var(--sand);
+    --gradient-primary: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    --gradient-scanline: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.25) 50%);
 
-    --cream: var(--sand);
-    --light-gray: var(--taupe);
-    --dark-gray: var(--brown);
-    --darker-gray: var(--olive);
-    --orange: var(--brown);
-    --mauve: var(--brown);
-    --base: var(--sand);
-
-    --gradient-primary: linear-gradient(135deg, var(--brown), var(--taupe));
-
-    --transition-base: all 0.25s ease-out;
-    --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    --transition-glass: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --shadow-neon: 0 0 24px rgba(94, 68, 44, 0.2);
-    --shadow-subtle: 0 12px 40px rgba(68, 68, 40, 0.12);
-    --radius-window: 14px;
-    --radius-md: 12px;
-    --radius-sm: 8px;
+    --transition-base: all 0.2s ease-out;
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    --shadow-neon: 0 0 10px var(--neon-cyan), 0 0 20px rgba(0,243,255,0.5);
+    --shadow-neon-magenta: 0 0 10px var(--neon-magenta), 0 0 20px rgba(255,0,60,0.5);
+    --clip-path-box: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+    --clip-path-btn: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+    
+    --radius-window: 0px;
+    --radius-md: 0px;
+    --radius-sm: 0px;
 }
 
 /* Reset & Base */
@@ -585,238 +579,150 @@ h6 {
 }
 
 /* ==========================================
-   MINI‑JEU · DEV QUEST (PIXEL DUNGEON)
+   GAME ENGINE & CYBERPUNK UI
    ========================================== */
 
-.dev-quest {
-    margin-top: 3rem;
-    padding: 1.8rem 1.5rem 1.8rem;
-    border-radius: 8px;
-    background: #151015;
-    border: 3px solid #3b283f;
-    box-shadow:
-        0 0 0 2px #0b060c,
-        0 18px 45px rgba(10, 4, 16, 0.7);
-    max-width: 640px;
-    margin-inline: auto;
-    position: relative;
-}
-
-.dev-quest-header {
-    text-align: left;
-    margin-bottom: 1.3rem;
-}
-
-.dev-quest-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.4rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #f9e7b0;
-}
-
-.dev-quest-text {
-    font-size: 0.9rem;
-    color: #d3c6ff;
-}
-
-.dev-quest-hud {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #f9e7b0;
-    margin-bottom: 0.8rem;
-}
-
-.dev-quest-hud span {
-    background: #241526;
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-}
-
-.dev-quest-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
-    max-width: 360px;
-    margin: 0.5rem auto 1rem;
-}
-
-.dev-quest-cell {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 0;
-    background: #1b151f;
-    border: 1px solid #2e1e39;
-    box-shadow: inset 0 0 0 1px rgba(9, 3, 18, 0.8);
+#gameRoot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: var(--cyber-black);
     overflow: hidden;
+    transition: opacity 1s ease-out;
 }
 
-.dev-quest-cell-wall {
-    background: #120b18;
-    border-color: #000;
+#gameRoot.game-finished {
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
 }
 
-.dev-quest-cell-player {
-    background: #5de8b4;
-    box-shadow:
-        0 0 12px rgba(94, 68, 44, 0.7),
-        inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0f1d 0%, #030408 100%);
 }
 
-.dev-quest-cell-player::after {
-    content: '';
-    position: absolute;
-    inset: 20%;
-    border-radius: 4px;
-    background: radial-gradient(circle at 30% 30%, #fff, rgba(255, 255, 255, 0.4) 40%, transparent 70%);
-}
-
-.dev-quest-cell-goal {
-    background: #2b1e32;
-    border-color: #8a6bff;
-    box-shadow:
-        0 0 10px rgba(94, 68, 44, 0.25),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-.dev-quest-cell-goal::after {
-    content: attr(data-label);
+#gameUI {
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--olive);
-}
-
-.dev-quest-controls {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.3rem;
-    margin-bottom: 0.8rem;
-}
-
-.dev-quest-controls-row {
-    display: flex;
-    gap: 0.4rem;
-}
-
-.dev-quest-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 0;
-    border: 2px solid #3b283f;
-    background: #241526;
-    color: #f9e7b0;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    transition: var(--transition-base);
+    background: rgba(5, 8, 20, 0.85);
+    backdrop-filter: blur(8px);
+    transition: opacity 0.5s;
+    z-index: 10;
 }
 
-.dev-quest-btn:hover {
-    background: #3b283f;
-    border-color: #f9e7b0;
+#gameUI.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.dev-quest-btn:active {
-    transform: translateY(1px);
-}
-
-.dev-quest-legend-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.8rem;
-    font-size: 0.75rem;
-    color: #d3c6ff;
-    align-items: center;
-}
-
-.dev-quest-legend {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.dev-quest-legend-player,
-.dev-quest-legend-goal-about,
-.dev-quest-legend-goal-services,
-.dev-quest-legend-goal-projects,
-.dev-quest-legend-goal-contact {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border-radius: 0;
-    border: 1px solid #3b283f;
-}
-
-.dev-quest-legend-player {
-    background: #5de8b4;
-}
-
-.dev-quest-legend-goal-about {
-    background: #f6d781;
-}
-
-.dev-quest-legend-goal-services {
-    background: #7be4b1;
-}
-
-.dev-quest-legend-goal-projects {
-    background: #9dc2ff;
-}
-
-.dev-quest-legend-goal-contact {
-    background: #f497b8;
-}
-
-.dev-quest-message {
-    margin-top: 0.8rem;
-    font-size: 0.85rem;
-    color: #f9e7b0;
-}
-
-.dev-quest-message span.dev-quest-tag {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0;
-    background: #3b283f;
-    font-size: 0.7rem;
+.cyber-glitch {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-right: 0.4rem;
-    font-weight: 600;
+    color: var(--text-main);
+    text-shadow: 3px 3px var(--neon-cyan), -3px -3px var(--neon-magenta);
+    position: relative;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 4px;
 }
 
-@media (max-width: 768px) {
-    .dev-quest {
-        padding: 1.4rem 1.1rem 1.5rem;
-        margin-top: 2.2rem;
-    }
+.cyber-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--neon-cyan);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    text-shadow: 0 0 10px rgba(0,243,255,0.5);
+}
 
-    .dev-quest-grid {
-        max-width: 320px;
-    }
+.cyber-btn {
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--neon-cyan);
+    border: 2px solid var(--neon-cyan);
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: var(--clip-path-btn);
+    transition: all 0.3s;
+    font-family: 'Courier New', Courier, monospace;
+    position: relative;
+    letter-spacing: 2px;
+}
 
-    .dev-quest-hud {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.3rem;
-    }
+.cyber-btn:hover {
+    background: var(--neon-cyan);
+    color: var(--cyber-black);
+    box-shadow: var(--shadow-neon);
+}
+
+#gameHUD {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    z-index: 10;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.text-cyan { color: var(--neon-cyan); }
+
+#gameHUD.hidden {
+    opacity: 0;
+}
+
+/* Portfolio Content Locking Mechanism */
+body.game-active {
+    overflow: hidden !important;
+}
+
+#portfolioContainer {
+    position: relative;
+    z-index: 10;
+}
+
+#portfolioContainer.locked {
+    display: none;
+}
+
+.cyber-section {
+    opacity: 0.1;
+    filter: grayscale(1) blur(4px);
+    pointer-events: none;
+    transition: opacity 1.5s, filter 1.5s;
+    position: relative;
+}
+
+.cyber-section.unlocked {
+    opacity: 1;
+    filter: none;
+    pointer-events: auto;
+    animation: hack-reveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes hack-reveal {
+    0% { transform: scale(0.95) skewX(5deg); filter: hue-rotate(90deg) drop-shadow(0 0 50px var(--neon-cyan)); }
+    50% { transform: scale(1.02) skewX(-2deg); filter: hue-rotate(-45deg); }
+    100% { transform: scale(1) skewX(0); filter: none; }
 }
 
 /* Hero Buttons */

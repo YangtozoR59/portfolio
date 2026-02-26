@@ -212,7 +212,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
-<body>
+<body class="game-active">
+  <!-- Space Shooter Game UI -->
+  <div id="gameRoot">
+    <canvas id="gameCanvas"></canvas>
+    <div id="gameUI" class="cyber-overlay">
+      <h1 class="cyber-glitch" data-text="SYSTEM_HACK">SYSTEM_HACK</h1>
+      <p class="cyber-subtitle">Destroy CORE DATA to unlock portfolio</p>
+      <button id="startGameBtn" class="cyber-btn">INITIALIZE</button>
+    </div>
+    <div id="gameHUD" class="hidden">
+      <div class="hud-cores text-cyan">CORES: <span id="coresCount">4</span>/4</div>
+      <div class="hud-controls text-muted">WASD to Move | Mouse/Space to Shoot</div>
+    </div>
+  </div>
+
+  <!-- Portfolio Content -->
+  <div id="portfolioContainer" class="locked">
   <!-- Navigation Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
@@ -352,46 +368,6 @@ DevOps/Cloud; bilingue FR/EN.
         </a>
       </div>
 
-      <!-- Mini‑jeu Dev Quest -->
-      <div class="dev-quest" id="devQuest">
-        <div class="dev-quest-header">
-          <h3 class="dev-quest-title">Mini‑jeu · Dev Quest</h3>
-          <p class="dev-quest-text">
-            Déplace le pion <span class="dev-quest-legend dev-quest-legend-player"></span> avec les flèches du clavier
-            ou les boutons pour atteindre les zones <strong>About</strong>, <strong>Services</strong>,
-            <strong>Projets</strong> et <strong>Contact</strong>. Chaque zone atteinte te fait
-            “débloquer” la section correspondante du portfolio.
-          </p>
-        </div>
-
-        <div class="dev-quest-hud">
-          <span id="devQuestLevel">Niveau 1 — Découverte</span>
-          <span id="devQuestMoves">0 coups</span>
-        </div>
-
-        <div class="dev-quest-grid" id="devQuestGrid" aria-label="Mini‑jeu Dev Quest" role="group"></div>
-
-        <div class="dev-quest-controls" aria-label="Contrôles du mini‑jeu">
-          <div class="dev-quest-controls-row">
-            <button type="button" class="dev-quest-btn" data-dir="up" aria-label="Aller en haut">↑</button>
-          </div>
-          <div class="dev-quest-controls-row">
-            <button type="button" class="dev-quest-btn" data-dir="left" aria-label="Aller à gauche">←</button>
-            <button type="button" class="dev-quest-btn" data-dir="down" aria-label="Aller en bas">↓</button>
-            <button type="button" class="dev-quest-btn" data-dir="right" aria-label="Aller à droite">→</button>
-          </div>
-        </div>
-
-        <div class="dev-quest-legend-row">
-          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-player"></span> Toi</span>
-          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-about"></span> About</span>
-          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-services"></span> Services</span>
-          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-projects"></span> Projets</span>
-          <span class="dev-quest-legend"><span class="dev-quest-legend dev-quest-legend-goal-contact"></span> Contact</span>
-        </div>
-
-        <div class="dev-quest-message" id="devQuestMessage" aria-live="polite"></div>
-      </div>
     </div>
   </section>
 
@@ -796,6 +772,8 @@ DevOps/Cloud; bilingue FR/EN.
       </div>
     </div>
   </div>
+
+  </div> <!-- End portfolioContainer -->
 
   <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
