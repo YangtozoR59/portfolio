@@ -1,660 +1,1049 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caleb Yang | Software Engineer & FullStack Web/Mobile</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caleb Yang | Software Engineer & FullStack Web/Mobile</title>
+    <!-- Primary Meta Tags -->
+    <meta
+      name="title"
+      content="Caleb Yang | Software Engineer & FullStack Web/Mobile"
+    />
+    <meta
+      name="description"
+      content="Software Engineer specialized in FullStack Web & Mobile engineering with Laravel, Flutter and modern JavaScript. I design, architect and deliver robust platforms and products end-to-end."
+    />
+    <meta
+      name="keywords"
+      content="Caleb Yang, software engineer, fullstack engineer, web engineer, mobile engineer, Laravel, Flutter, PHP, JavaScript, React, Vue.js, MySQL, PostgreSQL, REST API, mobile app engineering, web application, Cameroon engineer, freelance engineer, Evodevs 237"
+    />
+    <meta name="author" content="Caleb Yang" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <meta name="language" content="French" />
 
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Caleb Yang | Software Engineer & FullStack Web/Mobile">
-  <meta name="description" content="Software Engineer specialized in FullStack Web & Mobile engineering with Laravel, Flutter and modern JavaScript. I design, architect and deliver robust platforms and products end-to-end.">
-  <meta name="keywords" content="Caleb Yang, software engineer, fullstack engineer, web engineer, mobile engineer, Laravel, Flutter, PHP, JavaScript, React, Vue.js, MySQL, PostgreSQL, REST API, mobile app engineering, web application, Cameroon engineer, freelance engineer, Evodevs 237">
-  <meta name="author" content="Caleb Yang">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="language" content="French">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://itzcyd.vercel.app" />
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://itzcyd.vercel.app">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Caleb Yang - Portfolio" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://itzcyd.vercel.app" />
+    <meta
+      property="og:title"
+      content="Caleb Yang | Software Engineer & FullStack Web/Mobile"
+    />
+    <meta
+      property="og:description"
+      content="Software Engineer crafting robust web and mobile platforms with Laravel, Flutter and modern JavaScript."
+    />
+    <meta
+      property="og:image"
+      content="https://itzcyd.vercel.app/source/profil2.jpg"
+    />
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Caleb Yang - Portfolio">
-  <meta property="og:locale" content="fr_FR">
-  <meta property="og:url" content="https://itzcyd.vercel.app">
-  <meta property="og:title" content="Caleb Yang | Software Engineer & FullStack Web/Mobile">
-  <meta property="og:description" content="Software Engineer crafting robust web and mobile platforms with Laravel, Flutter and modern JavaScript.">
-  <meta property="og:image" content="https://itzcyd.vercel.app/source/profil2.jpg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Caleb Yang | Software Engineer & FullStack Web/Mobile"
+    />
+    <meta
+      name="twitter:description"
+      content="Software Engineer building modern, maintainable and scalable web & mobile solutions."
+    />
+    <meta
+      name="twitter:image"
+      content="https://itzcyd.vercel.app/source/profil2.jpg"
+    />
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Caleb Yang | Software Engineer & FullStack Web/Mobile">
-  <meta name="twitter:description" content="Software Engineer building modern, maintainable and scalable web & mobile solutions.">
-  <meta name="twitter:image" content="https://itzcyd.vercel.app/source/profil2.jpg">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Caleb Yang",
+        "alternateName": "ItzCyd",
+        "jobTitle": "Software Engineer | FullStack Web & Mobile",
+        "url": "https://itzcyd.vercel.app",
+        "image": "https://itzcyd.vercel.app/source/profil2.jpg",
+        "email": "calebyangcyd@gmail.com",
+        "telephone": "+237698448024",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Yaoundé",
+          "addressCountry": "CM"
+        },
+        "sameAs": [
+          "https://github.com/YangtozoR59",
+          "https://t.me/ItzCyd",
+          "https://linkedin.com/in/calebyang"
+        ]
+      }
+    </script>
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Caleb Yang",
-    "alternateName": "ItzCyd",
-    "jobTitle": "Software Engineer | FullStack Web & Mobile",
-    "url": "https://itzcyd.vercel.app",
-    "image": "https://itzcyd.vercel.app/source/profil2.jpg",
-    "email": "calebyangcyd@gmail.com",
-    "telephone": "+237698448024",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Yaoundé",
-      "addressCountry": "CM"
-    },
-    "sameAs": [
-      "https://github.com/YangtozoR59",
-      "https://t.me/ItzCyd",
-      "https://linkedin.com/in/calebyang"
-    ]
-  }
-  </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="manifest" href="/site.webmanifest">
+    <!-- Mobile Config -->
+    <meta name="theme-color" content="#f5f5f7" />
 
-  <!-- Mobile Config -->
-  <meta name="theme-color" content="#f5f5f7">
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <!-- Google Fonts - Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts - Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  <body>
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar" id="sidebar">
+      <button
+        class="sidebar-close"
+        id="sidebarClose"
+        aria-label="Fermer le menu"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
 
-<body>
-
-  <!-- ========== SIDEBAR ========== -->
-  <aside class="sidebar" id="sidebar">
-    <button class="sidebar-close" id="sidebarClose" aria-label="Fermer le menu">
-      <i class="bi bi-x-lg"></i>
-    </button>
-
-    <div class="sidebar-profile">
-      <div class="sidebar-avatar">
-        <img src="./source/profil.jpg" alt="Caleb Yang" loading="eager">
-        <span class="status-dot"></span>
-      </div>
-      <h2 class="sidebar-name">Caleb Yang</h2>
-      <p class="sidebar-role">Software Engineer</p>
-      <p class="sidebar-location"><i class="bi bi-geo-alt"></i> Yaoundé, Cameroun</p>
-    </div>
-
-    <nav class="sidebar-nav">
-      <a href="#dashboard" class="nav-item active" data-section="dashboard">
-        <i class="bi bi-grid-1x2"></i>
-        <span>Tableau de bord</span>
-      </a>
-      <a href="#about" class="nav-item" data-section="about">
-        <i class="bi bi-person"></i>
-        <span>À propos</span>
-      </a>
-      <a href="#skills" class="nav-item" data-section="skills">
-        <i class="bi bi-bar-chart"></i>
-        <span>Compétences</span>
-      </a>
-      <a href="#projects" class="nav-item" data-section="projects">
-        <i class="bi bi-folder2-open"></i>
-        <span>Projets</span>
-      </a>
-      <a href="#services" class="nav-item" data-section="services">
-        <i class="bi bi-briefcase"></i>
-        <span>Services</span>
-      </a>
-      <a href="#contact" class="nav-item" data-section="contact">
-        <i class="bi bi-envelope"></i>
-        <span>Contact</span>
-      </a>
-    </nav>
-
-    <div class="sidebar-socials">
-      <a href="https://github.com/YangtozoR59" target="_blank" aria-label="GitHub"><i class="bi bi-github"></i></a>
-      <a href="https://wa.me/237698448024" target="_blank" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-      <a href="https://t.me/ItzCyd" target="_blank" aria-label="Telegram"><i class="bi bi-telegram"></i></a>
-      <a href="mailto:calebyangcyd@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
-    </div>
-
-    <div class="sidebar-footer">
-      <small>&copy; 2026 Caleb Yang</small>
-    </div>
-  </aside>
-
-  <!-- ========== MOBILE HEADER ========== -->
-  <header class="mobile-header" id="mobileHeader">
-    <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
-      <span></span><span></span><span></span>
-    </button>
-    <h1 class="mobile-brand">Caleb Yang</h1>
-    <a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang.pdf" class="mobile-cv-btn" aria-label="Télécharger CV">
-      <i class="bi bi-download"></i>
-    </a>
-  </header>
-
-  <!-- ========== MAIN DASHBOARD ========== -->
-  <main class="dashboard">
-
-    <!-- Dashboard Header -->
-    <header class="dash-header" id="dashboard">
-      <div class="dash-header-left">
-        <h1 class="dash-greeting">Bienvenue sur mon espace</h1>
-        <p class="dash-subtitle">
-          <span class="dash-clock" id="liveClock"></span>
-          <span class="dash-separator">·</span>
-          <span class="dash-date" id="liveDate"></span>
+      <div class="sidebar-profile">
+        <div class="sidebar-avatar">
+          <img src="./source/profil.jpg" alt="Caleb Yang" loading="eager" />
+          <span class="status-dot"></span>
+        </div>
+        <h2 class="sidebar-name">Caleb Yang</h2>
+        <p class="sidebar-role">Software Engineer</p>
+        <p class="sidebar-location">
+          <i class="bi bi-geo-alt"></i> Ngaoundéré, Cameroun
         </p>
       </div>
-      <div class="dash-header-right">
-        <a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang.pdf" class="btn-download-cv">
-          <i class="bi bi-file-earmark-arrow-down"></i>
-          Télécharger mon CV
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" class="nav-item active" data-section="dashboard">
+          <i class="bi bi-grid-1x2"></i>
+          <span>Tableau de bord</span>
         </a>
+        <a href="#about" class="nav-item" data-section="about">
+          <i class="bi bi-person"></i>
+          <span>À propos</span>
+        </a>
+        <a href="#skills" class="nav-item" data-section="skills">
+          <i class="bi bi-bar-chart"></i>
+          <span>Compétences</span>
+        </a>
+        <a href="#projects" class="nav-item" data-section="projects">
+          <i class="bi bi-folder2-open"></i>
+          <span>Projets</span>
+        </a>
+        <a href="#services" class="nav-item" data-section="services">
+          <i class="bi bi-briefcase"></i>
+          <span>Services</span>
+        </a>
+        <a href="#contact" class="nav-item" data-section="contact">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-socials">
+        <a
+          href="https://github.com/YangtozoR59"
+          target="_blank"
+          aria-label="GitHub"
+          ><i class="bi bi-github"></i
+        ></a>
+        <a
+          href="https://wa.me/237698448024"
+          target="_blank"
+          aria-label="WhatsApp"
+          ><i class="bi bi-whatsapp"></i
+        ></a>
+        <a href="https://t.me/ItzCyd" target="_blank" aria-label="Telegram"
+          ><i class="bi bi-telegram"></i
+        ></a>
+        <a href="mailto:calebyangcyd@gmail.com" aria-label="Email"
+          ><i class="bi bi-envelope-fill"></i
+        ></a>
       </div>
+
+      <div class="sidebar-footer">
+        <small>&copy; 2026 Caleb Yang</small>
+      </div>
+    </aside>
+
+    <!-- ========== MOBILE HEADER ========== -->
+    <header class="mobile-header" id="mobileHeader">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+      <h1 class="mobile-brand">Caleb Yang</h1>
+      <a
+        href="./source/CV_Caleb_Yang FR.pdf"
+        download="CV_Caleb_Yang.pdf"
+        class="mobile-cv-btn"
+        aria-label="Télécharger CV"
+      >
+        <i class="bi bi-download"></i>
+      </a>
     </header>
 
-    <!-- ===== ROW 1 : Stats + Quote ===== -->
-    <div class="dash-row row-stats">
-
-      <!-- Stats Cards -->
-      <div class="panel panel-stats reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-activity"></i>
-          <h3>Vue d'ensemble</h3>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon"><i class="bi bi-folder-check"></i></div>
-            <div class="stat-number" data-target="9">0</div>
-            <div class="stat-label">Projets livrés</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon"><i class="bi bi-cpu"></i></div>
-            <div class="stat-number" data-target="15">0</div>
-            <div class="stat-label">Technologies</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon"><i class="bi bi-calendar3"></i></div>
-            <div class="stat-number" data-target="3" data-suffix="+">0</div>
-            <div class="stat-label">Années d'exp.</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon"><i class="bi bi-people"></i></div>
-            <div class="stat-number" data-target="6">0</div>
-            <div class="stat-label">Clients satisfaits</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quote Widget -->
-      <div class="panel panel-quote reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-quote"></i>
-          <h3>Inspiration</h3>
-        </div>
-        <div class="quote-container">
-          <blockquote class="quote-text" id="quoteText"></blockquote>
-          <cite class="quote-author" id="quoteAuthor"></cite>
-        </div>
-        <div class="quote-dots" id="quoteDots"></div>
-      </div>
-
-    </div>
-
-    <!-- ===== ROW 2 : Bio + Situation ===== -->
-    <div class="dash-row row-bio" id="about">
-      
-      <!-- Bio -->
-      <div class="panel panel-bio reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-person-lines-fill"></i>
-          <h3>À propos de moi</h3>
-        </div>
-        <div class="bio-content">
-          <p>
-            Ingénieur logiciel Full-Stack junior orienté produit, spécialisé en 
-            <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. 
-            Je maîtrise CI/CD, Docker et les bonnes pratiques de versioning.
-          </p>
-          <p>
-            J'ai piloté le développement de solutions de gestion interne et d'un site vitrine 
-            pour la <strong>Mutuelle de l'IUT de Ngaoundéré</strong>, et mené un projet chez 
-            <strong>MATHS237</strong>, avec un fort souci de performance, qualité et UX.
-          </p>
-          <p>
-            Compétences en SQL et NoSQL, statistiques et visualisation. 
-            Communicant efficace, bilingue <strong>français/anglais</strong>.
+    <!-- ========== MAIN DASHBOARD ========== -->
+    <main class="dashboard">
+      <!-- Dashboard Header -->
+      <header class="dash-header" id="dashboard">
+        <div class="dash-header-left">
+          <h1 class="dash-greeting">Bienvenue sur mon espace</h1>
+          <p class="dash-subtitle">
+            <span class="dash-clock" id="liveClock"></span>
+            <span class="dash-separator">·</span>
+            <span class="dash-date" id="liveDate"></span>
           </p>
         </div>
-        <div class="bio-tags">
-          <span class="tag">Full-Stack</span>
-          <span class="tag">Product-Oriented</span>
-          <span class="tag">CI/CD</span>
-          <span class="tag">Bilingue FR/EN</span>
-          <span class="tag">Evodevs 237</span>
+        <div class="dash-header-right">
+          <a
+            href="./source/CV_Caleb_Yang FR.pdf"
+            download="CV_Caleb_Yang.pdf"
+            class="btn-download-cv"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            Télécharger mon CV
+          </a>
+        </div>
+      </header>
+
+      <!-- ===== ROW 1 : Stats + Quote ===== -->
+      <div class="dash-row row-stats">
+        <!-- Stats Cards -->
+        <div class="panel panel-stats reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-activity"></i>
+            <h3>Vue d'ensemble</h3>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-folder-check"></i></div>
+              <div class="stat-number" data-target="9">0</div>
+              <div class="stat-label">Projets livrés</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-cpu"></i></div>
+              <div class="stat-number" data-target="15">0</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-calendar3"></i></div>
+              <div class="stat-number" data-target="3" data-suffix="+">0</div>
+              <div class="stat-label">Années d'exp.</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="bi bi-people"></i></div>
+              <div class="stat-number" data-target="6">0</div>
+              <div class="stat-label">Clients satisfaits</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote Widget -->
+        <div class="panel panel-quote reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-quote"></i>
+            <h3>Inspiration</h3>
+          </div>
+          <div class="quote-container">
+            <blockquote class="quote-text" id="quoteText"></blockquote>
+            <cite class="quote-author" id="quoteAuthor"></cite>
+          </div>
+          <div class="quote-dots" id="quoteDots"></div>
         </div>
       </div>
 
-      <!-- Situation actuelle -->
-      <div class="panel panel-situation reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-broadcast"></i>
-          <h3>Situation actuelle</h3>
-        </div>
-        <div class="situation-content">
-          <div class="situation-item">
-            <div class="situation-dot available"></div>
-            <div>
-              <strong>Disponible</strong>
-              <p>Ouvert aux opportunités freelance et CDI</p>
-            </div>
+      <!-- ===== ROW 2 : Bio + Situation ===== -->
+      <div class="dash-row row-bio" id="about">
+        <!-- Bio -->
+        <div class="panel panel-bio reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-person-lines-fill"></i>
+            <h3>À propos de moi</h3>
           </div>
-          <div class="situation-item">
-            <div class="situation-icon"><i class="bi bi-mortarboard"></i></div>
-            <div>
-              <strong>Formation</strong>
-              <p>Licence en Génie Informatique — IUT de Ngaoundéré</p>
-            </div>
+          <div class="bio-content">
+            <p>
+              Ingénieur logiciel Full-Stack junior orienté produit, spécialisé
+              en
+              <strong>Laravel</strong>, <strong>Express.js</strong> et
+              <strong>Flutter</strong>. Je maîtrise CI/CD, Docker et les bonnes
+              pratiques de versioning.
+            </p>
+            <p>
+              J'ai piloté le développement de solutions de gestion interne et
+              d'un site vitrine pour la
+              <strong>Mutuelle de l'IUT de Ngaoundéré</strong>, et mené un
+              projet chez <strong>MATHS237</strong>, avec un fort souci de
+              performance, qualité et UX.
+            </p>
+            <p>
+              Compétences en SQL et NoSQL, statistiques et visualisation.
+              Communicant efficace, bilingue <strong>français/anglais</strong>.
+            </p>
           </div>
-          <div class="situation-item">
-            <div class="situation-icon"><i class="bi bi-building"></i></div>
-            <div>
-              <strong>Expérience récente</strong>
-              <p>Lead Engineer chez Evodevs 237 — Projets Maths237 & Mutuelle IUT</p>
-            </div>
-          </div>
-          <div class="situation-item">
-            <div class="situation-icon"><i class="bi bi-geo-alt"></i></div>
-            <div>
-              <strong>Localisation</strong>
-              <p>Yaoundé, Cameroun — Remote-friendly</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ===== ROW 3 : Skills ===== -->
-    <div class="dash-row row-skills" id="skills">
-      <div class="panel panel-skills reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-bar-chart-steps"></i>
-          <h3>Compétences techniques</h3>
-        </div>
-        <div class="skills-grid">
-          <!-- Backend -->
-          <div class="skill-group">
-            <h4 class="skill-group-title"><i class="bi bi-server"></i> Backend</h4>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Laravel / PHP</span><span class="skill-pct">92%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="92"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Express.js / Node</span><span class="skill-pct">78%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>REST API Design</span><span class="skill-pct">88%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="88"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>MySQL / PostgreSQL</span><span class="skill-pct">85%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-            </div>
-          </div>
-          <!-- Frontend -->
-          <div class="skill-group">
-            <h4 class="skill-group-title"><i class="bi bi-palette"></i> Frontend</h4>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>JavaScript / ES6+</span><span class="skill-pct">85%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Bootstrap / Tailwind</span><span class="skill-pct">90%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>HTML5 / CSS3</span><span class="skill-pct">95%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
-            </div>
-          </div>
-          <!-- Mobile & DevOps -->
-          <div class="skill-group">
-            <h4 class="skill-group-title"><i class="bi bi-phone"></i> Mobile & DevOps</h4>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Flutter / Dart</span><span class="skill-pct">80%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Docker</span><span class="skill-pct">70%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="70"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Git / GitHub</span><span class="skill-pct">90%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
-            </div>
-            <div class="skill-bar-item">
-              <div class="skill-info"><span>Firebase</span><span class="skill-pct">72%</span></div>
-              <div class="skill-track"><div class="skill-fill" data-width="72"></div></div>
-            </div>
+          <div class="bio-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag">Product-Oriented</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Bilingue FR/EN</span>
+            <span class="tag">Evodevs 237</span>
           </div>
         </div>
-        <!-- Tech icons row -->
-        <div class="tech-icons-row">
-          <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" title="Flutter">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" alt="Firebase" title="Firebase">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-          <img src="./source/tailwind.svg" alt="Tailwind" title="Tailwind CSS">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub">
-        </div>
-      </div>
-    </div>
 
-    <!-- ===== ROW 4 : Projects ===== -->
-    <div class="dash-row row-projects" id="projects">
-      <div class="panel panel-projects reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-kanban"></i>
-          <h3>Projets sélectionnés</h3>
-        </div>
-        <div class="projects-grid">
-
-          <!-- Project 1 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/acc.png" alt="Accomodation System" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>Accomodation System</h4>
-              <p>Plateforme académique pour la recherche et la gestion d'hébergements étudiants.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
-                <img src="./source/tailwind.svg" alt="Tailwind" title="Tailwind CSS">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Janvier 2026</span>
-            </div>
+        <!-- Situation actuelle -->
+        <div class="panel panel-situation reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-broadcast"></i>
+            <h3>Situation actuelle</h3>
           </div>
-
-          <!-- Project 2 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c5.png" alt="EGEM Meiganga" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>EGEM — Site institutionnel</h4>
-              <p>Site institutionnel pour l'École de Géologie et d'Exploitation des Mines.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-                <img src="./source/tailwind.svg" alt="Tailwind" title="Tailwind CSS">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Octobre 2025</span>
-              <a href="https://egem-ndere.com/" class="project-link" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Voir</a>
-            </div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c1.png" alt="Entreprise du Pays" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>Entreprise du Pays — Maths237</h4>
-              <p>Application web pour rechercher des entreprises et des opportunités au Cameroun.</p>
-              <span class="project-role">Lead Engineer / Evodevs 237</span>
-              <div class="project-tech">
-                <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Août 2025</span>
-              <a href="https://www.entreprisedupays.maths237.cm/" class="project-link" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Voir</a>
-            </div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c3.png" alt="Mutuelle IUT" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>App de gestion — Mutuelle IUT</h4>
-              <p>Application web pour centraliser les activités internes de la mutuelle.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-                <img src="./source/tailwind.svg" alt="Tailwind" title="Tailwind CSS">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Mai — Juil. 2025</span>
-            </div>
-          </div>
-
-          <!-- Project 5 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c2.png" alt="Mutuelle IUT Vitrine" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>Site vitrine & e‑commerce — MUIT</h4>
-              <p>Site web présentant la mutuelle, ses formations et produits avec e‑commerce.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="./source/laravel.svg" alt="Laravel" title="Laravel">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Mai — Juil. 2025</span>
-              <a href="https://www.muit.iut-ndere.net/" class="project-link" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Voir</a>
-            </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c10.png" alt="MATHS237" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>MATHS237 — Plateforme éducative</h4>
-              <p>Plateforme en ligne dédiée à la vulgarisation et l'apprentissage des maths.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-              </div>
-              <span class="project-date">Septembre 2024</span>
-              <a href="https://maths237.com/" class="project-link" target="_blank"><i class="bi bi-box-arrow-up-right"></i> Voir</a>
-            </div>
-          </div>
-
-          <!-- Project 7 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/card.svg" alt="AEFCA" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>AEFCA — Cartes membres</h4>
-              <p>Application web pour générer et gérer des cartes de membre d'association.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" title="PHP">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Août 2024</span>
-            </div>
-          </div>
-
-          <!-- Project 8 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <div class="project-img-placeholder">
-                <i class="bi bi-graph-up"></i>
-              </div>
-            </div>
-            <div class="project-body">
-              <h4>Module statistique — SYGALIN</h4>
-              <p>Module de reporting et suivi statistique des tickets sur plateformes internes.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg" alt="CodeIgniter" title="CodeIgniter">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
-              </div>
-              <span class="project-date">Mars — Mai 2024</span>
-            </div>
-          </div>
-
-          <!-- Project 9 -->
-          <div class="project-card reveal-card">
-            <div class="project-img">
-              <img src="./source/c4.png" alt="Grace Oil Gold" loading="lazy">
-            </div>
-            <div class="project-body">
-              <h4>Grace Oil Gold — Site vitrine</h4>
-              <p>Site vitrine pour la startup Grace Oil Gold, produits et services.</p>
-              <span class="project-role">Project Manager & Lead Engineer</span>
-              <div class="project-tech">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
-                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg" alt="Bootstrap" title="Bootstrap">
-              </div>
-              <span class="project-date">Septembre 2024</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== ROW 5 : Services ===== -->
-    <div class="dash-row row-services" id="services">
-      <div class="panel panel-services reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-lightning-charge"></i>
-          <h3>Ce que je peux apporter</h3>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><i class="bi bi-server"></i></div>
-            <h4>Conception & Backend</h4>
-            <p>Architectures backend robustes, modélisation des données et développement d'APIs RESTful performantes.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="bi bi-globe2"></i></div>
-            <h4>Interfaces Web modernes</h4>
-            <p>Création d'interfaces réactives, accessibles et centrées utilisateur avec les frameworks CSS/JS modernes.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="bi bi-phone"></i></div>
-            <h4>Applications Mobiles</h4>
-            <p>Développement cross‑platform avec Flutter, du prototype au déploiement sur Android et iOS.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== ROW 6 : Contact ===== -->
-    <div class="dash-row row-contact" id="contact">
-      <div class="panel panel-contact reveal-card">
-        <div class="panel-header">
-          <i class="bi bi-chat-dots"></i>
-          <h3>Me contacter</h3>
-        </div>
-        <div class="contact-grid">
-          <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpwbvrod" method="POST">
-            <div class="form-group">
-              <label for="name">Nom</label>
-              <input type="text" id="name" name="name" placeholder="Votre nom" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Votre email" required>
-            </div>
-            <div class="form-group full-width">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
-            </div>
-            <button type="submit" class="btn-send">
-              <i class="bi bi-send"></i>
-              <span>Envoyer</span>
-            </button>
-          </form>
-          <div class="contact-info">
-            <div class="contact-info-item">
-              <i class="bi bi-envelope-fill"></i>
+          <div class="situation-content">
+            <div class="situation-item">
+              <div class="situation-dot available"></div>
               <div>
-                <strong>Email</strong>
-                <a href="mailto:calebyangcyd@gmail.com">calebyangcyd@gmail.com</a>
+                <strong>Etudiant</strong>
+                <p>Ouvert aux opportunités freelance et CDI</p>
               </div>
             </div>
-            <div class="contact-info-item">
-              <i class="bi bi-whatsapp"></i>
+            <div class="situation-item">
+              <div class="situation-icon">
+                <i class="bi bi-mortarboard"></i>
+              </div>
               <div>
-                <strong>WhatsApp</strong>
-                <a href="https://wa.me/237698448024" target="_blank">+237 698 448 024</a>
+                <strong>Formation</strong>
+                <p>
+                  Master en Systèmes et Logiciels en Environnements Distribués —
+                  Université de Ngaoundéré
+                </p>
               </div>
             </div>
-            <div class="contact-info-item">
-              <i class="bi bi-telegram"></i>
+            <div class="situation-item">
+              <div class="situation-icon"><i class="bi bi-building"></i></div>
               <div>
-                <strong>Telegram</strong>
-                <a href="https://t.me/ItzCyd" target="_blank">@ItzCyd</a>
+                <strong>Expérience récente</strong>
+                <p>
+                  Lead Engineer chez Evodevs 237 — Projets Maths237 & Mutuelle
+                  IUT
+                </p>
               </div>
             </div>
-            <div class="contact-info-item">
-              <i class="bi bi-github"></i>
+            <div class="situation-item">
+              <div class="situation-icon"><i class="bi bi-geo-alt"></i></div>
               <div>
-                <strong>GitHub</strong>
-                <a href="https://github.com/YangtozoR59" target="_blank">YangtozoR59</a>
+                <strong>Localisation</strong>
+                <p>Ngaoundéré, Cameroun — Remote-friendly</p>
               </div>
             </div>
           </div>
         </div>
-        <div id="formMessage" class="form-message"></div>
       </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="dash-footer">
-      <p>&copy; 2026 <a href="https://t.me/ItzCyd">Caleb Yang</a>. Tous droits réservés.</p>
-    </footer>
+      <!-- ===== ROW 3 : Skills ===== -->
+      <div class="dash-row row-skills" id="skills">
+        <div class="panel panel-skills reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-bar-chart-steps"></i>
+            <h3>Compétences techniques</h3>
+          </div>
+          <div class="skills-grid">
+            <!-- Backend -->
+            <div class="skill-group">
+              <h4 class="skill-group-title">
+                <i class="bi bi-server"></i> Backend
+              </h4>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Laravel / PHP</span><span class="skill-pct">92%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="92"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Express.js / Node</span
+                  ><span class="skill-pct">78%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="78"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>REST API Design</span><span class="skill-pct">88%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="88"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>MySQL / PostgreSQL</span
+                  ><span class="skill-pct">85%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="85"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Frontend -->
+            <div class="skill-group">
+              <h4 class="skill-group-title">
+                <i class="bi bi-palette"></i> Frontend
+              </h4>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>JavaScript / ES6+</span
+                  ><span class="skill-pct">85%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="85"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Bootstrap / Tailwind</span
+                  ><span class="skill-pct">90%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="90"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>HTML5 / CSS3</span><span class="skill-pct">95%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="95"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Mobile & DevOps -->
+            <div class="skill-group">
+              <h4 class="skill-group-title">
+                <i class="bi bi-phone"></i> Mobile & DevOps
+              </h4>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Flutter / Dart</span><span class="skill-pct">80%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="80"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Docker</span><span class="skill-pct">70%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="70"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Git / GitHub</span><span class="skill-pct">90%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="90"></div>
+                </div>
+              </div>
+              <div class="skill-bar-item">
+                <div class="skill-info">
+                  <span>Firebase</span><span class="skill-pct">72%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-width="72"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Tech icons row -->
+          <div class="tech-icons-row">
+            <img src="./source/laravel.svg" alt="Laravel" title="Laravel" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+              alt="Flutter"
+              title="Flutter"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+              alt="Node.js"
+              title="Node.js"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+              alt="PostgreSQL"
+              title="PostgreSQL"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+              alt="MySQL"
+              title="MySQL"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+              alt="Docker"
+              title="Docker"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+              alt="Git"
+              title="Git"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg"
+              alt="Firebase"
+              title="Firebase"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+              alt="JavaScript"
+              title="JavaScript"
+            />
+            <img
+              src="./source/tailwind.svg"
+              alt="Tailwind"
+              title="Tailwind CSS"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+              alt="Bootstrap"
+              title="Bootstrap"
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+              alt="GitHub"
+              title="GitHub"
+            />
+          </div>
+        </div>
+      </div>
 
-  </main>
+      <!-- ===== ROW 4 : Projects ===== -->
+      <div class="dash-row row-projects" id="projects">
+        <div class="panel panel-projects reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-kanban"></i>
+            <h3>Projets sélectionnés</h3>
+          </div>
+          <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img
+                  src="./source/acc.png"
+                  alt="Accomodation System"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h4>Accomodation System</h4>
+                <p>
+                  Plateforme académique pour la recherche et la gestion
+                  d'hébergements étudiants.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="./source/laravel.svg"
+                    alt="Laravel"
+                    title="Laravel"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                    alt="Docker"
+                    title="Docker"
+                  />
+                  <img
+                    src="./source/tailwind.svg"
+                    alt="Tailwind"
+                    title="Tailwind CSS"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Janvier 2026</span>
+              </div>
+            </div>
 
-  <!-- Overlay for mobile sidebar -->
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+            <!-- Project 2 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img src="./source/c5.png" alt="EGEM Meiganga" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <h4>EGEM — Site institutionnel</h4>
+                <p>
+                  Site institutionnel pour l'École de Géologie et d'Exploitation
+                  des Mines.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="./source/laravel.svg"
+                    alt="Laravel"
+                    title="Laravel"
+                  />
+                  <img
+                    src="./source/tailwind.svg"
+                    alt="Tailwind"
+                    title="Tailwind CSS"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Octobre 2025</span>
+                <a
+                  href="https://egem-ndere.com/"
+                  class="project-link"
+                  target="_blank"
+                  ><i class="bi bi-box-arrow-up-right"></i> Voir</a
+                >
+              </div>
+            </div>
 
-  <!-- Custom JS -->
-  <script src="./js/script.js"></script>
+            <!-- Project 3 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img
+                  src="./source/c1.png"
+                  alt="Entreprise du Pays"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h4>Entreprise du Pays — Maths237</h4>
+                <p>
+                  Application web pour rechercher des entreprises et des
+                  opportunités au Cameroun.
+                </p>
+                <span class="project-role">Lead Engineer / Evodevs 237</span>
+                <div class="project-tech">
+                  <img
+                    src="./source/laravel.svg"
+                    alt="Laravel"
+                    title="Laravel"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Août 2025</span>
+                <a
+                  href="https://www.entreprisedupays.maths237.cm/"
+                  class="project-link"
+                  target="_blank"
+                  ><i class="bi bi-box-arrow-up-right"></i> Voir</a
+                >
+              </div>
+            </div>
 
-</body>
+            <!-- Project 4 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img src="./source/c3.png" alt="Mutuelle IUT" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <h4>App de gestion — Mutuelle IUT</h4>
+                <p>
+                  Application web pour centraliser les activités internes de la
+                  mutuelle.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="./source/laravel.svg"
+                    alt="Laravel"
+                    title="Laravel"
+                  />
+                  <img
+                    src="./source/tailwind.svg"
+                    alt="Tailwind"
+                    title="Tailwind CSS"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Mai — Juil. 2025</span>
+              </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img
+                  src="./source/c2.png"
+                  alt="Mutuelle IUT Vitrine"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h4>Site vitrine & e‑commerce — MUIT</h4>
+                <p>
+                  Site web présentant la mutuelle, ses formations et produits
+                  avec e‑commerce.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="./source/laravel.svg"
+                    alt="Laravel"
+                    title="Laravel"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Mai — Juil. 2025</span>
+                <a
+                  href="https://www.muit.iut-ndere.net/"
+                  class="project-link"
+                  target="_blank"
+                  ><i class="bi bi-box-arrow-up-right"></i> Voir</a
+                >
+              </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img src="./source/c10.png" alt="MATHS237" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <h4>MATHS237 — Plateforme éducative</h4>
+                <p>
+                  Plateforme en ligne dédiée à la vulgarisation et
+                  l'apprentissage des maths.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript"
+                    title="JavaScript"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                </div>
+                <span class="project-date">Septembre 2024</span>
+                <a
+                  href="https://maths237.com/"
+                  class="project-link"
+                  target="_blank"
+                  ><i class="bi bi-box-arrow-up-right"></i> Voir</a
+                >
+              </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img src="./source/card.svg" alt="AEFCA" loading="lazy" />
+              </div>
+              <div class="project-body">
+                <h4>AEFCA — Cartes membres</h4>
+                <p>
+                  Application web pour générer et gérer des cartes de membre
+                  d'association.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                    alt="PHP"
+                    title="PHP"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Août 2024</span>
+              </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <div class="project-img-placeholder">
+                  <i class="bi bi-graph-up"></i>
+                </div>
+              </div>
+              <div class="project-body">
+                <h4>Module statistique — SYGALIN</h4>
+                <p>
+                  Module de reporting et suivi statistique des tickets sur
+                  plateformes internes.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/codeigniter/codeigniter-plain.svg"
+                    alt="CodeIgniter"
+                    title="CodeIgniter"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+                    alt="MySQL"
+                    title="MySQL"
+                  />
+                </div>
+                <span class="project-date">Mars — Mai 2024</span>
+              </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-card reveal-card">
+              <div class="project-img">
+                <img
+                  src="./source/c4.png"
+                  alt="Grace Oil Gold"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-body">
+                <h4>Grace Oil Gold — Site vitrine</h4>
+                <p>
+                  Site vitrine pour la startup Grace Oil Gold, produits et
+                  services.
+                </p>
+                <span class="project-role"
+                  >Project Manager & Lead Engineer</span
+                >
+                <div class="project-tech">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript"
+                    title="JavaScript"
+                  />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+                    alt="Bootstrap"
+                    title="Bootstrap"
+                  />
+                </div>
+                <span class="project-date">Septembre 2024</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ROW 5 : Services ===== -->
+      <div class="dash-row row-services" id="services">
+        <div class="panel panel-services reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-lightning-charge"></i>
+            <h3>Ce que je peux apporter</h3>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon"><i class="bi bi-server"></i></div>
+              <h4>Conception & Backend</h4>
+              <p>
+                Architectures backend robustes, modélisation des données et
+                développement d'APIs RESTful performantes.
+              </p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon"><i class="bi bi-globe2"></i></div>
+              <h4>Interfaces Web modernes</h4>
+              <p>
+                Création d'interfaces réactives, accessibles et centrées
+                utilisateur avec les frameworks CSS/JS modernes.
+              </p>
+            </div>
+            <div class="service-card">
+              <div class="service-icon"><i class="bi bi-phone"></i></div>
+              <h4>Applications Mobiles</h4>
+              <p>
+                Développement cross‑platform avec Flutter, du prototype au
+                déploiement sur Android et iOS.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ROW 6 : Contact ===== -->
+      <div class="dash-row row-contact" id="contact">
+        <div class="panel panel-contact reveal-card">
+          <div class="panel-header">
+            <i class="bi bi-chat-dots"></i>
+            <h3>Me contacter</h3>
+          </div>
+          <div class="contact-grid">
+            <form
+              id="contactForm"
+              class="contact-form"
+              action="https://formspree.io/f/xpwbvrod"
+              method="POST"
+            >
+              <div class="form-group">
+                <label for="name">Nom</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Votre nom"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Votre email"
+                  required
+                />
+              </div>
+              <div class="form-group full-width">
+                <label for="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Votre message"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-send">
+                <i class="bi bi-send"></i>
+                <span>Envoyer</span>
+              </button>
+            </form>
+            <div class="contact-info">
+              <div class="contact-info-item">
+                <i class="bi bi-envelope-fill"></i>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:calebyangcyd@gmail.com"
+                    >calebyangcyd@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <i class="bi bi-whatsapp"></i>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <a href="https://wa.me/237698448024" target="_blank"
+                    >+237 698 448 024</a
+                  >
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <i class="bi bi-telegram"></i>
+                <div>
+                  <strong>Telegram</strong>
+                  <a href="https://t.me/ItzCyd" target="_blank">@ItzCyd</a>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <i class="bi bi-github"></i>
+                <div>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/YangtozoR59" target="_blank"
+                    >YangtozoR59</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="formMessage" class="form-message"></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="dash-footer">
+        <p>
+          &copy; 2026 <a href="https://t.me/ItzCyd">Caleb Yang</a>. Tous droits
+          réservés.
+        </p>
+      </footer>
+    </main>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Custom JS -->
+    <script src="./js/script.js"></script>
+  </body>
 </html>
