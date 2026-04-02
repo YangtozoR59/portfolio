@@ -43,7 +43,7 @@
     />
     <meta
       property="og:image"
-      content="https://itzcyd.vercel.app/source/profil2.jpg"
+      content="https://itzcyd.vercel.app/source/profil.png"
     />
 
     <!-- Twitter Card -->
@@ -58,7 +58,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://itzcyd.vercel.app/source/profil2.jpg"
+      content="https://itzcyd.vercel.app/source/profil.jpg"
     />
 
     <!-- Structured Data -->
@@ -70,7 +70,7 @@
         "alternateName": "ItzCyd",
         "jobTitle": "Software Engineer | FullStack Web & Mobile",
         "url": "https://itzcyd.vercel.app",
-        "image": "https://itzcyd.vercel.app/source/profil2.jpg",
+        "image": "https://itzcyd.vercel.app/source/profil.png",
         "email": "calebyangcyd@gmail.com",
         "telephone": "+237698448024",
         "address": {
@@ -115,9 +115,30 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/underwater.css" />
   </head>
 
   <body>
+    <!-- ========== UNDERWATER EFFECTS ========== -->
+    <div id="underwater-overlay"></div>
+    <div id="water-surface">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-layer-1" d="M0,40 C120,65 240,10 360,40 C480,70 600,15 720,40 C840,65 960,10 1080,40 C1200,70 1320,15 1440,40 L1440,0 L0,0 Z" />
+        <path class="wave-layer-1" d="M1440,40 C1560,65 1680,10 1800,40 C1920,70 2040,15 2160,40 C2280,65 2400,10 2520,40 C2640,70 2760,15 2880,40 L2880,0 L1440,0 Z" />
+      </svg>
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-layer-2" d="M0,35 C180,60 300,15 480,35 C660,55 780,20 960,35 C1140,55 1260,15 1440,35 L1440,0 L0,0 Z" />
+        <path class="wave-layer-2" d="M1440,35 C1620,60 1740,15 1920,35 C2100,55 2220,20 2400,35 C2580,55 2700,15 2880,35 L2880,0 L1440,0 Z" />
+      </svg>
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="wave-layer-3" d="M0,30 C200,55 350,10 540,30 C730,50 850,15 1020,30 C1190,50 1350,10 1440,30 L1440,0 L0,0 Z" />
+        <path class="wave-layer-3" d="M1440,30 C1640,55 1790,10 1980,30 C2170,50 2290,15 2460,30 C2630,50 2790,10 2880,30 L2880,0 L1440,0 Z" />
+      </svg>
+    </div>
+    <div id="glass-overlay">
+      <div class="caustic-cells"></div>
+    </div>
+
     <!-- ========== SIDEBAR ========== -->
     <aside class="sidebar" id="sidebar">
       <button
@@ -1045,5 +1066,6 @@
 
     <!-- Custom JS -->
     <script src="./js/script.js"></script>
+    <script src="./js/underwater.js"></script>
   </body>
 </html>
