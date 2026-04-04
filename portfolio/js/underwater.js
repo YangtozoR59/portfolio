@@ -1,6 +1,9 @@
 /* ==========================================
-   Underwater Effects — Deep Ocean Engine
-   Bubbles, fish, ripples, depth, floating
+   ABYSSAL DEEP OCEAN EFFECTS — JavaScript
+   Depth: ~4000m — Bioluminescent Zone
+   ==========================================
+   Canvas-based: plankton particles, bubbles,
+   rare bioluminescent jellyfish, dive lamp
    ========================================== */
 
 (function () {
@@ -8,523 +11,428 @@
 
   // ===== CONFIGURATION =====
   const CONFIG = {
-    bubbleIntervalMin: 1800,
-    bubbleIntervalMax: 4000,
-    bubbleSizeMin: 4,
-    bubbleSizeMax: 14,
-    bubbleDurationMin: 4,
-    bubbleDurationMax: 8,
-    maxBubbles: 25,
-    rippleDebounce: 80,
-    scrollDisturbDuration: 800,
-    fishIntervalMin: 4000,
-    fishIntervalMax: 10000,
-    schoolIntervalMin: 12000,
-    schoolIntervalMax: 25000,
-    maxFish: 6,
+    plankton: {
+      count: 60,
+      minSize: 1,
+      maxSize: 3,
+      minSpeed: 0.15,
+      maxSpeed: 0.5,
+      colors: [
+        'rgba(0, 245, 212, 0.4)',
+        'rgba(0, 191, 255, 0.3)',
+        'rgba(155, 77, 255, 0.25)',
+        'rgba(0, 245, 212, 0.2)',
+        'rgba(0, 191, 255, 0.15)',
+      ]
+    },
+    bubbles: {
+      count: 12,
+      minSize: 2,
+      maxSize: 6,
+      minSpeed: 0.3,
+      maxSpeed: 0.8,
+      wobbleAmount: 0.5
+    },
+    jellyfish: {
+      maxActive: 2,
+      spawnInterval: 25000, // ms between possible spawns
+      minSize: 25,
+      maxSize: 50,
+      speed: 0.2
+    },
+    diveLamp: {
+      enabled: true,
+      radius: 280
+    }
   };
 
-  // ===== STATE =====
-  let activeBubbles = 0;
-  let activeFish = 0;
-  let lastRippleTime = 0;
-  let scrollTimeout = null;
+  // ===== CANVAS SETUP =====
+  const canvas = document.getElementById('abyssCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-  function rand(min, max) {
-    return Math.random() * (max - min) + min;
+  let W, H;
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   }
-  function randInt(min, max) {
-    return Math.floor(rand(min, max + 1));
-  }
+  resize();
+  window.addEventListener('resize', resize);
 
-  // ==========================================
-  //  FISH SVG TEMPLATES — Different species
-  // ==========================================
+  // ===== MOUSE TRACKING FOR DIVE LAMP =====
+  let mouseX = W / 2;
+  let mouseY = H / 2;
+  let lampX = W / 2;
+  let lampY = H / 2;
 
-  const fishTemplates = [
-    // Tropical fish (blue/yellow)
-    (w) => `<svg width="${w}" height="${w*0.6}" viewBox="0 0 60 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M45,18 C45,8 35,2 22,4 C12,6 4,12 2,18 C4,24 12,30 22,32 C35,34 45,28 45,18 Z" fill="rgba(60,160,220,.6)" stroke="rgba(40,130,200,.3)" stroke-width=".5"/>
-      <path d="M45,18 L58,8 L58,28 Z" fill="rgba(60,160,220,.5)"/>
-      <circle cx="14" cy="16" r="2.5" fill="rgba(255,255,255,.8)"/>
-      <circle cx="14.5" cy="16" r="1.2" fill="rgba(20,40,60,.7)"/>
-      <path d="M20,10 C25,8 32,9 38,12" stroke="rgba(255,200,60,.4)" stroke-width="2" fill="none"/>
-      <path d="M20,14 C25,12 32,13 40,16" stroke="rgba(255,200,60,.25)" stroke-width="1.5" fill="none"/>
-      <path d="M18,24 Q25,28 35,24" stroke="rgba(100,200,255,.3)" stroke-width="1" fill="none"/>
-    </svg>`,
-
-    // Clownfish (orange/white)
-    (w) => `<svg width="${w}" height="${w*0.55}" viewBox="0 0 56 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M42,16 C42,7 33,2 20,4 C10,6 3,11 2,16 C3,21 10,26 20,28 C33,30 42,25 42,16 Z" fill="rgba(240,130,40,.55)" stroke="rgba(220,100,20,.3)" stroke-width=".5"/>
-      <path d="M42,16 L54,7 L54,25 Z" fill="rgba(240,130,40,.45)"/>
-      <path d="M15,4 C15,4 15,28 15,28" stroke="rgba(255,255,255,.5)" stroke-width="3"/>
-      <path d="M28,6 C28,6 28,26 28,26" stroke="rgba(255,255,255,.5)" stroke-width="3"/>
-      <circle cx="10" cy="14" r="2.2" fill="rgba(255,255,255,.8)"/>
-      <circle cx="10.4" cy="14" r="1" fill="rgba(20,20,20,.7)"/>
-    </svg>`,
-
-    // Angelfish (purple/silver)
-    (w) => `<svg width="${w}" height="${w*0.9}" viewBox="0 0 44 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M35,20 C35,10 28,2 20,2 C12,2 4,10 3,20 C4,30 12,38 20,38 C28,38 35,30 35,20 Z" fill="rgba(140,100,200,.45)" stroke="rgba(120,80,180,.25)" stroke-width=".5"/>
-      <path d="M35,20 L43,14 L43,26 Z" fill="rgba(140,100,200,.35)"/>
-      <path d="M20,2 L18,0 L22,0 Z" fill="rgba(140,100,200,.3)"/>
-      <path d="M20,38 L18,40 L22,40 Z" fill="rgba(140,100,200,.3)"/>
-      <circle cx="12" cy="18" r="2" fill="rgba(255,255,255,.8)"/>
-      <circle cx="12.4" cy="18" r="1" fill="rgba(20,20,40,.7)"/>
-      <path d="M15,12 C20,10 28,11 33,14" stroke="rgba(200,180,240,.3)" stroke-width="1" fill="none"/>
-      <path d="M15,16 C20,14 28,15 33,18" stroke="rgba(200,180,240,.2)" stroke-width="1" fill="none"/>
-      <path d="M15,24 C20,26 28,25 33,22" stroke="rgba(200,180,240,.2)" stroke-width="1" fill="none"/>
-    </svg>`,
-
-    // Small silver fish (simple)
-    (w) => `<svg width="${w}" height="${w*0.45}" viewBox="0 0 40 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M30,9 C30,4 24,1 15,2 C8,3 3,6 2,9 C3,12 8,15 15,16 C24,17 30,14 30,9 Z" fill="rgba(180,200,220,.45)" stroke="rgba(160,180,200,.2)" stroke-width=".5"/>
-      <path d="M30,9 L39,4 L39,14 Z" fill="rgba(180,200,220,.35)"/>
-      <circle cx="9" cy="8" r="1.5" fill="rgba(255,255,255,.7)"/>
-      <circle cx="9.3" cy="8" r=".7" fill="rgba(20,30,40,.6)"/>
-      <path d="M12,5 C18,4 24,5 29,7" stroke="rgba(200,220,240,.2)" stroke-width=".8" fill="none"/>
-    </svg>`,
-
-    // Pufferfish (round, spotted)
-    (w) => `<svg width="${w}" height="${w*0.85}" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="22" cy="21" rx="18" ry="16" fill="rgba(180,210,140,.45)" stroke="rgba(150,190,120,.25)" stroke-width=".5"/>
-      <path d="M38,21 L47,15 L46,21 L47,27 Z" fill="rgba(180,210,140,.35)"/>
-      <circle cx="14" cy="17" r="3" fill="rgba(255,255,255,.8)"/>
-      <circle cx="14.5" cy="17" r="1.5" fill="rgba(20,40,20,.6)"/>
-      <circle cx="25" cy="14" r="1.5" fill="rgba(160,190,120,.3)"/>
-      <circle cx="30" cy="20" r="1.2" fill="rgba(160,190,120,.25)"/>
-      <circle cx="22" cy="27" r="1.3" fill="rgba(160,190,120,.25)"/>
-      <circle cx="28" cy="27" r="1" fill="rgba(160,190,120,.2)"/>
-      <circle cx="18" cy="12" r="1" fill="rgba(160,190,120,.2)"/>
-      <path d="M10,22 Q12,25 10,26" stroke="rgba(180,210,140,.3)" stroke-width=".8" fill="none"/>
-    </svg>`,
-
-    // Jellyfish
-    (w) => `<svg width="${w}" height="${w*1.4}" viewBox="0 0 40 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4,20 C4,8 12,2 20,2 C28,2 36,8 36,20 C36,22 32,24 20,24 C8,24 4,22 4,20 Z" fill="rgba(200,150,240,.3)" stroke="rgba(180,130,220,.15)" stroke-width=".5"/>
-      <path d="M10,24 Q8,34 12,44 Q10,48 14,54" stroke="rgba(200,150,240,.2)" stroke-width="1.2" fill="none">
-        <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M10,24 Q8,34 12,44 Q10,48 14,54;M10,24 Q14,34 10,44 Q14,48 12,54;M10,24 Q8,34 12,44 Q10,48 14,54"/>
-      </path>
-      <path d="M16,24 Q14,36 18,46 Q16,50 19,56" stroke="rgba(200,150,240,.18)" stroke-width="1" fill="none">
-        <animate attributeName="d" dur="2.5s" repeatCount="indefinite" values="M16,24 Q14,36 18,46 Q16,50 19,56;M16,24 Q18,36 15,46 Q18,50 17,56;M16,24 Q14,36 18,46 Q16,50 19,56"/>
-      </path>
-      <path d="M24,24 Q26,36 22,46 Q24,50 21,56" stroke="rgba(200,150,240,.18)" stroke-width="1" fill="none">
-        <animate attributeName="d" dur="2.8s" repeatCount="indefinite" values="M24,24 Q26,36 22,46 Q24,50 21,56;M24,24 Q22,36 26,46 Q22,50 24,56;M24,24 Q26,36 22,46 Q24,50 21,56"/>
-      </path>
-      <path d="M30,24 Q32,34 28,44 Q30,48 26,54" stroke="rgba(200,150,240,.2)" stroke-width="1.2" fill="none">
-        <animate attributeName="d" dur="3.2s" repeatCount="indefinite" values="M30,24 Q32,34 28,44 Q30,48 26,54;M30,24 Q26,34 30,44 Q26,48 28,54;M30,24 Q32,34 28,44 Q30,48 26,54"/>
-      </path>
-      <ellipse cx="20" cy="14" rx="6" ry="4" fill="rgba(240,210,255,.15)"/>
-    </svg>`
-  ];
-
-  // Small fish for schools
-  const schoolFishSvg = (w) => `<svg width="${w}" height="${w*0.5}" viewBox="0 0 24 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18,6 C18,3 14,1 9,2 C5,3 2,5 1,6 C2,7 5,9 9,10 C14,11 18,9 18,6 Z" fill="rgba(180,210,230,.4)"/>
-    <path d="M18,6 L23,3 L23,9 Z" fill="rgba(180,210,230,.3)"/>
-    <circle cx="6" cy="5.5" r="1" fill="rgba(255,255,255,.6)"/>
-    <circle cx="6.3" cy="5.5" r=".5" fill="rgba(20,30,40,.5)"/>
-  </svg>`;
-
-  // ==========================================
-  //  FISH SPAWNER
-  // ==========================================
-
-  function spawnFish() {
-    if (activeFish >= CONFIG.maxFish) return;
-
-    const goingRight = Math.random() < 0.5;
-    const templateIdx = randInt(0, fishTemplates.length - 1);
-    const size = rand(30, 70);
-    const duration = rand(10, 20);
-    const yPos = rand(8, 85); // % from top
-    const bob1 = rand(-20, -5);
-    const bob2 = rand(5, 15);
-    const opacity = rand(0.35, 0.65);
-    const tailSpeed = rand(0.4, 0.8);
-
-    const fish = document.createElement('div');
-    fish.className = 'ocean-fish' + (goingRight ? '' : ' rtl');
-    fish.innerHTML = fishTemplates[templateIdx](size);
-    fish.style.cssText = `
-      top: ${yPos}%;
-      left: 0;
-      --fish-duration: ${duration}s;
-      --fish-bob1: ${bob1}px;
-      --fish-bob2: ${bob2}px;
-      --fish-opacity: ${opacity};
-      --tail-speed: ${tailSpeed}s;
-    `;
-
-    document.body.appendChild(fish);
-    activeFish++;
-
-    const cleanup = () => {
-      if (fish.parentNode) {
-        fish.remove();
-        activeFish--;
-      }
-    };
-
-    fish.addEventListener('animationend', cleanup);
-    setTimeout(cleanup, (duration + 2) * 1000);
-  }
-
-  function spawnFishSchool() {
-    if (activeFish >= CONFIG.maxFish - 2) return;
-
-    const goingRight = Math.random() < 0.5;
-    const count = randInt(3, 6);
-    const yPos = rand(15, 75);
-    const duration = rand(12, 18);
-    const opacity = rand(0.3, 0.5);
-
-    const school = document.createElement('div');
-    school.className = 'fish-school' + (goingRight ? '' : ' rtl');
-    school.style.cssText = `
-      top: ${yPos}%;
-      left: 0;
-      --fish-duration: ${duration}s;
-      --fish-bob1: ${rand(-15, -5)}px;
-      --fish-bob2: ${rand(5, 12)}px;
-      --fish-opacity: ${opacity};
-    `;
-
-    const fishSize = rand(14, 22);
-    for (let i = 0; i < count; i++) {
-      const member = document.createElement('div');
-      member.className = 'school-member';
-      member.innerHTML = schoolFishSvg(fishSize);
-      member.style.cssText = `
-        left: ${i * rand(18, 30)}px;
-        top: ${rand(-15, 15)}px;
-        --tail-speed: ${rand(0.3, 0.5)}s;
-        opacity: ${rand(0.6, 1)};
-      `;
-      school.appendChild(member);
-    }
-
-    document.body.appendChild(school);
-    activeFish += 2;
-
-    const cleanup = () => {
-      if (school.parentNode) {
-        school.remove();
-        activeFish -= 2;
-      }
-    };
-
-    school.addEventListener('animationend', cleanup);
-    setTimeout(cleanup, (duration + 2) * 1000);
-  }
-
-  function scheduleFish() {
-    const delay = rand(CONFIG.fishIntervalMin, CONFIG.fishIntervalMax);
-    setTimeout(() => {
-      spawnFish();
-      scheduleFish();
-    }, delay);
-  }
-
-  function scheduleSchool() {
-    const delay = rand(CONFIG.schoolIntervalMin, CONFIG.schoolIntervalMax);
-    setTimeout(() => {
-      spawnFishSchool();
-      scheduleSchool();
-    }, delay);
-  }
-
-  // ==========================================
-  //  BUBBLE SPAWNER
-  // ==========================================
-
-  function getTextPositions() {
-    const main = document.querySelector('.dashboard');
-    if (!main) return [];
-
-    const textEls = main.querySelectorAll('h1, h2, h3, h4, p, span, blockquote, strong, .stat-number, .stat-label');
-    const positions = [];
-
-    textEls.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.width > 0 && rect.height > 0 && rect.top < window.innerHeight && rect.bottom > 0) {
-        positions.push({
-          x: rect.left + rect.width * Math.random(),
-          y: rect.top + rect.height * 0.5,
-        });
-      }
-    });
-
-    return positions;
-  }
-
-  function spawnBubble() {
-    if (activeBubbles >= CONFIG.maxBubbles) return;
-
-    const positions = getTextPositions();
-    if (positions.length === 0) return;
-
-    const pos = positions[Math.floor(Math.random() * positions.length)];
-    const size = rand(CONFIG.bubbleSizeMin, CONFIG.bubbleSizeMax);
-    const duration = rand(CONFIG.bubbleDurationMin, CONFIG.bubbleDurationMax);
-    const wobble = rand(-30, 30);
-
-    const bubble = document.createElement('div');
-    bubble.className = size < 7 ? 'bubble sm' : 'bubble';
-    bubble.style.cssText = `
-      left: ${pos.x}px;
-      top: ${pos.y}px;
-      width: ${size}px;
-      height: ${size}px;
-      --bubble-duration: ${duration}s;
-      --bubble-wobble: ${wobble}px;
-    `;
-
-    document.body.appendChild(bubble);
-    activeBubbles++;
-
-    bubble.addEventListener('animationend', () => {
-      bubble.remove();
-      activeBubbles--;
-    });
-
-    setTimeout(() => {
-      if (bubble.parentNode) {
-        bubble.remove();
-        activeBubbles--;
-      }
-    }, (duration + 1) * 1000);
-  }
-
-  function scheduleBubble() {
-    const delay = rand(CONFIG.bubbleIntervalMin, CONFIG.bubbleIntervalMax);
-    setTimeout(() => {
-      spawnBubble();
-      if (Math.random() < 0.3) {
-        setTimeout(spawnBubble, 150);
-        if (Math.random() < 0.5) {
-          setTimeout(spawnBubble, 300);
-        }
-      }
-      scheduleBubble();
-    }, delay);
-  }
-
-  // ==========================================
-  //  RIPPLE ON CLICK / TOUCH
-  // ==========================================
-
-  function createRipple(x, y) {
-    const now = Date.now();
-    if (now - lastRippleTime < CONFIG.rippleDebounce) return;
-    lastRippleTime = now;
-
-    const ripple = document.createElement('div');
-    ripple.className = 'ripple';
-    ripple.style.left = x + 'px';
-    ripple.style.top = y + 'px';
-
-    document.body.appendChild(ripple);
-
-    const surface = document.getElementById('water-surface');
-    if (surface) {
-      surface.classList.remove('shake');
-      void surface.offsetWidth;
-      surface.classList.add('shake');
-    }
-
-    ripple.addEventListener('animationend', () => ripple.remove());
-    setTimeout(() => { if (ripple.parentNode) ripple.remove(); }, 2000);
-  }
-
-  document.addEventListener('click', (e) => createRipple(e.clientX, e.clientY));
-
-  document.addEventListener('touchstart', (e) => {
-    if (e.touches.length > 0) {
-      createRipple(e.touches[0].clientX, e.touches[0].clientY);
-    }
-  }, { passive: true });
-
-  // ==========================================
-  //  SCROLL DISTURBANCE
-  // ==========================================
-
-  const waterSurface = document.getElementById('water-surface');
-
-  window.addEventListener('scroll', () => {
-    if (!waterSurface) return;
-    waterSurface.classList.add('scroll-disturb');
-    if (scrollTimeout) clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      waterSurface.classList.remove('scroll-disturb');
-    }, CONFIG.scrollDisturbDuration);
-  }, { passive: true });
-
-  // ==========================================
-  //  LIGHT SWEEP RANDOMIZER
-  // ==========================================
-
-  const glassOverlay = document.getElementById('glass-overlay');
-
-  function randomizeLightSweep() {
-    if (!glassOverlay) return;
-    glassOverlay.classList.remove('sweep-active');
-    void glassOverlay.offsetWidth;
-    glassOverlay.classList.add('sweep-active');
-    setTimeout(randomizeLightSweep, rand(6000, 12000));
-  }
-
-  // ==========================================
-  //  MOUSE — caustic shift
-  // ==========================================
-
-  let mouseRafId = null;
+  const diveLampEl = document.querySelector('.dive-lamp');
 
   document.addEventListener('mousemove', (e) => {
-    if (mouseRafId) return;
-    mouseRafId = requestAnimationFrame(() => {
-      const causticCells = document.querySelector('.caustic-cells');
-      if (causticCells) {
-        const xShift = (e.clientX / window.innerWidth - 0.5) * 20;
-        const yShift = (e.clientY / window.innerHeight - 0.5) * 15;
-        causticCells.style.transform = `translate(${xShift}px, ${yShift}px)`;
-      }
-      mouseRafId = null;
-    });
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
-  // ==========================================
-  //  DEPTH & FLOATING — apply to panels
-  // ==========================================
-
-  function applyDepthAndFloating() {
-    // Near depth — stats, quote (hero row)
-    const nearEls = document.querySelectorAll('.panel-stats, .panel-quote, .dash-header');
-    nearEls.forEach((el, i) => {
-      el.classList.add('underwater-float', 'depth-near');
-      el.style.setProperty('--float-delay', (i * 0.5) + 's');
-    });
-
-    // Mid depth — bio, situation, skills
-    const midEls = document.querySelectorAll('.panel-bio, .panel-situation, .panel-skills');
-    midEls.forEach((el, i) => {
-      el.classList.add('underwater-float', 'depth-mid');
-      el.style.setProperty('--float-delay', (i * 0.7 + 0.3) + 's');
-    });
-
-    // Far depth — projects, services, contact (deeper in the ocean)
-    const farEls = document.querySelectorAll('.panel-projects, .panel-services, .panel-contact');
-    farEls.forEach((el, i) => {
-      el.classList.add('underwater-float', 'depth-far');
-      el.style.setProperty('--float-delay', (i * 0.6 + 0.5) + 's');
-    });
-
-    // Individual project cards get mid-depth floating with varied timing
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach((card, i) => {
-      card.classList.add('underwater-float');
-      card.style.setProperty('--float-range', rand(-4, -8) + 'px');
-      card.style.setProperty('--float-duration', rand(3.5, 5.5) + 's');
-      card.style.setProperty('--float-delay', (i * 0.3) + 's');
-    });
-
-    // Service cards also float
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach((card, i) => {
-      card.classList.add('underwater-float');
-      card.style.setProperty('--float-range', rand(-3, -6) + 'px');
-      card.style.setProperty('--float-duration', rand(4, 6) + 's');
-      card.style.setProperty('--float-delay', (i * 0.4 + 0.2) + 's');
-    });
-
-    // Stat cards float independently
-    const statCards = document.querySelectorAll('.stat-card');
-    statCards.forEach((card, i) => {
-      card.classList.add('underwater-float');
-      card.style.setProperty('--float-range', rand(-5, -10) + 'px');
-      card.style.setProperty('--float-duration', rand(3, 4.5) + 's');
-      card.style.setProperty('--float-delay', (i * 0.25) + 's');
-    });
-
-    // Sidebar avatar floats gently
-    const avatar = document.querySelector('.sidebar-avatar');
-    if (avatar) {
-      avatar.classList.add('underwater-float');
-      avatar.style.setProperty('--float-range', '-5px');
-      avatar.style.setProperty('--float-duration', '4s');
+  // ===== PLANKTON PARTICLES =====
+  class Plankton {
+    constructor() {
+      this.reset(true);
     }
 
-    // Tech icons float
-    const techIcons = document.querySelectorAll('.tech-icons-row img');
-    techIcons.forEach((icon, i) => {
-      icon.classList.add('underwater-float');
-      icon.style.setProperty('--float-range', rand(-3, -6) + 'px');
-      icon.style.setProperty('--float-duration', rand(2.5, 4) + 's');
-      icon.style.setProperty('--float-delay', (i * 0.15) + 's');
+    reset(initial = false) {
+      this.x = Math.random() * W;
+      this.y = initial ? Math.random() * H : H + 10;
+      this.size = CONFIG.plankton.minSize + Math.random() * (CONFIG.plankton.maxSize - CONFIG.plankton.minSize);
+      this.speedY = -(CONFIG.plankton.minSpeed + Math.random() * (CONFIG.plankton.maxSpeed - CONFIG.plankton.minSpeed));
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.color = CONFIG.plankton.colors[Math.floor(Math.random() * CONFIG.plankton.colors.length)];
+      this.pulse = Math.random() * Math.PI * 2;
+      this.pulseSpeed = 0.01 + Math.random() * 0.03;
+      this.opacity = 0.2 + Math.random() * 0.5;
+    }
+
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX + Math.sin(this.pulse) * 0.1;
+      this.pulse += this.pulseSpeed;
+
+      if (this.y < -10 || this.x < -10 || this.x > W + 10) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      const glowSize = this.size * (1.5 + 0.5 * Math.sin(this.pulse));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, glowSize, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.opacity * (0.5 + 0.5 * Math.sin(this.pulse));
+      ctx.fill();
+
+      // Bright core
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  // ===== BUBBLES =====
+  class Bubble {
+    constructor() {
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * W;
+      this.y = initial ? Math.random() * H : H + 20;
+      this.size = CONFIG.bubbles.minSize + Math.random() * (CONFIG.bubbles.maxSize - CONFIG.bubbles.minSize);
+      this.speedY = -(CONFIG.bubbles.minSpeed + Math.random() * (CONFIG.bubbles.maxSpeed - CONFIG.bubbles.minSpeed));
+      this.wobblePhase = Math.random() * Math.PI * 2;
+      this.wobbleSpeed = 0.02 + Math.random() * 0.03;
+      this.opacity = 0.08 + Math.random() * 0.15;
+    }
+
+    update() {
+      this.y += this.speedY;
+      this.wobblePhase += this.wobbleSpeed;
+      this.x += Math.sin(this.wobblePhase) * CONFIG.bubbles.wobbleAmount;
+
+      // Shrink as it rises
+      this.size *= 0.9998;
+
+      if (this.y < -20 || this.size < 0.5) {
+        this.reset();
+      }
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(180, 220, 255, ${this.opacity})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+
+      // Highlight reflection
+      ctx.beginPath();
+      ctx.arc(this.x - this.size * 0.25, this.y - this.size * 0.25, this.size * 0.2, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
+      ctx.fill();
+    }
+  }
+
+  // ===== JELLYFISH =====
+  class Jellyfish {
+    constructor() {
+      this.alive = true;
+      this.size = CONFIG.jellyfish.minSize + Math.random() * (CONFIG.jellyfish.maxSize - CONFIG.jellyfish.minSize);
+      
+      // Spawn from left or right
+      const fromLeft = Math.random() > 0.5;
+      this.x = fromLeft ? -this.size * 2 : W + this.size * 2;
+      this.y = 100 + Math.random() * (H - 200);
+      this.dirX = fromLeft ? 1 : -1;
+      this.speedX = (0.1 + Math.random() * 0.15) * this.dirX;
+      this.speedY = (Math.random() - 0.5) * 0.1;
+      
+      this.pulsePhase = 0;
+      this.pulseSpeed = 0.03 + Math.random() * 0.02;
+      this.tentaclePhase = 0;
+      
+      // Color variants
+      const colors = [
+        { r: 0, g: 245, b: 212 },   // cyan
+        { r: 155, g: 77, b: 255 },   // violet
+        { r: 0, g: 191, b: 255 },    // blue
+      ];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.opacity = 0;
+      this.maxOpacity = 0.15 + Math.random() * 0.1;
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY + Math.sin(this.pulsePhase * 0.5) * 0.2;
+      this.pulsePhase += this.pulseSpeed;
+      this.tentaclePhase += 0.02;
+
+      // Fade in
+      if (this.opacity < this.maxOpacity) {
+        this.opacity = Math.min(this.opacity + 0.001, this.maxOpacity);
+      }
+
+      // Check if off screen
+      if ((this.dirX > 0 && this.x > W + this.size * 3) ||
+          (this.dirX < 0 && this.x < -this.size * 3)) {
+        this.alive = false;
+      }
+    }
+
+    draw() {
+      const { r, g, b } = this.color;
+      const pulse = Math.sin(this.pulsePhase);
+      const bellHeight = this.size * (0.6 + 0.1 * pulse);
+      const bellWidth = this.size * (0.8 + 0.15 * pulse);
+
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.globalAlpha = this.opacity;
+
+      // Outer glow
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size * 1.5);
+      gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.15)`);
+      gradient.addColorStop(1, 'transparent');
+      ctx.beginPath();
+      ctx.arc(0, 0, this.size * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Bell (dome)
+      ctx.beginPath();
+      ctx.ellipse(0, -bellHeight * 0.2, bellWidth, bellHeight, 0, Math.PI, 0);
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.25)`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.4)`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Tentacles
+      const tentacleCount = 5;
+      for (let i = 0; i < tentacleCount; i++) {
+        const tx = (i - (tentacleCount - 1) / 2) * (bellWidth * 0.3);
+        ctx.beginPath();
+        ctx.moveTo(tx, bellHeight * 0.1);
+        
+        const len = this.size * (0.6 + 0.3 * Math.sin(this.tentaclePhase + i));
+        const wave = Math.sin(this.tentaclePhase * 2 + i * 0.8) * 5;
+        
+        ctx.quadraticCurveTo(tx + wave, bellHeight * 0.3 + len * 0.5, tx + wave * 0.5, bellHeight * 0.1 + len);
+        ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.2)`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      // Inner glow spot
+      ctx.beginPath();
+      ctx.arc(0, -bellHeight * 0.3, bellWidth * 0.3, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${r}, ${g}, ${b}, 0.15)`;
+      ctx.fill();
+
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    }
+  }
+
+  // ===== INITIALIZE PARTICLES =====
+  const planktons = [];
+  const bubbles = [];
+  const jellyfishList = [];
+
+  for (let i = 0; i < CONFIG.plankton.count; i++) {
+    planktons.push(new Plankton());
+  }
+  for (let i = 0; i < CONFIG.bubbles.count; i++) {
+    bubbles.push(new Bubble());
+  }
+
+  // ===== JELLYFISH SPAWNER =====
+  function trySpawnJellyfish() {
+    // Remove dead ones
+    for (let i = jellyfishList.length - 1; i >= 0; i--) {
+      if (!jellyfishList[i].alive) {
+        jellyfishList.splice(i, 1);
+      }
+    }
+
+    if (jellyfishList.length < CONFIG.jellyfish.maxActive && Math.random() < 0.3) {
+      jellyfishList.push(new Jellyfish());
+    }
+  }
+
+  setInterval(trySpawnJellyfish, CONFIG.jellyfish.spawnInterval);
+  // Spawn one initially after a short delay
+  setTimeout(() => {
+    jellyfishList.push(new Jellyfish());
+  }, 3000);
+
+  // ===== DIVE LAMP LIGHT (on canvas) =====
+  function drawDiveLamp() {
+    if (!CONFIG.diveLamp.enabled) return;
+    
+    // Smooth follow
+    lampX += (mouseX - lampX) * 0.08;
+    lampY += (mouseY - lampY) * 0.08;
+
+    // Update CSS dive lamp element
+    if (diveLampEl) {
+      diveLampEl.style.left = lampX + 'px';
+      diveLampEl.style.top = lampY + 'px';
+    }
+
+    // Canvas-based subtle light
+    const gradient = ctx.createRadialGradient(lampX, lampY, 0, lampX, lampY, CONFIG.diveLamp.radius);
+    gradient.addColorStop(0, 'rgba(0, 245, 212, 0.015)');
+    gradient.addColorStop(0.3, 'rgba(0, 191, 255, 0.008)');
+    gradient.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.arc(lampX, lampY, CONFIG.diveLamp.radius, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+  }
+
+  // ===== DEPTH INDICATOR =====
+  const depthNumber = document.querySelector('.depth-number');
+  const depthBarFill = document.querySelector('.depth-bar-fill');
+
+  function updateDepthIndicator() {
+    if (!depthNumber || !depthBarFill) return;
+
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+    
+    // Map scroll to depth: 3800m to 4200m
+    const depth = Math.round(3800 + scrollPercent * 400);
+    depthNumber.textContent = depth + 'm';
+    depthBarFill.style.height = (scrollPercent * 100) + '%';
+  }
+
+  window.addEventListener('scroll', updateDepthIndicator, { passive: true });
+  updateDepthIndicator();
+
+  // ===== CLICK RIPPLE EFFECT =====
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 800);
+  });
+
+  // ===== FLOATING EFFECT ON PANELS =====
+  function addFloatingEffect() {
+    const visibleCards = document.querySelectorAll('.reveal-card.visible');
+    visibleCards.forEach(card => {
+      if (!card.classList.contains('float-ready')) {
+        // Add a small random delay before starting float
+        setTimeout(() => {
+          card.classList.add('float-ready');
+        }, 500 + Math.random() * 1000);
+      }
     });
   }
 
-  // ==========================================
-  //  SEAWEED — add decorative elements
-  // ==========================================
+  // Check periodically for newly visible cards
+  setInterval(addFloatingEffect, 2000);
 
-  function addSeaweed() {
-    const leftSvg = `<svg width="30" height="200" viewBox="0 0 30 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15,200 Q5,160 15,130 Q25,100 12,70 Q5,50 15,20 Q20,5 18,0" stroke="rgba(60,140,80,.6)" stroke-width="3" fill="none"/>
-      <path d="M15,200 Q20,170 10,145 Q5,120 18,90 Q25,65 12,35 Q8,15 14,0" stroke="rgba(40,120,60,.4)" stroke-width="2" fill="none"/>
-    </svg>`;
-
-    const rightSvg = `<svg width="30" height="180" viewBox="0 0 30 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12,180 Q22,150 10,120 Q2,95 15,65 Q25,40 12,10" stroke="rgba(60,140,80,.6)" stroke-width="3" fill="none"/>
-      <path d="M18,180 Q8,155 20,125 Q28,100 13,70 Q5,45 18,15" stroke="rgba(40,120,60,.4)" stroke-width="2" fill="none"/>
-    </svg>`;
-
-    const left = document.createElement('div');
-    left.className = 'seaweed left';
-    left.innerHTML = leftSvg;
-
-    const right = document.createElement('div');
-    right.className = 'seaweed right';
-    right.innerHTML = rightSvg;
-    right.style.animationDelay = '1.5s';
-
-    document.body.appendChild(left);
-    document.body.appendChild(right);
-  }
-
-  // ==========================================
-  //  INIT
-  // ==========================================
-
-  function init() {
-    // Apply depth & floating to panels
-    applyDepthAndFloating();
-
-    // Add seaweed
-    addSeaweed();
-
-    // Start bubble spawner
-    scheduleBubble();
-    for (let i = 0; i < 3; i++) {
-      setTimeout(spawnBubble, i * 600);
+  // ===== PARALLAX ON SCROLL (subtle) =====
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        // Move plankton layer slightly slower
+        planktons.forEach(p => {
+          p.y += scrollY * 0.0003;
+        });
+        ticking = false;
+      });
+      ticking = true;
     }
+  }, { passive: true });
 
-    // Start fish spawner
-    setTimeout(scheduleFish, 2000);
-    setTimeout(scheduleSchool, 5000);
+  // ===== ANIMATION LOOP =====
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
 
-    // Spawn initial fish with stagger
-    setTimeout(spawnFish, 1000);
-    setTimeout(spawnFish, 3500);
+    // Draw dive lamp light
+    drawDiveLamp();
 
-    // Start light sweep
-    setTimeout(randomizeLightSweep, 3000);
+    // Update and draw plankton
+    planktons.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    // Update and draw bubbles
+    bubbles.forEach(b => {
+      b.update();
+      b.draw();
+    });
+
+    // Update and draw jellyfish
+    jellyfishList.forEach(j => {
+      j.update();
+      j.draw();
+    });
+
+    requestAnimationFrame(animate);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  animate();
+
+  // ===== REDUCE MOTION PREFERENCE =====
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (prefersReducedMotion.matches) {
+    CONFIG.plankton.count = 15;
+    CONFIG.bubbles.count = 4;
+    CONFIG.jellyfish.maxActive = 0;
+    CONFIG.diveLamp.enabled = false;
+    if (diveLampEl) diveLampEl.style.display = 'none';
+  }
+
+  // ===== MOBILE PERFORMANCE =====
+  if (window.innerWidth <= 768) {
+    CONFIG.plankton.count = 25;
+    CONFIG.bubbles.count = 6;
+    CONFIG.jellyfish.maxActive = 1;
+    CONFIG.jellyfish.spawnInterval = 40000;
+    CONFIG.diveLamp.enabled = false;
+    if (diveLampEl) diveLampEl.style.display = 'none';
+    
+    // Reduce existing particles
+    while (planktons.length > 25) planktons.pop();
+    while (bubbles.length > 6) bubbles.pop();
   }
 
 })();
