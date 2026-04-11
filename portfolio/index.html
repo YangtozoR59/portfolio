@@ -116,6 +116,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/underwater.css" />
+    <link rel="stylesheet" href="/css/fishing.css" />
   </head>
 
   <body>
@@ -130,6 +131,77 @@
       <div class="depth-label">Profondeur</div>
       <div class="depth-bar">
         <div class="depth-bar-fill" style="height: 0%"></div>
+      </div>
+    </div>
+
+    <!-- ========== FISHING GAME LAYER ========== -->
+    <div id="fishingMode" class="fishing-mode">
+      <canvas id="fishingCanvas"></canvas>
+
+      <!-- Game HUD -->
+      <div class="fishing-hud" id="fishingHUD">
+        <div class="hud-catches">
+          <i class="bi bi-journal-bookmark-fill"></i>
+          <span id="catchCount">0</span>/<span>7</span> prises
+        </div>
+        <div class="hud-hint" id="gameHint">Cliquez et maintenez pour lancer</div>
+      </div>
+
+      <!-- Cast Power Meter -->
+      <div class="cast-meter" id="castMeter">
+        <div class="cast-meter-fill" id="castMeterFill"></div>
+        <span class="cast-meter-label">Force</span>
+      </div>
+
+      <!-- Bite Alert -->
+      <div class="bite-alert" id="biteAlert">
+        <span>!!</span>
+      </div>
+    </div>
+
+    <!-- Catch Reveal Overlay -->
+    <div class="catch-reveal" id="catchReveal">
+      <div class="catch-reveal-card">
+        <button class="catch-close" id="catchClose" aria-label="Fermer">
+          <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="catch-header">
+          <div class="catch-fish-badge" id="catchBadge"></div>
+          <h2 class="catch-title">PRISE !</h2>
+          <p class="catch-species" id="catchSpeciesName"></p>
+        </div>
+        <div class="catch-content" id="catchContent"></div>
+        <button class="catch-continue" id="catchContinue">
+          <i class="bi bi-arrow-repeat"></i> Pêcher encore
+        </button>
+      </div>
+    </div>
+
+    <!-- Fishing Intro Screen -->
+    <div class="fishing-intro" id="fishingIntro">
+      <div class="intro-content">
+        <div class="intro-icon">🎣</div>
+        <h1>Les Abysses de Caleb</h1>
+        <p>Pêchez dans les profondeurs pour découvrir mon portfolio</p>
+        <button class="intro-start" id="introStart">Cliquez pour commencer</button>
+        <small class="intro-hint">ou passez en mode classique avec le bouton <i class="bi bi-controller"></i></small>
+      </div>
+    </div>
+
+    <!-- Mode Toggle Button -->
+    <button class="mode-toggle" id="modeToggle" title="Basculer mode Pêche / Classique">
+      <i class="bi bi-controller" id="modeToggleIcon"></i>
+    </button>
+
+    <!-- Catch Journal -->
+    <div class="catch-journal" id="catchJournal">
+      <button class="journal-toggle" id="journalToggle">
+        <i class="bi bi-journal-bookmark-fill"></i>
+        <span class="journal-count" id="journalCount">0/7</span>
+      </button>
+      <div class="journal-panel" id="journalPanel">
+        <h3><i class="bi bi-journal-bookmark"></i> Journal de prises</h3>
+        <div class="journal-grid" id="journalGrid"></div>
       </div>
     </div>
 
@@ -1061,5 +1133,70 @@
     <!-- Custom JS -->
     <script src="./js/script.js"></script>
     <script src="./js/underwater.js"></script>
+    <script src="./js/fishing.js"></script>
+    <script>
+      // Initialize fishing game & mode toggle
+      (function() {
+        const game = new window.FishingGame();
+        let fishingActive = true;
+
+        const fishingMode = document.getElementById('fishingMode');
+        const dashboard = document.querySelector('.dashboard');
+        const modeToggle = document.getElementById('modeToggle');
+        const modeIcon = document.getElementById('modeToggleIcon');
+        const introEl = document.getElementById('fishingIntro');
+        const catchClose = document.getElementById('catchClose');
+        const catchContinue = document.getElementById('catchContinue');
+        const journalToggle = document.getElementById('journalToggle');
+        const journalPanel = document.getElementById('journalPanel');
+        const depthIndicator = document.querySelector('.depth-indicator');
+        const catchJournal = document.getElementById('catchJournal');
+
+        function setFishingMode(on) {
+          fishingActive = on;
+          if (on) {
+            fishingMode.classList.add('active');
+            dashboard.classList.add('fishing-hidden');
+            if (depthIndicator) depthIndicator.style.display = 'none';
+            if (catchJournal) catchJournal.classList.add('active');
+            modeIcon.className = 'bi bi-grid-1x2';
+            modeToggle.title = 'Passer en mode classique';
+            game.start();
+          } else {
+            fishingMode.classList.remove('active');
+            dashboard.classList.remove('fishing-hidden');
+            if (introEl) introEl.classList.add('hidden');
+            if (depthIndicator) depthIndicator.style.display = '';
+            if (catchJournal) catchJournal.classList.remove('active');
+            modeIcon.className = 'bi bi-controller';
+            modeToggle.title = 'Passer en mode pêche';
+            game.stop();
+          }
+          localStorage.setItem('portfolioMode', on ? 'fishing' : 'classic');
+        }
+
+        // Toggle
+        modeToggle.addEventListener('click', () => setFishingMode(!fishingActive));
+
+        // Catch card close
+        catchClose?.addEventListener('click', () => game.closeCatchReveal());
+        catchContinue?.addEventListener('click', () => game.closeCatchReveal());
+
+        // Journal toggle
+        journalToggle?.addEventListener('click', () => {
+          journalPanel?.classList.toggle('open');
+        });
+
+        // Mobile: default to classic mode
+        const savedMode = localStorage.getItem('portfolioMode');
+        if (window.innerWidth <= 768 && !savedMode) {
+          setFishingMode(false);
+        } else if (savedMode === 'classic') {
+          setFishingMode(false);
+        } else {
+          setFishingMode(true);
+        }
+      })();
+    </script>
   </body>
 </html>
