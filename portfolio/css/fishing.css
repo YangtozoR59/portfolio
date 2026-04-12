@@ -114,39 +114,42 @@
   white-space: nowrap;
 }
 
-/* ===== BITE ALERT ===== */
-.bite-alert {
+/* ===== LANGUAGE TOGGLE BUTTON ===== */
+.lang-toggle {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  z-index: 25;
-  pointer-events: none;
-  opacity: 0;
-  transition: all 0.15s ease;
-}
-
-.bite-alert.active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-  animation: biteShake 0.3s ease-in-out infinite;
-}
-
-.bite-alert span {
-  display: block;
-  font-size: 5rem;
-  font-weight: 900;
-  color: #FF4560;
-  text-shadow:
-    0 0 20px rgba(255, 69, 96, 0.8),
-    0 0 60px rgba(255, 69, 96, 0.4),
-    0 4px 8px rgba(0, 0, 0, 0.5);
+  bottom: 24px;
+  right: 24px;
+  z-index: 1100;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 30px;
+  background: rgba(6, 6, 20, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  color: var(--accent, #00F5D4);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   font-family: 'Inter', sans-serif;
 }
 
-@keyframes biteShake {
-  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); }
-  50%      { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+.lang-toggle:hover {
+  background: rgba(0, 245, 212, 0.15);
+  border-color: rgba(0, 245, 212, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.3);
+}
+
+.lang-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
 }
 
 /* ===== CATCH REVEAL OVERLAY ===== */
@@ -593,6 +596,11 @@
     left: 16px;
   }
 
+  .lang-toggle {
+    bottom: 16px;
+    right: 16px;
+  }
+
   .catch-journal {
     left: 70px;
     bottom: 16px;
@@ -610,10 +618,6 @@
   /* Hide guide hint on mobile — not enough space */
   .hud-hint {
     display: none;
-  }
-
-  .bite-alert span {
-    font-size: 3.5rem;
   }
 
   .intro-content h1 {
@@ -642,5 +646,13 @@
     width: 42px;
     height: 42px;
     font-size: 1.1rem;
+  }
+
+  .lang-toggle {
+    bottom: 16px;
+    right: 16px;
+    height: 38px;
+    padding: 0 12px;
+    font-size: 0.8rem;
   }
 }

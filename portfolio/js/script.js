@@ -57,15 +57,23 @@
   const navItems = document.querySelectorAll('.nav-item');
 
   // ===== LIVE CLOCK =====
+  function getLocale() {
+    return (window._i18n && window._i18n.getCurrentLang && window._i18n.getCurrentLang() === 'en') ? 'en-US' : 'fr-FR';
+  }
+
   function updateClock() {
     const now = new Date();
-    const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const dateStr = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const locale = getLocale();
+    const timeStr = now.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const dateStr = now.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     if (liveClock) liveClock.textContent = timeStr;
     if (liveDate) liveDate.textContent = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  // Refresh clock on language change
+  window.addEventListener('languageChanged', updateClock);
 
   // ===== QUOTE ROTATOR =====
   let currentQuote = 0;
@@ -213,13 +221,18 @@
     });
   });
 
+  // ===== i18n helper =====
+  function t(key, fallback) {
+    return (window._i18n && window._i18n.t) ? window._i18n.t(key) : (fallback || key);
+  }
+
   // ===== CONTACT FORM =====
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = contactForm.querySelector('.btn-send');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Envoi...';
+      btn.innerHTML = `<i class="bi bi-hourglass-split"></i> ${t('contact_sending', 'Envoi...')}`;
       btn.disabled = true;
 
       try {
@@ -230,14 +243,14 @@
         });
 
         if (response.ok) {
-          formMessage.textContent = '✅ Message envoyé avec succès ! Je vous répondrai rapidement.';
+          formMessage.textContent = t('contact_success', '✅ Message envoyé avec succès ! Je vous répondrai rapidement.');
           formMessage.className = 'form-message success';
           contactForm.reset();
         } else {
           throw new Error('Erreur serveur');
         }
       } catch (err) {
-        formMessage.textContent = '❌ Erreur lors de l\'envoi. Veuillez réessayer.';
+        formMessage.textContent = t('contact_error', "❌ Erreur lors de l'envoi. Veuillez réessayer.");
         formMessage.className = 'form-message error';
       }
 

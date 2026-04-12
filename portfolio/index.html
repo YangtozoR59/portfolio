@@ -117,6 +117,9 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/underwater.css" />
     <link rel="stylesheet" href="/css/fishing.css" />
+
+    <!-- i18n (must load before other scripts) -->
+    <script src="./js/i18n.js"></script>
   </head>
 
   <body>
@@ -128,7 +131,7 @@
     <!-- Depth Indicator -->
     <div class="depth-indicator">
       <div class="depth-number">3800m</div>
-      <div class="depth-label">Profondeur</div>
+      <div class="depth-label" data-i18n="depth_label">Profondeur</div>
       <div class="depth-bar">
         <div class="depth-bar-fill" style="height: 0%"></div>
       </div>
@@ -142,20 +145,15 @@
       <div class="fishing-hud" id="fishingHUD">
         <div class="hud-catches">
           <i class="bi bi-journal-bookmark-fill"></i>
-          <span id="catchCount">0</span>/<span>7</span> prises
+          <span id="catchCount">0</span>/<span>7</span> <span data-i18n="hud_catches_suffix">prises</span>
         </div>
-        <div class="hud-hint" id="gameHint">Cliquez et maintenez pour lancer</div>
+        <div class="hud-hint" id="gameHint" data-i18n="hint_cast">Cliquez et maintenez pour lancer</div>
       </div>
 
       <!-- Cast Power Meter -->
       <div class="cast-meter" id="castMeter">
         <div class="cast-meter-fill" id="castMeterFill"></div>
-        <span class="cast-meter-label">Force</span>
-      </div>
-
-      <!-- Bite Alert -->
-      <div class="bite-alert" id="biteAlert">
-        <span>!!</span>
+        <span class="cast-meter-label" data-i18n="cast_meter_label">Force</span>
       </div>
     </div>
 
@@ -167,12 +165,12 @@
         </button>
         <div class="catch-header">
           <div class="catch-fish-badge" id="catchBadge"></div>
-          <h2 class="catch-title">PRISE !</h2>
+          <h2 class="catch-title" data-i18n="catch_title">PRISE !</h2>
           <p class="catch-species" id="catchSpeciesName"></p>
         </div>
         <div class="catch-content" id="catchContent"></div>
         <button class="catch-continue" id="catchContinue">
-          <i class="bi bi-arrow-repeat"></i> Pêcher encore
+          <i class="bi bi-arrow-repeat"></i> <span data-i18n="catch_continue">Pêcher encore</span>
         </button>
       </div>
     </div>
@@ -181,16 +179,21 @@
     <div class="fishing-intro" id="fishingIntro">
       <div class="intro-content">
         <div class="intro-icon">🎣</div>
-        <h1>Les Abysses de Caleb</h1>
-        <p>Pêchez dans les profondeurs pour découvrir mon portfolio</p>
-        <button class="intro-start" id="introStart">Cliquez pour commencer</button>
-        <small class="intro-hint">ou passez en mode classique avec le bouton <i class="bi bi-controller"></i></small>
+        <h1 data-i18n="fishing_intro_title">Les Abysses de Caleb</h1>
+        <p data-i18n="fishing_intro_desc">Pêchez dans les profondeurs pour découvrir mon portfolio</p>
+        <button class="intro-start" id="introStart" data-i18n="fishing_intro_btn">Cliquez pour commencer</button>
+        <small class="intro-hint"><span data-i18n="fishing_intro_hint_prefix">ou passez en mode classique avec le bouton</span> <i class="bi bi-controller"></i></small>
       </div>
     </div>
 
     <!-- Mode Toggle Button -->
     <button class="mode-toggle" id="modeToggle" title="Basculer mode Pêche / Classique">
       <i class="bi bi-controller" id="modeToggleIcon"></i>
+    </button>
+
+    <!-- Language Toggle Button -->
+    <button class="lang-toggle" id="langToggle" title="Switch language">
+      <span class="lang-label">🇬🇧 EN</span>
     </button>
 
     <!-- Catch Journal -->
@@ -200,7 +203,7 @@
         <span class="journal-count" id="journalCount">0/7</span>
       </button>
       <div class="journal-panel" id="journalPanel">
-        <h3><i class="bi bi-journal-bookmark"></i> Journal de prises</h3>
+        <h3><i class="bi bi-journal-bookmark"></i> <span data-i18n="journal_title">Journal de prises</span></h3>
         <div class="journal-grid" id="journalGrid"></div>
       </div>
     </div>
@@ -221,36 +224,36 @@
           <span class="status-dot"></span>
         </div>
         <h2 class="sidebar-name">Caleb Yang</h2>
-        <p class="sidebar-role">Software Engineer</p>
+        <p class="sidebar-role" data-i18n="sidebar_role">Software Engineer</p>
         <p class="sidebar-location">
-          <i class="bi bi-geo-alt"></i> Ngaoundéré, Cameroun
+          <i class="bi bi-geo-alt"></i> <span data-i18n="sidebar_location">Ngaoundéré, Cameroun</span>
         </p>
       </div>
 
       <nav class="sidebar-nav">
         <a href="#dashboard" class="nav-item active" data-section="dashboard">
           <i class="bi bi-grid-1x2"></i>
-          <span>Tableau de bord</span>
+          <span data-i18n="nav_dashboard">Tableau de bord</span>
         </a>
         <a href="#about" class="nav-item" data-section="about">
           <i class="bi bi-person"></i>
-          <span>À propos</span>
+          <span data-i18n="nav_about">À propos</span>
         </a>
         <a href="#skills" class="nav-item" data-section="skills">
           <i class="bi bi-bar-chart"></i>
-          <span>Compétences</span>
+          <span data-i18n="nav_skills">Compétences</span>
         </a>
         <a href="#projects" class="nav-item" data-section="projects">
           <i class="bi bi-folder2-open"></i>
-          <span>Projets</span>
+          <span data-i18n="nav_projects">Projets</span>
         </a>
         <a href="#services" class="nav-item" data-section="services">
           <i class="bi bi-briefcase"></i>
-          <span>Services</span>
+          <span data-i18n="nav_services">Services</span>
         </a>
         <a href="#contact" class="nav-item" data-section="contact">
           <i class="bi bi-envelope"></i>
-          <span>Contact</span>
+          <span data-i18n="nav_contact">Contact</span>
         </a>
       </nav>
 
@@ -301,7 +304,7 @@
       <!-- Dashboard Header -->
       <header class="dash-header" id="dashboard">
         <div class="dash-header-left">
-          <h1 class="dash-greeting">Bienvenue sur mon espace</h1>
+          <h1 class="dash-greeting" data-i18n="dash_greeting">Bienvenue sur mon espace</h1>
           <p class="dash-subtitle">
             <span class="dash-clock" id="liveClock"></span>
             <span class="dash-separator">·</span>
@@ -315,7 +318,7 @@
             class="btn-download-cv"
           >
             <i class="bi bi-file-earmark-arrow-down"></i>
-            Télécharger mon CV
+            <span data-i18n="btn_download_cv">Télécharger mon CV</span>
           </a>
         </div>
       </header>
@@ -326,28 +329,28 @@
         <div class="panel panel-stats reveal-card">
           <div class="panel-header">
             <i class="bi bi-activity"></i>
-            <h3>Vue d'ensemble</h3>
+            <h3 data-i18n="stats_title">Vue d'ensemble</h3>
           </div>
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-icon"><i class="bi bi-folder-check"></i></div>
               <div class="stat-number" data-target="9">0</div>
-              <div class="stat-label">Projets livrés</div>
+              <div class="stat-label" data-i18n="stat_projects">Projets livrés</div>
             </div>
             <div class="stat-card">
               <div class="stat-icon"><i class="bi bi-cpu"></i></div>
               <div class="stat-number" data-target="15">0</div>
-              <div class="stat-label">Technologies</div>
+              <div class="stat-label" data-i18n="stat_technologies">Technologies</div>
             </div>
             <div class="stat-card">
               <div class="stat-icon"><i class="bi bi-calendar3"></i></div>
               <div class="stat-number" data-target="3" data-suffix="+">0</div>
-              <div class="stat-label">Années d'exp.</div>
+              <div class="stat-label" data-i18n="stat_years">Années d'exp.</div>
             </div>
             <div class="stat-card">
               <div class="stat-icon"><i class="bi bi-people"></i></div>
               <div class="stat-number" data-target="6">0</div>
-              <div class="stat-label">Clients satisfaits</div>
+              <div class="stat-label" data-i18n="stat_clients">Clients satisfaits</div>
             </div>
           </div>
         </div>
@@ -356,7 +359,7 @@
         <div class="panel panel-quote reveal-card">
           <div class="panel-header">
             <i class="bi bi-quote"></i>
-            <h3>Inspiration</h3>
+            <h3 data-i18n="quote_title">Inspiration</h3>
           </div>
           <div class="quote-container">
             <blockquote class="quote-text" id="quoteText"></blockquote>
@@ -372,24 +375,24 @@
         <div class="panel panel-bio reveal-card">
           <div class="panel-header">
             <i class="bi bi-person-lines-fill"></i>
-            <h3>À propos de moi</h3>
+            <h3 data-i18n="bio_title">À propos de moi</h3>
           </div>
           <div class="bio-content">
-            <p>
+            <p data-i18n="bio_p1">
               Ingénieur logiciel Full-Stack junior orienté produit, spécialisé
               en
               <strong>Laravel</strong>, <strong>Express.js</strong> et
               <strong>Flutter</strong>. Je maîtrise CI/CD, Docker et les bonnes
               pratiques de versioning.
             </p>
-            <p>
+            <p data-i18n="bio_p2">
               J'ai piloté le développement de solutions de gestion interne et
               d'un site vitrine pour la
               <strong>Mutuelle de l'IUT de Ngaoundéré</strong>, et mené un
               projet chez <strong>MATHS237</strong>, avec un fort souci de
               performance, qualité et UX.
             </p>
-            <p>
+            <p data-i18n="bio_p3">
               Compétences en SQL et NoSQL, statistiques et visualisation.
               Communicant efficace, bilingue <strong>français/anglais</strong>.
             </p>
@@ -407,14 +410,14 @@
         <div class="panel panel-situation reveal-card">
           <div class="panel-header">
             <i class="bi bi-broadcast"></i>
-            <h3>Situation actuelle</h3>
+            <h3 data-i18n="situation_title">Situation actuelle</h3>
           </div>
           <div class="situation-content">
             <div class="situation-item">
               <div class="situation-dot available"></div>
               <div>
-                <strong>Etudiant</strong>
-                <p>Ouvert aux opportunités freelance et CDI</p>
+                <strong data-i18n="situation_status">Etudiant</strong>
+                <p data-i18n="situation_status_desc">Ouvert aux opportunités freelance et CDI</p>
               </div>
             </div>
             <div class="situation-item">
@@ -422,8 +425,8 @@
                 <i class="bi bi-mortarboard"></i>
               </div>
               <div>
-                <strong>Formation</strong>
-                <p>
+                <strong data-i18n="situation_education">Formation</strong>
+                <p data-i18n="situation_education_desc">
                   Master en Systèmes et Logiciels en Environnements Distribués —
                   Université de Ngaoundéré
                 </p>
@@ -432,8 +435,8 @@
             <div class="situation-item">
               <div class="situation-icon"><i class="bi bi-building"></i></div>
               <div>
-                <strong>Expérience récente</strong>
-                <p>
+                <strong data-i18n="situation_experience">Expérience récente</strong>
+                <p data-i18n="situation_experience_desc">
                   Lead Engineer chez Evodevs 237 — Projets Maths237 & Mutuelle
                   IUT
                 </p>
@@ -442,8 +445,8 @@
             <div class="situation-item">
               <div class="situation-icon"><i class="bi bi-geo-alt"></i></div>
               <div>
-                <strong>Localisation</strong>
-                <p>Ngaoundéré, Cameroun — Remote-friendly</p>
+                <strong data-i18n="situation_location">Localisation</strong>
+                <p data-i18n="situation_location_desc">Ngaoundéré, Cameroun — Remote-friendly</p>
               </div>
             </div>
           </div>
@@ -455,7 +458,7 @@
         <div class="panel panel-skills reveal-card">
           <div class="panel-header">
             <i class="bi bi-bar-chart-steps"></i>
-            <h3>Compétences techniques</h3>
+            <h3 data-i18n="skills_title">Compétences techniques</h3>
           </div>
           <div class="skills-grid">
             <!-- Backend -->
@@ -636,7 +639,7 @@
         <div class="panel panel-projects reveal-card">
           <div class="panel-header">
             <i class="bi bi-kanban"></i>
-            <h3>Projets sélectionnés</h3>
+            <h3 data-i18n="projects_title">Projets sélectionnés</h3>
           </div>
           <div class="projects-grid">
             <!-- Project 1 -->
@@ -650,7 +653,7 @@
               </div>
               <div class="project-body">
                 <h4>Accomodation System</h4>
-                <p>
+                <p data-i18n="project_1_desc">
                   Plateforme académique pour la recherche et la gestion
                   d'hébergements étudiants.
                 </p>
@@ -679,7 +682,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Janvier 2026</span>
+                <span class="project-date" data-i18n="project_1_date">Janvier 2026</span>
               </div>
             </div>
 
@@ -689,8 +692,8 @@
                 <img src="./source/c5.png" alt="EGEM Meiganga" loading="lazy" />
               </div>
               <div class="project-body">
-                <h4>EGEM — Site institutionnel</h4>
-                <p>
+                <h4 data-i18n="project_2_title">EGEM — Site institutionnel</h4>
+                <p data-i18n="project_2_desc">
                   Site institutionnel pour l'École de Géologie et d'Exploitation
                   des Mines.
                 </p>
@@ -714,7 +717,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Octobre 2025</span>
+                <span class="project-date" data-i18n="project_2_date">Octobre 2025</span>
                 <a
                   href="https://egem-ndere.com/"
                   class="project-link"
@@ -734,8 +737,8 @@
                 />
               </div>
               <div class="project-body">
-                <h4>Entreprise du Pays — Maths237</h4>
-                <p>
+                <h4 data-i18n="project_3_title">Entreprise du Pays — Maths237</h4>
+                <p data-i18n="project_3_desc">
                   Application web pour rechercher des entreprises et des
                   opportunités au Cameroun.
                 </p>
@@ -757,7 +760,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Août 2025</span>
+                <span class="project-date" data-i18n="project_3_date">Août 2025</span>
                 <a
                   href="https://www.entreprisedupays.maths237.cm/"
                   class="project-link"
@@ -773,8 +776,8 @@
                 <img src="./source/c3.png" alt="Mutuelle IUT" loading="lazy" />
               </div>
               <div class="project-body">
-                <h4>App de gestion — Mutuelle IUT</h4>
-                <p>
+                <h4 data-i18n="project_4_title">App de gestion — Mutuelle IUT</h4>
+                <p data-i18n="project_4_desc">
                   Application web pour centraliser les activités internes de la
                   mutuelle.
                 </p>
@@ -798,7 +801,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Mai — Juil. 2025</span>
+                <span class="project-date" data-i18n="project_4_date">Mai — Juil. 2025</span>
               </div>
             </div>
 
@@ -812,8 +815,8 @@
                 />
               </div>
               <div class="project-body">
-                <h4>Site vitrine & e‑commerce — MUIT</h4>
-                <p>
+                <h4 data-i18n="project_5_title">Site vitrine & e‑commerce — MUIT</h4>
+                <p data-i18n="project_5_desc">
                   Site web présentant la mutuelle, ses formations et produits
                   avec e‑commerce.
                 </p>
@@ -837,7 +840,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Mai — Juil. 2025</span>
+                <span class="project-date" data-i18n="project_5_date">Mai — Juil. 2025</span>
                 <a
                   href="https://www.muit.iut-ndere.net/"
                   class="project-link"
@@ -853,8 +856,8 @@
                 <img src="./source/c10.png" alt="MATHS237" loading="lazy" />
               </div>
               <div class="project-body">
-                <h4>MATHS237 — Plateforme éducative</h4>
-                <p>
+                <h4 data-i18n="project_6_title">MATHS237 — Plateforme éducative</h4>
+                <p data-i18n="project_6_desc">
                   Plateforme en ligne dédiée à la vulgarisation et
                   l'apprentissage des maths.
                 </p>
@@ -873,7 +876,7 @@
                     title="Bootstrap"
                   />
                 </div>
-                <span class="project-date">Septembre 2024</span>
+                <span class="project-date" data-i18n="project_6_date">Septembre 2024</span>
                 <a
                   href="https://maths237.com/"
                   class="project-link"
@@ -889,8 +892,8 @@
                 <img src="./source/card.svg" alt="AEFCA" loading="lazy" />
               </div>
               <div class="project-body">
-                <h4>AEFCA — Cartes membres</h4>
-                <p>
+                <h4 data-i18n="project_7_title">AEFCA — Cartes membres</h4>
+                <p data-i18n="project_7_desc">
                   Application web pour générer et gérer des cartes de membre
                   d'association.
                 </p>
@@ -914,7 +917,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Août 2024</span>
+                <span class="project-date" data-i18n="project_7_date">Août 2024</span>
               </div>
             </div>
 
@@ -926,8 +929,8 @@
                 </div>
               </div>
               <div class="project-body">
-                <h4>Module statistique — SYGALIN</h4>
-                <p>
+                <h4 data-i18n="project_8_title">Module statistique — SYGALIN</h4>
+                <p data-i18n="project_8_desc">
                   Module de reporting et suivi statistique des tickets sur
                   plateformes internes.
                 </p>
@@ -951,7 +954,7 @@
                     title="MySQL"
                   />
                 </div>
-                <span class="project-date">Mars — Mai 2024</span>
+                <span class="project-date" data-i18n="project_8_date">Mars — Mai 2024</span>
               </div>
             </div>
 
@@ -965,8 +968,8 @@
                 />
               </div>
               <div class="project-body">
-                <h4>Grace Oil Gold — Site vitrine</h4>
-                <p>
+                <h4 data-i18n="project_9_title">Grace Oil Gold — Site vitrine</h4>
+                <p data-i18n="project_9_desc">
                   Site vitrine pour la startup Grace Oil Gold, produits et
                   services.
                 </p>
@@ -985,7 +988,7 @@
                     title="Bootstrap"
                   />
                 </div>
-                <span class="project-date">Septembre 2024</span>
+                <span class="project-date" data-i18n="project_9_date">Septembre 2024</span>
               </div>
             </div>
           </div>
@@ -997,29 +1000,29 @@
         <div class="panel panel-services reveal-card">
           <div class="panel-header">
             <i class="bi bi-lightning-charge"></i>
-            <h3>Ce que je peux apporter</h3>
+            <h3 data-i18n="services_title">Ce que je peux apporter</h3>
           </div>
           <div class="services-grid">
             <div class="service-card">
               <div class="service-icon"><i class="bi bi-server"></i></div>
-              <h4>Conception & Backend</h4>
-              <p>
+              <h4 data-i18n="service_1_title">Conception & Backend</h4>
+              <p data-i18n="service_1_desc">
                 Architectures backend robustes, modélisation des données et
                 développement d'APIs RESTful performantes.
               </p>
             </div>
             <div class="service-card">
               <div class="service-icon"><i class="bi bi-globe2"></i></div>
-              <h4>Interfaces Web modernes</h4>
-              <p>
+              <h4 data-i18n="service_2_title">Interfaces Web modernes</h4>
+              <p data-i18n="service_2_desc">
                 Création d'interfaces réactives, accessibles et centrées
                 utilisateur avec les frameworks CSS/JS modernes.
               </p>
             </div>
             <div class="service-card">
               <div class="service-icon"><i class="bi bi-phone"></i></div>
-              <h4>Applications Mobiles</h4>
-              <p>
+              <h4 data-i18n="service_3_title">Applications Mobiles</h4>
+              <p data-i18n="service_3_desc">
                 Développement cross‑platform avec Flutter, du prototype au
                 déploiement sur Android et iOS.
               </p>
@@ -1033,7 +1036,7 @@
         <div class="panel panel-contact reveal-card">
           <div class="panel-header">
             <i class="bi bi-chat-dots"></i>
-            <h3>Me contacter</h3>
+            <h3 data-i18n="contact_title">Me contacter</h3>
           </div>
           <div class="contact-grid">
             <form
@@ -1043,38 +1046,41 @@
               method="POST"
             >
               <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name" data-i18n="contact_name_label">Nom</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   placeholder="Votre nom"
+                  data-i18n-placeholder="contact_name_placeholder"
                   required
                 />
               </div>
               <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email" data-i18n="contact_email_label">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   placeholder="Votre email"
+                  data-i18n-placeholder="contact_email_placeholder"
                   required
                 />
               </div>
               <div class="form-group full-width">
-                <label for="message">Message</label>
+                <label for="message" data-i18n="contact_message_label">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   rows="5"
                   placeholder="Votre message"
+                  data-i18n-placeholder="contact_message_placeholder"
                   required
                 ></textarea>
               </div>
               <button type="submit" class="btn-send">
                 <i class="bi bi-send"></i>
-                <span>Envoyer</span>
+                <span data-i18n="contact_send">Envoyer</span>
               </button>
             </form>
             <div class="contact-info">
@@ -1121,8 +1127,8 @@
       <!-- Footer -->
       <footer class="dash-footer">
         <p>
-          &copy; 2026 <a href="https://t.me/ItzCyd">Caleb Yang</a>. Tous droits
-          réservés.
+          &copy; 2026 <a href="https://t.me/ItzCyd">Caleb Yang</a>. <span data-i18n="footer_text">Tous droits
+          réservés.</span>
         </p>
       </footer>
     </main>
@@ -1138,6 +1144,7 @@
       // Initialize fishing game & mode toggle
       (function() {
         const game = new window.FishingGame();
+        window._fishingGame = game;
         let fishingActive = true;
 
         const fishingMode = document.getElementById('fishingMode');
@@ -1151,6 +1158,11 @@
         const journalPanel = document.getElementById('journalPanel');
         const depthIndicator = document.querySelector('.depth-indicator');
         const catchJournal = document.getElementById('catchJournal');
+        const langToggle = document.getElementById('langToggle');
+
+        function t(key, fallback) {
+          return (window._i18n && window._i18n.t) ? window._i18n.t(key) : (fallback || key);
+        }
 
         function setFishingMode(on) {
           fishingActive = on;
@@ -1160,7 +1172,7 @@
             if (depthIndicator) depthIndicator.style.display = 'none';
             if (catchJournal) catchJournal.classList.add('active');
             modeIcon.className = 'bi bi-grid-1x2';
-            modeToggle.title = 'Passer en mode classique';
+            modeToggle.title = t('mode_toggle_classic', 'Passer en mode classique');
             game.start();
           } else {
             fishingMode.classList.remove('active');
@@ -1169,7 +1181,7 @@
             if (depthIndicator) depthIndicator.style.display = '';
             if (catchJournal) catchJournal.classList.remove('active');
             modeIcon.className = 'bi bi-controller';
-            modeToggle.title = 'Passer en mode pêche';
+            modeToggle.title = t('mode_toggle_fishing', 'Passer en mode pêche');
             game.stop();
           }
           localStorage.setItem('portfolioMode', on ? 'fishing' : 'classic');
@@ -1177,6 +1189,13 @@
 
         // Toggle
         modeToggle.addEventListener('click', () => setFishingMode(!fishingActive));
+
+        // Language toggle
+        if (langToggle) {
+          langToggle.addEventListener('click', () => {
+            if (window._i18n) window._i18n.toggle();
+          });
+        }
 
         // Catch card close
         catchClose?.addEventListener('click', () => game.closeCatchReveal());

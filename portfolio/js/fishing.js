@@ -7,6 +7,11 @@
 (function () {
   'use strict';
 
+  /* ====== i18n HELPER ====== */
+  function t(key, fallback) {
+    return (window._i18n && window._i18n.t) ? window._i18n.t(key) : (fallback || key);
+  }
+
   /* ====== CONSTANTS ====== */
   const WATER_LINE_RATIO = 0.18;
   const CAST_POWER_SPEED = 0.015;
@@ -21,15 +26,23 @@
   };
 
   /* ====== SPECIES CONFIG ====== */
-  const SPECIES = [
-    { id:'stats',    name:'Poisson-Éclair',   label:'Vue d\'ensemble', icon:'⚡', c1:'#00F5D4', c2:'#00A896', glow:'#00F5D4', bW:1.0, bH:0.5, sz:[18,24], spd:[1.2,1.8], depth:[0.22,0.40], reelN:4, section:'.row-stats' },
-    { id:'about',    name:'Poisson-Lanterne', label:'À propos',       icon:'🐡', c1:'#33f7dd', c2:'#00897B', glow:'#00F5D4', bW:1.1, bH:0.65,sz:[28,36], spd:[0.6,1.0], depth:[0.30,0.55], reelN:5, section:'.row-bio' },
-    { id:'skills',   name:'Poisson-Ange',     label:'Compétences',    icon:'🐠', c1:'#00BFFF', c2:'#0077B6', glow:'#00BFFF', bW:0.8, bH:0.9, sz:[30,40], spd:[0.7,1.1], depth:[0.35,0.60], reelN:6, section:'.row-skills' },
-    { id:'projects', name:'Requin Abyssal',   label:'Projets',        icon:'🦈', c1:'#9BA8C0', c2:'#5A6B85', glow:'#9B4DFF', bW:1.4, bH:0.45,sz:[45,60], spd:[1.0,1.5], depth:[0.45,0.75], reelN:9, section:'.row-projects' },
-    { id:'services', name:'Pieuvre Brillante', label:'Services',       icon:'🐙', c1:'#9B4DFF', c2:'#6A1B9A', glow:'#9B4DFF', bW:0.7, bH:0.7, sz:[35,48], spd:[0.4,0.8], depth:[0.50,0.70], reelN:7, section:'.row-services', isOctopus:true },
-    { id:'contact',  name:'Baleine Céleste',  label:'Contact',        icon:'🐋', c1:'#4FC3F7', c2:'#0288D1', glow:'#00BFFF', bW:1.6, bH:0.55,sz:[55,75], spd:[0.3,0.6], depth:[0.60,0.85], reelN:10,section:'.row-contact', isWhale:true },
-    { id:'cv',       name:'Étoile de Mer',    label:'Télécharger CV', icon:'⭐', c1:'#FFD54F', c2:'#FF8F00', glow:'#FFD54F', bW:0.6, bH:0.6, sz:[22,30], spd:[0.2,0.4], depth:[0.82,0.95], reelN:6, section:null, isStarfish:true }
-  ];
+  const SPECIES_DATA = {
+    stats:    { id:'stats',    nameKey:'fish_stats_name',    labelKey:'fish_stats_label',    icon:'⚡', c1:'#00F5D4', c2:'#00A896', glow:'#00F5D4', bW:1.0, bH:0.5, sz:[18,24], spd:[1.2,1.8], depth:[0.22,0.40], reelN:4, section:'.row-stats' },
+    about:    { id:'about',    nameKey:'fish_about_name',    labelKey:'fish_about_label',    icon:'🐡', c1:'#33f7dd', c2:'#00897B', glow:'#00F5D4', bW:1.1, bH:0.65,sz:[28,36], spd:[0.6,1.0], depth:[0.30,0.55], reelN:5, section:'.row-bio' },
+    skills:   { id:'skills',   nameKey:'fish_skills_name',   labelKey:'fish_skills_label',   icon:'🐠', c1:'#00BFFF', c2:'#0077B6', glow:'#00BFFF', bW:0.8, bH:0.9, sz:[30,40], spd:[0.7,1.1], depth:[0.35,0.60], reelN:6, section:'.row-skills' },
+    projects: { id:'projects', nameKey:'fish_projects_name', labelKey:'fish_projects_label', icon:'🦈', c1:'#9BA8C0', c2:'#5A6B85', glow:'#9B4DFF', bW:1.4, bH:0.45,sz:[45,60], spd:[1.0,1.5], depth:[0.45,0.75], reelN:9, section:'.row-projects' },
+    services: { id:'services', nameKey:'fish_services_name', labelKey:'fish_services_label', icon:'🐙', c1:'#9B4DFF', c2:'#6A1B9A', glow:'#9B4DFF', bW:0.7, bH:0.7, sz:[35,48], spd:[0.4,0.8], depth:[0.50,0.70], reelN:7, section:'.row-services', isOctopus:true },
+    contact:  { id:'contact',  nameKey:'fish_contact_name',  labelKey:'fish_contact_label',  icon:'🐋', c1:'#4FC3F7', c2:'#0288D1', glow:'#00BFFF', bW:1.6, bH:0.55,sz:[55,75], spd:[0.3,0.6], depth:[0.60,0.85], reelN:10,section:'.row-contact', isWhale:true },
+    cv:       { id:'cv',       nameKey:'fish_cv_name',       labelKey:'fish_cv_label',       icon:'⭐', c1:'#FFD54F', c2:'#FF8F00', glow:'#FFD54F', bW:0.6, bH:0.6, sz:[22,30], spd:[0.2,0.4], depth:[0.82,0.95], reelN:6, section:null, isStarfish:true }
+  };
+
+  function getSpecies() {
+    return Object.values(SPECIES_DATA).map(sp => ({
+      ...sp,
+      name: t(sp.nameKey, sp.nameKey),
+      label: t(sp.labelKey, sp.labelKey)
+    }));
+  }
 
   /* ====== SOUND FX (Web Audio API) ====== */
   class SoundFX {
@@ -126,7 +139,7 @@
       this.tentaclePhase = 0;
     }
 
-    update(dt, hookX, hookY, hookInWater) {
+    update(dt, hookX, hookY, hookInWater, hasBite) {
       this.tailPhase += 0.08 * this.baseSpeed;
       this.wobblePhase += 0.02;
       this.tentaclePhase += 0.04;
@@ -135,39 +148,48 @@
       if (this.state === 'swimming') {
         this.vx = this.baseSpeed * this.dir;
         this.vy = Math.sin(this.wobblePhase) * 0.3;
-        if (hookInWater) {
+        // Only become curious if no other fish is already biting
+        if (hookInWater && !hasBite) {
           const dx = hookX - this.x, dy = hookY - this.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 150 && Math.random() < 0.005) { this.state = 'curious'; this.curiosityTimer = 0; }
         }
       } else if (this.state === 'curious') {
-        const dx = hookX - this.x, dy = hookY - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const angle = Math.atan2(dy, dx);
-        // Circle around hook
-        const circleAngle = angle + Math.PI / 2;
-        this.vx = Math.cos(circleAngle) * this.baseSpeed * 0.7 + Math.cos(angle) * 0.2;
-        this.vy = Math.sin(circleAngle) * this.baseSpeed * 0.7 + Math.sin(angle) * 0.2;
-        this.dir = this.vx > 0 ? 1 : -1;
-        this.curiosityTimer += dt;
-        if (dist < 60 && this.curiosityTimer > 1500) {
-          this.state = 'approaching';
-          this.curiosityTimer = 0;
-        }
-        if (dist > 200 || this.curiosityTimer > 6000) {
-          this.state = 'swimming';
-          this.dir = this.x < this.W / 2 ? 1 : -1;
+        // If another fish is biting, flee immediately
+        if (hasBite) { this.state = 'fleeing'; }
+        else {
+          const dx = hookX - this.x, dy = hookY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx);
+          // Circle around hook
+          const circleAngle = angle + Math.PI / 2;
+          this.vx = Math.cos(circleAngle) * this.baseSpeed * 0.7 + Math.cos(angle) * 0.2;
+          this.vy = Math.sin(circleAngle) * this.baseSpeed * 0.7 + Math.sin(angle) * 0.2;
+          this.dir = this.vx > 0 ? 1 : -1;
+          this.curiosityTimer += dt;
+          if (dist < 60 && this.curiosityTimer > 1500) {
+            this.state = 'approaching';
+            this.curiosityTimer = 0;
+          }
+          if (dist > 200 || this.curiosityTimer > 6000) {
+            this.state = 'swimming';
+            this.dir = this.x < this.W / 2 ? 1 : -1;
+          }
         }
       } else if (this.state === 'approaching') {
-        const dx = hookX - this.x, dy = hookY - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const angle = Math.atan2(dy, dx);
-        this.vx = Math.cos(angle) * this.baseSpeed * 0.5;
-        this.vy = Math.sin(angle) * this.baseSpeed * 0.5;
-        this.dir = this.vx > 0 ? 1 : -1;
-        if (dist < 20) { this.state = 'biting'; return 'bite'; }
-        this.curiosityTimer += dt;
-        if (this.curiosityTimer > 3000) { this.state = 'fleeing'; }
+        // If another fish is biting, flee immediately
+        if (hasBite) { this.state = 'fleeing'; }
+        else {
+          const dx = hookX - this.x, dy = hookY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx);
+          this.vx = Math.cos(angle) * this.baseSpeed * 0.5;
+          this.vy = Math.sin(angle) * this.baseSpeed * 0.5;
+          this.dir = this.vx > 0 ? 1 : -1;
+          if (dist < 20) { this.state = 'biting'; return 'bite'; }
+          this.curiosityTimer += dt;
+          if (this.curiosityTimer > 3000) { this.state = 'fleeing'; }
+        }
       } else if (this.state === 'biting') {
         this.vx = 0; this.vy = 0;
         this.x += (hookX - this.x) * 0.1;
@@ -360,7 +382,8 @@
       ctx.fillStyle = this.sp.glow;
       ctx.shadowColor = this.sp.glow;
       ctx.shadowBlur = 8;
-      ctx.fillText(this.sp.icon + ' ' + this.sp.label, this.x, labelY);
+      const label = t(this.sp.labelKey, this.sp.label);
+      ctx.fillText(this.sp.icon + ' ' + label, this.x, labelY);
       ctx.shadowBlur = 0;
       ctx.restore();
     }
@@ -404,6 +427,8 @@
       this.lastTime = 0;
       // Wave
       this.waveOffset = 0;
+      // Species (refreshed for i18n)
+      this.SPECIES = getSpecies();
 
       this._resize();
       this._bind();
@@ -514,7 +539,7 @@
     }
 
     _spawnInitialFish() {
-      SPECIES.forEach(sp => {
+      this.SPECIES.forEach(sp => {
         if (!this.catches.has(sp.id)) {
           this._spawnFish(sp, true);
         }
@@ -536,7 +561,7 @@
       this.lastSpawnTime = now;
       // Find species not currently on screen and not caught
       const onScreen = new Set(this.fish.filter(f => f.alive).map(f => f.sp.id));
-      const missing = SPECIES.filter(sp => !onScreen.has(sp.id) && !this.catches.has(sp.id));
+      const missing = this.SPECIES.filter(sp => !onScreen.has(sp.id) && !this.catches.has(sp.id));
       if (missing.length > 0) {
         const sp = missing[Math.floor(Math.random() * missing.length)];
         this._spawnFish(sp, false);
@@ -556,9 +581,16 @@
       const badge = document.getElementById('catchBadge');
       const content = document.getElementById('catchContent');
       const nameEl = document.getElementById('catchSpeciesName');
+      const titleEl = document.querySelector('.catch-title');
+      const continueBtn = document.getElementById('catchContinue');
+
+      const fishName = t(fish.sp.nameKey, fish.sp.name || fish.sp.nameKey);
+      const fishLabel = t(fish.sp.labelKey, fish.sp.label || fish.sp.labelKey);
 
       if (badge) badge.innerHTML = `<span class="catch-icon">${fish.sp.icon}</span>`;
-      if (nameEl) nameEl.textContent = fish.sp.name + ' — ' + fish.sp.label;
+      if (nameEl) nameEl.textContent = fishName + ' — ' + fishLabel;
+      if (titleEl) titleEl.textContent = t('catch_title', 'PRISE !');
+      if (continueBtn) continueBtn.innerHTML = `<i class="bi bi-arrow-repeat"></i> ${t('catch_continue', 'Pêcher encore')}`;
 
       if (fish.sp.section) {
         const source = document.querySelector(fish.sp.section);
@@ -572,7 +604,7 @@
         }
       } else if (fish.sp.id === 'cv') {
         if (content) {
-          content.innerHTML = '<div class="cv-catch-content"><h3>📄 Télécharger mon CV</h3><p>Vous avez attrapé l\'Étoile de Mer ! Récupérez mon CV.</p><div class="cv-btns"><a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV Français</a><a href="./source/CV_Caleb_Yang en-US.pdf" download="CV_Caleb_Yang_EN.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV English</a></div></div>';
+          content.innerHTML = `<div class="cv-catch-content"><h3>📄 ${t('cv_download_title', 'Télécharger mon CV')}</h3><p>${t('cv_catch_text', "Vous avez attrapé l'Étoile de Mer ! Récupérez mon CV.")}</p><div class="cv-btns"><a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV Français</a><a href="./source/CV_Caleb_Yang en-US.pdf" download="CV_Caleb_Yang_EN.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV English</a></div></div>`;
         }
       }
 
@@ -598,10 +630,13 @@
       const grid = document.getElementById('journalGrid');
       if (!grid) return;
       grid.innerHTML = '';
-      SPECIES.forEach(sp => {
+      const journalTitle = document.querySelector('.journal-panel h3');
+      if (journalTitle) journalTitle.innerHTML = `<i class="bi bi-journal-bookmark"></i> ${t('journal_title', 'Journal de prises')}`;
+      this.SPECIES.forEach(sp => {
+        const label = t(sp.labelKey, sp.label || sp.labelKey);
         const item = document.createElement('div');
         item.className = 'journal-item' + (this.catches.has(sp.id) ? ' caught' : '');
-        item.innerHTML = `<span class="journal-icon">${this.catches.has(sp.id) ? sp.icon : '❓'}</span><span class="journal-name">${this.catches.has(sp.id) ? sp.label : '???'}</span>`;
+        item.innerHTML = `<span class="journal-icon">${this.catches.has(sp.id) ? sp.icon : '❓'}</span><span class="journal-name">${this.catches.has(sp.id) ? label : '???'}</span>`;
         if (this.catches.has(sp.id)) {
           item.addEventListener('click', () => {
             this._showCatchById(sp.id);
@@ -610,11 +645,11 @@
         grid.appendChild(item);
       });
       const jCount = document.getElementById('journalCount');
-      if (jCount) jCount.textContent = this.catches.size + '/' + SPECIES.length;
+      if (jCount) jCount.textContent = this.catches.size + '/' + this.SPECIES.length;
     }
 
     _showCatchById(id) {
-      const sp = SPECIES.find(s => s.id === id);
+      const sp = this.SPECIES.find(s => s.id === id);
       if (sp) this._showCatch({ sp });
     }
 
@@ -679,10 +714,8 @@
           if (this.currentBiteFish) this.currentBiteFish.state = 'fleeing';
           this.currentBiteFish = null;
           this.state = STATES.WAITING;
-          const alert = document.getElementById('biteAlert');
-          if (alert) alert.classList.remove('active');
-          this._setHint('Raté ! Le poisson s\'est enfui...');
-          setTimeout(() => this._setHint('Cliquez pour remonter la ligne'), 2000);
+          this._setHint(t('hint_missed', 'Raté ! Le poisson s\'est enfui...'));
+          setTimeout(() => this._setHint(t('hint_reel_back', 'Cliquez pour remonter la ligne')), 2000);
         }
       }
 
@@ -713,19 +746,20 @@
         }
       }
 
+      // Determine if a fish is currently biting/being reeled
+      const hasBite = this.state === STATES.BITE || this.state === STATES.REELING;
+
       // Update fish
       for (let i = this.fish.length - 1; i >= 0; i--) {
         const f = this.fish[i];
-        const result = f.update(dt, this.hookX, this.hookY, this.hookInWater && (this.state === STATES.WAITING));
+        const result = f.update(dt, this.hookX, this.hookY, this.hookInWater && (this.state === STATES.WAITING), hasBite);
         if (result === 'bite' && this.state === STATES.WAITING) {
           this.state = STATES.BITE;
           this.currentBiteFish = f;
           this.biteTimer = BITE_WINDOW;
           this.sound.bite();
           this.targetBend = 1;
-          const alert = document.getElementById('biteAlert');
-          if (alert) alert.classList.add('active');
-          this._setHint('🎣 ÇA MORD ! Cliquez vite !');
+          this._setHint(t('hint_bite', '🎣 ÇA MORD ! Cliquez vite !'));
         }
         if (!f.alive) this.fish.splice(i, 1);
       }
@@ -742,10 +776,10 @@
       // Hint timer (skip in INTRO state)
       if (this.state !== STATES.INTRO) {
         if (this.state === STATES.IDLE) {
-          this._setHint('Cliquez et maintenez pour lancer votre ligne');
+          this._setHint(t('hint_cast', 'Cliquez et maintenez pour lancer votre ligne'));
         }
         if (this.state === STATES.WAITING && this.hintTimer > 8000 && this.hintTimer < 8100) {
-          this._setHint('Un poisson rôde... patience !');
+          this._setHint(t('hint_patience', 'Un poisson rôde... patience !'));
         }
       }
     }
@@ -837,7 +871,7 @@
         ctx.roundRect(bx, by, bw * Math.min(1, this.reelProgress), bh, 6); ctx.fill();
         ctx.font = '600 12px Inter, sans-serif';
         ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
-        ctx.fillText('🎣 Cliquez pour mouliner !', this.W / 2, by - 10);
+        ctx.fillText(t('hint_reel', '🎣 Cliquez pour mouliner !'), this.W / 2, by - 10);
       }
     }
 
@@ -880,8 +914,8 @@
       ctx.strokeStyle = '#5C4400'; ctx.lineWidth = 7; ctx.lineCap = 'round'; ctx.stroke();
       // Rod tip glow
       ctx.beginPath(); ctx.arc(tipX, tipY, 3, 0, Math.PI * 2);
-      ctx.fillStyle = '#ff4444'; ctx.fill();
-      ctx.shadowColor = '#ff4444'; ctx.shadowBlur = 8;
+      ctx.fillStyle = '#00F5D4'; ctx.fill();
+      ctx.shadowColor = '#00F5D4'; ctx.shadowBlur = 8;
       ctx.fill(); ctx.shadowBlur = 0;
 
       this._actualTipX = tipX;
@@ -924,12 +958,19 @@
     /* ====== GAME LOOP ====== */
     start() {
       this.active = true;
+      this.SPECIES = getSpecies();
       this.lastTime = performance.now();
       this._loop();
     }
 
     stop() {
       this.active = false;
+    }
+
+    /** Refresh all translated labels (called when language changes) */
+    refreshLanguage() {
+      this.SPECIES = getSpecies();
+      this._updateJournal();
     }
 
     _loop() {
