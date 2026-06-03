@@ -87,8 +87,11 @@
       project_9_title: 'Grace Oil Gold — Site vitrine',
       project_9_desc: "Site vitrine pour la startup Grace Oil Gold, produits et services.",
       project_9_date: 'Septembre 2024',
+      project_10_title: 'Cryptographic Tool — Application web',
+      project_10_desc: "Application de chiffrement et de cryptanalyse.",
+      project_10_date: 'Juin 2026',
       project_view: 'Voir',
-
+      
       // === SERVICES ===
       services_title: 'Ce que je peux apporter',
       service_1_title: 'Conception & Backend',
@@ -235,6 +238,9 @@
       project_9_title: 'Grace Oil Gold — Showcase website',
       project_9_desc: 'Showcase website for Grace Oil Gold startup, products and services.',
       project_9_date: 'September 2024',
+      project_10_title: 'Cryptographic Tool — Web application',
+      project_10_desc: 'Web application for cryptography.',
+      project_10_date: 'June 2026',
       project_view: 'View',
 
       // === SERVICES ===
