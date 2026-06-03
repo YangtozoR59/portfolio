@@ -117,6 +117,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/underwater.css" />
     <link rel="stylesheet" href="/css/fishing.css" />
+    <link rel="stylesheet" href="/css/crypto.css" />
 
     <!-- i18n (must load before other scripts) -->
     <script src="./js/i18n.js"></script>
@@ -191,6 +192,11 @@
       <i class="bi bi-controller" id="modeToggleIcon"></i>
     </button>
 
+    <!-- Crypto Toggle Button -->
+    <button class="crypto-toggle" id="cryptoToggle" title="Ouvrir CryptoLab">
+      <i class="bi bi-terminal" id="cryptoToggleIcon"></i>
+    </button>
+
     <!-- Language Toggle Button -->
     <button class="lang-toggle" id="langToggle" title="Switch language">
       <span class="lang-label">🇬🇧 EN</span>
@@ -205,6 +211,81 @@
       <div class="journal-panel" id="journalPanel">
         <h3><i class="bi bi-journal-bookmark"></i> <span data-i18n="journal_title">Journal de prises</span></h3>
         <div class="journal-grid" id="journalGrid"></div>
+      </div>
+    </div>
+
+    <!-- ========== CRYPTO LAB LAYER ========== -->
+    <div id="cryptoMode" class="crypto-mode">
+      <button class="crypto-close" id="cryptoClose" aria-label="Fermer CryptoLab">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <div class="crypto-container glass-container">
+        <header class="app-header">
+            <h1 data-i18n="crypto_title">CryptoLab</h1>
+            <p data-i18n="crypto_subtitle">Apprenez la cryptographie classique étape par étape</p>
+        </header>
+
+        <section class="config-section">
+            <div class="input-group">
+                <label for="algo" data-i18n="crypto_algo">Algorithme</label>
+                <div class="select-wrapper">
+                    <select id="algo">
+                        <option value="caesar">César</option>
+                        <option value="vigenere">Vigenère</option>
+                        <option value="hill">Hill</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="key" data-i18n="crypto_key">Clé</label>
+                <input type="text" id="key" placeholder="Ex: 3" autocomplete="off">
+                <small id="key-hint" class="hint" data-i18n="crypto_key_hint">Décalage numérique (ex: 3)</small>
+            </div>
+        </section>
+
+        <section class="text-section">
+            <div class="input-group">
+                <label for="source-text" data-i18n="crypto_source">Texte d'entrée</label>
+                <textarea id="source-text" rows="3" placeholder="Saisissez le texte à chiffrer ou déchiffrer..."></textarea>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="btn-encrypt" class="btn btn-primary">
+                    <span data-i18n="crypto_btn_encrypt">Chiffrer</span>
+                </button>
+                <button id="btn-decrypt" class="btn btn-secondary">
+                    <span data-i18n="crypto_btn_decrypt">Déchiffrer</span>
+                </button>
+                <button id="btn-clear" class="btn btn-ghost" data-i18n="crypto_btn_clear">Effacer</button>
+            </div>
+
+            <div class="input-group mt-4">
+                <div class="label-with-action">
+                    <label for="result-text" data-i18n="crypto_result">Résultat</label>
+                    <button id="btn-copy" class="btn-icon" title="Copier le résultat">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+                <textarea id="result-text" rows="3" readonly placeholder="Le résultat final apparaîtra ici."></textarea>
+            </div>
+        </section>
+
+        <section class="pedagogical-section">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">Terminal Pédagogique</span>
+            </div>
+            <div class="terminal-window">
+                <pre id="terminal-output"><span class="prompt">>_ </span>Prêt. En attente d'une opération...</pre>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar-fill"></div>
+            </div>
+        </section>
       </div>
     </div>
 
@@ -1182,6 +1263,7 @@
     <script src="./js/script.js"></script>
     <script src="./js/underwater.js"></script>
     <script src="./js/fishing.js"></script>
+    <script src="./js/crypto.js"></script>
     <script>
       // Initialize fishing game & mode toggle
       (function() {

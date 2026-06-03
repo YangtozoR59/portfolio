@@ -156,6 +156,25 @@
       fish_contact_label: 'Contact',
       fish_cv_name: 'Étoile de Mer',
       fish_cv_label: 'Télécharger CV',
+
+      // === CRYPTOLAB ===
+      crypto_title: 'CryptoLab',
+      crypto_subtitle: 'Apprenez la cryptographie classique étape par étape',
+      crypto_algo: 'Algorithme',
+      crypto_key: 'Clé',
+      crypto_key_hint: 'Décalage numérique (ex: 3)',
+      crypto_source: "Texte d'entrée",
+      crypto_btn_encrypt: 'Chiffrer',
+      crypto_btn_decrypt: 'Déchiffrer',
+      crypto_btn_clear: 'Effacer',
+      crypto_result: 'Résultat',
+      crypto_ready: "Prêt. En attente d'une opération...",
+      crypto_init: "Initialisation des calculs...",
+      crypto_done: "Opération terminée avec succès.",
+      crypto_err_empty: "Erreur : Le texte source est vide.",
+      crypto_hint_caesar: "Décalage numérique (ex: 3). Laissez vide pour Force Brute.",
+      crypto_hint_vigenere: "Mot-clé alphabétique (ex: SECRET)",
+      crypto_hint_hill: "Matrice 2x2 ou 3x3 séparée par ; et ,",
     },
 
     en: {
@@ -307,6 +326,25 @@
       fish_contact_label: 'Contact',
       fish_cv_name: 'Starfish',
       fish_cv_label: 'Download CV',
+
+      // === CRYPTOLAB ===
+      crypto_title: 'CryptoLab',
+      crypto_subtitle: 'Learn classic cryptography step by step',
+      crypto_algo: 'Algorithm',
+      crypto_key: 'Key',
+      crypto_key_hint: 'Numeric shift (e.g. 3)',
+      crypto_source: 'Input text',
+      crypto_btn_encrypt: 'Encrypt',
+      crypto_btn_decrypt: 'Decrypt',
+      crypto_btn_clear: 'Clear',
+      crypto_result: 'Result',
+      crypto_ready: 'Ready. Waiting for an operation...',
+      crypto_init: 'Initializing calculations...',
+      crypto_done: 'Operation successfully completed.',
+      crypto_err_empty: 'Error: Source text is empty.',
+      crypto_hint_caesar: 'Numeric shift (e.g. 3). Leave empty for Brute Force.',
+      crypto_hint_vigenere: 'Alphabetic keyword (e.g. SECRET)',
+      crypto_hint_hill: '2x2 or 3x3 matrix separated by ; and ,',
     }
   };
 
