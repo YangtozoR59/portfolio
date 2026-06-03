@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoLab | Outil Pédagogique</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background elements for Glassmorphism -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    
+    <main class="glass-container">
+        <header class="app-header">
+            <h1>CryptoLab</h1>
+            <p>Apprenez la cryptographie classique étape par étape</p>
+        </header>
+
+        <section class="config-section">
+            <div class="input-group">
+                <label for="algo">Algorithme</label>
+                <div class="select-wrapper">
+                    <select id="algo">
+                        <option value="caesar">César</option>
+                        <option value="vigenere">Vigenère</option>
+                        <option value="hill">Hill</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="key">Clé</label>
+                <input type="text" id="key" placeholder="Ex: 3" autocomplete="off">
+                <small id="key-hint" class="hint">Décalage numérique (ex: 3)</small>
+            </div>
+        </section>
+
+        <section class="text-section">
+            <div class="input-group">
+                <label for="source-text">Texte d'entrée</label>
+                <textarea id="source-text" rows="3" placeholder="Saisissez le texte à chiffrer ou déchiffrer..."></textarea>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="btn-encrypt" class="btn btn-primary">
+                    <span>Chiffrer</span>
+                </button>
+                <button id="btn-decrypt" class="btn btn-secondary">
+                    <span>Déchiffrer</span>
+                </button>
+                <button id="btn-clear" class="btn btn-ghost">Effacer</button>
+            </div>
+
+            <div class="input-group mt-4">
+                <div class="label-with-action">
+                    <label for="result-text">Résultat</label>
+                    <button id="btn-copy" class="btn-icon" title="Copier le résultat">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                </div>
+                <textarea id="result-text" rows="3" readonly placeholder="Le résultat final apparaîtra ici."></textarea>
+            </div>
+        </section>
+
+        <section class="pedagogical-section">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">Terminal Pédagogique</span>
+            </div>
+            <div class="terminal-window">
+                <pre id="terminal-output"><span class="prompt">>_ </span>Prêt. En attente d'une opération...</pre>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar-fill"></div>
+            </div>
+        </section>
+        
+        <div class="back-to-portfolio">
+            <a href="../index.html" class="link-back">&larr; Retour au portfolio</a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
