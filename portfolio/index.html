@@ -118,6 +118,7 @@
     <link rel="stylesheet" href="/css/underwater.css" />
     <link rel="stylesheet" href="/css/fishing.css" />
     <link rel="stylesheet" href="/css/crypto.css" />
+    <link rel="stylesheet" href="/css/gol.css" />
 
     <!-- i18n (must load before other scripts) -->
     <script src="./js/i18n.js"></script>
@@ -190,6 +191,11 @@
     <!-- Mode Toggle Button -->
     <button class="mode-toggle" id="modeToggle" title="Basculer mode Pêche / Classique">
       <i class="bi bi-controller" id="modeToggleIcon"></i>
+    </button>
+
+    <!-- Game of Life Toggle Button -->
+    <button class="gol-toggle" id="golToggle" title="Ouvrir le Jeu de la Vie">
+      <i class="bi bi-grid-3x3" id="golToggleIcon"></i>
     </button>
 
     <!-- Crypto Toggle Button -->
@@ -289,6 +295,63 @@
       </div>
     </div>
 
+    <!-- ========== GAME OF LIFE LAYER ========== -->
+    <div id="golMode" class="gol-mode">
+      <button class="gol-close" id="golClose" aria-label="Fermer Jeu de la Vie">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <div class="gol-container glass-container">
+        <header class="app-header">
+            <h1 data-i18n="gol_title">Jeu de la Vie</h1>
+            <p data-i18n="gol_subtitle">Expérimentez avec les automates cellulaires</p>
+        </header>
+
+        <section class="gol-controls">
+            <div class="action-buttons" style="justify-content: center; margin-bottom: 24px;">
+                <button id="gol-btn-prev" class="btn btn-secondary" title="Précédent">
+                    <i class="bi bi-skip-backward-fill"></i> <span class="hide-mobile" data-i18n="gol_btn_prev">Précédent</span>
+                </button>
+                <button id="gol-btn-play" class="btn btn-primary" title="Lecture/Pause">
+                    <i class="bi bi-play-fill" id="gol-play-icon"></i> <span class="hide-mobile" id="gol-play-text" data-i18n="gol_btn_play">Lecture</span>
+                </button>
+                <button id="gol-btn-next" class="btn btn-secondary" title="Suivant">
+                    <i class="bi bi-skip-forward-fill"></i> <span class="hide-mobile" data-i18n="gol_btn_next">Suivant</span>
+                </button>
+                <button id="gol-btn-random" class="btn btn-ghost" title="Aléatoire">
+                    <i class="bi bi-shuffle"></i> <span class="hide-mobile" data-i18n="gol_btn_random">Aléatoire</span>
+                </button>
+                <button id="gol-btn-clear" class="btn btn-ghost" title="Effacer">
+                    <i class="bi bi-trash"></i> <span class="hide-mobile" data-i18n="gol_btn_clear">Effacer</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="gol-canvas-wrapper" style="display: flex; justify-content: center; margin-bottom: 24px;">
+            <canvas id="golCanvas" width="600" height="400" style="background: rgba(0,0,0,0.4); border-radius: 8px; box-shadow: inset 0 0 15px rgba(0,0,0,0.8); cursor: crosshair; max-width: 100%; object-fit: contain;"></canvas>
+        </section>
+
+        <section class="pedagogical-section">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title" data-i18n="gol_rules_title">Règles du Jeu (Conway)</span>
+            </div>
+            <div class="terminal-window">
+                <div id="gol-rules-content" data-i18n="gol_rules_desc" style="color: var(--text-primary, #e8edf5); line-height: 1.6; font-size: 0.95rem;">
+                    Le Jeu de la Vie est un automate cellulaire. Chaque cellule de la grille est soit vivante, soit morte.<br>
+                    <strong>1. Sous-population :</strong> Une cellule vivante avec moins de 2 voisins meurt.<br>
+                    <strong>2. Surpopulation :</strong> Une cellule vivante avec plus de 3 voisins meurt.<br>
+                    <strong>3. Survie :</strong> Une cellule vivante avec 2 ou 3 voisins survit.<br>
+                    <strong>4. Reproduction :</strong> Une cellule morte avec exactement 3 voisins devient vivante.<br><br>
+                    <em>Cliquez sur la grille pour modifier les cellules.</em>
+                </div>
+            </div>
+        </section>
+      </div>
+    </div>
     <!-- ========== SIDEBAR ========== -->
     <aside class="sidebar" id="sidebar">
       <button
@@ -1264,6 +1327,7 @@
     <script src="./js/underwater.js"></script>
     <script src="./js/fishing.js"></script>
     <script src="./js/crypto.js"></script>
+    <script src="./js/gol.js"></script>
     <script>
       // Initialize fishing game & mode toggle
       (function() {

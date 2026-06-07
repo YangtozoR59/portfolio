@@ -175,6 +175,18 @@
       crypto_hint_caesar: "Décalage numérique (ex: 3). Laissez vide pour Force Brute.",
       crypto_hint_vigenere: "Mot-clé alphabétique (ex: SECRET)",
       crypto_hint_hill: "Matrice 2x2 ou 3x3 séparée par ; et ,",
+
+      // === GAME OF LIFE ===
+      gol_title: 'Jeu de la Vie',
+      gol_subtitle: 'Expérimentez avec les automates cellulaires',
+      gol_btn_play: 'Lecture',
+      gol_btn_pause: 'Pause',
+      gol_btn_next: 'Suivant',
+      gol_btn_prev: 'Précédent',
+      gol_btn_clear: 'Effacer',
+      gol_btn_random: 'Aléatoire',
+      gol_rules_title: 'Règles du Jeu (Conway)',
+      gol_rules_desc: "Le Jeu de la Vie est un automate cellulaire. Chaque cellule de la grille est soit vivante, soit morte.<br><strong>1. Sous-population :</strong> Une cellule vivante avec moins de 2 voisins meurt.<br><strong>2. Surpopulation :</strong> Une cellule vivante avec plus de 3 voisins meurt.<br><strong>3. Survie :</strong> Une cellule vivante avec 2 ou 3 voisins survit.<br><strong>4. Reproduction :</strong> Une cellule morte avec exactement 3 voisins devient vivante.<br><br><em>Cliquez sur la grille pour modifier les cellules.</em>",
     },
 
     en: {
@@ -345,6 +357,18 @@
       crypto_hint_caesar: 'Numeric shift (e.g. 3). Leave empty for Brute Force.',
       crypto_hint_vigenere: 'Alphabetic keyword (e.g. SECRET)',
       crypto_hint_hill: '2x2 or 3x3 matrix separated by ; and ,',
+
+      // === GAME OF LIFE ===
+      gol_title: 'Game of Life',
+      gol_subtitle: 'Experiment with cellular automata',
+      gol_btn_play: 'Play',
+      gol_btn_pause: 'Pause',
+      gol_btn_next: 'Next',
+      gol_btn_prev: 'Prev',
+      gol_btn_clear: 'Clear',
+      gol_btn_random: 'Random',
+      gol_rules_title: 'Rules of the Game (Conway)',
+      gol_rules_desc: "The Game of Life is a cellular automaton. Every cell is either alive or dead.<br><strong>1. Underpopulation:</strong> A live cell with fewer than 2 neighbors dies.<br><strong>2. Overpopulation:</strong> A live cell with more than 3 neighbors dies.<br><strong>3. Survival:</strong> A live cell with 2 or 3 neighbors lives on.<br><strong>4. Reproduction:</strong> A dead cell with exactly 3 neighbors becomes alive.<br><br><em>Click on the grid to toggle cells.</em>",
     }
   };
 
