@@ -90,6 +90,9 @@
       project_10_title: 'Cryptographic Tool — Application web',
       project_10_desc: "Application de chiffrement et de cryptanalyse.",
       project_10_date: 'Juin 2026',
+      project_11_title: 'Pulse — P.A.E.S.',
+      project_11_desc: "Simulation 3D interactive d'écosystème proie-prédateur basée sur un automate cellulaire, rendue en temps réel via Three.js avec post-processing Bloom.",
+      project_11_date: 'Juin 2026',
       project_view: 'Voir',
       
       // === SERVICES ===
@@ -272,6 +275,9 @@
       project_10_title: 'Cryptographic Tool — Web application',
       project_10_desc: 'Web application for cryptography.',
       project_10_date: 'June 2026',
+      project_11_title: 'Pulse — P.A.E.S.',
+      project_11_desc: 'Interactive 3D prey-predator ecosystem simulation based on cellular automata, rendered in real-time with Three.js and Bloom post-processing.',
+      project_11_date: 'June 2026',
       project_view: 'View',
 
       // === SERVICES ===
