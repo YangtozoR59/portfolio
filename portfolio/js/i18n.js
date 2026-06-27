@@ -93,6 +93,12 @@
       project_11_title: 'Pulse — P.A.E.S.',
       project_11_desc: "Simulation 3D interactive d'écosystème proie-prédateur basée sur un automate cellulaire, rendue en temps réel via Three.js avec post-processing Bloom.",
       project_11_date: 'Juin 2026',
+      project_12_title: 'Evodevs Team — Site vitrine',
+      project_12_desc: "Site vitrine du collectif Evodevs Team — présentation des services, tarifs et processus de collaboration.",
+      project_12_date: 'Juin 2026',
+      project_13_title: 'Evodevs Store — Bot Telegram',
+      project_13_desc: "Bot Telegram de commande pour l'équipe Evodevs — catalogue de services, prise de commande et suivi client.",
+      project_13_date: 'Juin 2026',
       project_view: 'Voir',
       
       // === SERVICES ===
@@ -278,6 +284,12 @@
       project_11_title: 'Pulse — P.A.E.S.',
       project_11_desc: 'Interactive 3D prey-predator ecosystem simulation based on cellular automata, rendered in real-time with Three.js and Bloom post-processing.',
       project_11_date: 'June 2026',
+      project_12_title: 'Evodevs Team — Showcase Website',
+      project_12_desc: 'Showcase website for the Evodevs Team collective — services, pricing and collaboration workflow.',
+      project_12_date: 'June 2026',
+      project_13_title: 'Evodevs Store — Telegram Bot',
+      project_13_desc: 'Telegram ordering bot for the Evodevs team — service catalog, order placement and client tracking.',
+      project_13_date: 'June 2026',
       project_view: 'View',
 
       // === SERVICES ===
