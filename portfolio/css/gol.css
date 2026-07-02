@@ -29,7 +29,7 @@
   right: 24px;
   z-index: 1060;
   background: rgba(var(--accent-rgb), 0.1);
-  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border: var(--border-subtle-hover);
   color: var(--accent, #00F5D4);
   width: 48px;
   height: 48px;
@@ -40,13 +40,13 @@
   justify-content: center;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--btn-shadow);
 }
 
 .gol-close:hover {
   background: rgba(var(--accent-rgb), 0.2);
   transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.3);
+  box-shadow: var(--box-shadow-glow-hover);
 }
 
 /* ===== TOGGLE BUTTON ===== */
@@ -61,7 +61,7 @@
   background: rgba(var(--bg-overlay-rgb), 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border: var(--border-subtle-hover);
   color: var(--accent, #00F5D4);
   font-size: 1.2rem;
   cursor: pointer;
@@ -69,14 +69,14 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--btn-shadow);
 }
 
 .gol-toggle:hover {
   background: rgba(var(--accent-rgb), 0.15);
-  border-color: rgba(var(--accent-rgb), 0.4);
+  border-color: var(--accent);
   transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.3);
+  box-shadow: var(--box-shadow-glow-hover);
 }
 
 /* ===== GOL CONTAINER (GLASSMORPHISM) ===== */
