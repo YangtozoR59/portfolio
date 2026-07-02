@@ -3,10 +3,69 @@
    Theme: Abyssal Deep Ocean (~4000m)
    ========================================== */
 
-/* ===== DESIGN TOKENS — ABYSSAL ===== */
+/* ===== DESIGN TOKENS ===== */
 :root {
+  /* LIGHT THEME (PRIMARY) */
+  --bg-body: #f4f7f6;
+  --bg-body-deep: #e9ecef;
+  --bg-body-bottom: #dde2e5;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-solid: #ffffff;
+  --bg-sidebar: rgba(255, 255, 255, 0.95);
+  --bg-sidebar-hover: rgba(0, 180, 216, 0.08);
+  --bg-sidebar-active: rgba(0, 180, 216, 0.12);
+
+  --text-primary: #2b2d42;
+  --text-secondary: #4a4e69;
+  --text-tertiary: #8d99ae;
+  --text-sidebar: rgba(43, 45, 66, 0.7);
+  --text-sidebar-active: #0077b6;
+
+  --accent: #0077b6;
+  --accent-light: #00b4d8;
+  --accent-glow: rgba(0, 119, 182, 0.12);
+  --accent-gradient: linear-gradient(135deg, #0077b6, #00b4d8);
+
+  --bio-blue: #00b4d8;
+  --bio-violet: #7209b7;
+  --bio-orange: #f77f00;
+
+  --success: #06d6a0;
+  --warning: #f77f00;
+  --danger: #ef476f;
+
+  --glow-cyan: 0 0 20px rgba(0, 180, 216, 0.3);
+  --glow-blue: 0 0 20px rgba(0, 119, 182, 0.3);
+  --glow-violet: 0 0 20px rgba(114, 9, 183, 0.3);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --shadow-card-hover: 0 8px 50px rgba(0, 0, 0, 0.1), 0 4px 30px rgba(0, 0, 0, 0.05);
+  --shadow-sidebar: 4px 0 30px rgba(0, 0, 0, 0.05);
+
+  --border-glow: 1px solid rgba(0, 0, 0, 0.05);
+  --border-glow-hover: 1px solid rgba(0, 119, 182, 0.25);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --sidebar-width: 280px;
+  --header-height: 64px;
+
+  --transition-fast: .2s cubic-bezier(.4,0,.2,1);
+  --transition-base: .3s cubic-bezier(.4,0,.2,1);
+  --transition-spring: .5s cubic-bezier(.175,.885,.32,1.275);
+
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+[data-theme="dark"] {
   --bg-body: #0A0A1F;
   --bg-body-deep: #0F1C2E;
+  --bg-body-bottom: #081420;
   --bg-card: rgba(10, 10, 31, 0.85);
   --bg-card-solid: #0e0e25;
   --bg-sidebar: rgba(6, 6, 20, 0.95);
@@ -43,21 +102,6 @@
 
   --border-glow: 1px solid rgba(0, 245, 212, 0.1);
   --border-glow-hover: 1px solid rgba(0, 245, 212, 0.25);
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-
-  --sidebar-width: 280px;
-  --header-height: 64px;
-
-  --transition-fast: .2s cubic-bezier(.4,0,.2,1);
-  --transition-base: .3s cubic-bezier(.4,0,.2,1);
-  --transition-spring: .5s cubic-bezier(.175,.885,.32,1.275);
-
-  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
 }
 
 /* ===== RESET ===== */
@@ -75,7 +119,7 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-body-deep) 40%, #081420 100%);
+  background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-body-deep) 40%, var(--bg-body-bottom) 100%);
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
@@ -578,8 +622,8 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(10, 10, 31, 0.95), rgba(15, 28, 46, 0.95));
-  color: #fff;
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-body-deep));
+  color: var(--text-primary);
   position: relative;
   overflow: hidden;
   border-color: rgba(155, 77, 255, 0.15);
@@ -596,7 +640,7 @@ h1, h2, h3, h4 {
   border-color: rgba(155, 77, 255, 0.15);
 }
 .panel-quote .panel-header h3 {
-  color: rgba(255,255,255,.8);
+  color: var(--text-primary);
 }
 
 .panel-quote::after {
@@ -623,7 +667,7 @@ h1, h2, h3, h4 {
   font-size: 1.15rem;
   font-style: italic;
   line-height: 1.7;
-  color: rgba(255,255,255,.9);
+  color: var(--text-primary);
   margin-bottom: 16px;
   transition: opacity .6s ease;
   text-shadow: 0 0 30px rgba(155, 77, 255, 0.08);

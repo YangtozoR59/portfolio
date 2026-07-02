@@ -285,4 +285,34 @@
     }
   });
 
+  // ===== THEME TOGGLE =====
+  const themeToggle = document.getElementById('themeToggle');
+  const themeToggleIcon = document.getElementById('themeToggleIcon');
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem('portfolioTheme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
+    }
+  }
+
+  function toggleTheme() {
+    if (document.documentElement.hasAttribute('data-theme')) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('portfolioTheme', 'light');
+      themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('portfolioTheme', 'dark');
+      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
+    }
+  }
+
+  themeToggle?.addEventListener('click', toggleTheme);
+  initTheme();
+
 })();
