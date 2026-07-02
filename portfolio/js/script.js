@@ -288,15 +288,18 @@
   // ===== THEME TOGGLE =====
   const themeToggle = document.getElementById('themeToggle');
   const themeToggleIcon = document.getElementById('themeToggleIcon');
+  const themeMetaTag = document.querySelector('meta[name="theme-color"]');
 
   function initTheme() {
     const savedTheme = localStorage.getItem('portfolioTheme');
     if (savedTheme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
     } else {
       document.documentElement.removeAttribute('data-theme');
       themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f4f7f6');
     }
   }
 
@@ -305,10 +308,12 @@
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('portfolioTheme', 'light');
       themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f4f7f6');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('portfolioTheme', 'dark');
       themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
     }
   }
 

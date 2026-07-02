@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 6, 20, 0.85);
+  background: rgba(var(--bg-overlay-rgb), 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   opacity: 0;
@@ -28,8 +28,8 @@
   top: 24px;
   right: 24px;
   z-index: 1060;
-  background: rgba(0, 245, 212, 0.1);
-  border: 1px solid rgba(0, 245, 212, 0.2);
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   color: var(--accent, #00F5D4);
   width: 48px;
   height: 48px;
@@ -44,9 +44,9 @@
 }
 
 .gol-close:hover {
-  background: rgba(0, 245, 212, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.3);
 }
 
 /* ===== TOGGLE BUTTON ===== */
@@ -58,10 +58,10 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(6, 6, 20, 0.85);
+  background: rgba(var(--bg-overlay-rgb), 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 245, 212, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   color: var(--accent, #00F5D4);
   font-size: 1.2rem;
   cursor: pointer;
@@ -73,10 +73,10 @@
 }
 
 .gol-toggle:hover {
-  background: rgba(0, 245, 212, 0.15);
-  border-color: rgba(0, 245, 212, 0.4);
+  background: rgba(var(--accent-rgb), 0.15);
+  border-color: rgba(var(--accent-rgb), 0.4);
   transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.3);
 }
 
 /* ===== GOL CONTAINER (GLASSMORPHISM) ===== */
@@ -84,9 +84,9 @@
   width: min(95vw, 850px);
   max-height: 90vh;
   overflow-y: auto;
-  background: var(--bg-card, rgba(10, 10, 31, 0.85));
+  background: var(--bg-card, rgba(var(--bg-card-rgb), 0.85));
   border-radius: var(--radius-lg, 16px);
-  border: var(--border-glow, 1px solid rgba(0, 245, 212, 0.1));
+  border: var(--border-glow, 1px solid rgba(var(--accent-rgb), 0.1));
   box-shadow: var(--shadow-card, 0 4px 30px rgba(0, 0, 0, 0.4));
   padding: 32px;
   transform: translateY(40px) scale(0.95);
@@ -105,11 +105,11 @@
   background: transparent;
 }
 .gol-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 245, 212, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   border-radius: 4px;
 }
 .gol-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 245, 212, 0.4);
+  background: rgba(var(--accent-rgb), 0.4);
 }
 
 /* Header reused from existing app-header */

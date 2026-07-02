@@ -10,7 +10,7 @@
   inset: -1px;
   border-radius: inherit;
   background: transparent;
-  border: 1px solid rgba(0, 245, 212, 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   animation: biolumPulse 2s ease-in-out infinite;
   pointer-events: none;
   z-index: -1;
@@ -18,12 +18,12 @@
 
 @keyframes biolumPulse {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(0, 245, 212, 0.05),
-                inset 0 0 5px rgba(0, 245, 212, 0.02);
+    box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.05),
+                inset 0 0 5px rgba(var(--accent-rgb), 0.02);
   }
   50% {
-    box-shadow: 0 0 20px rgba(0, 245, 212, 0.1),
-                inset 0 0 15px rgba(0, 245, 212, 0.04);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.1),
+                inset 0 0 15px rgba(var(--accent-rgb), 0.04);
   }
 }
 
@@ -38,8 +38,8 @@
   background: radial-gradient(
     ellipse at center,
     transparent 50%,
-    rgba(6, 6, 20, 0.4) 80%,
-    rgba(6, 6, 20, 0.7) 100%
+    rgba(var(--bg-overlay-rgb), 0.4) 80%,
+    rgba(var(--bg-overlay-rgb), 0.7) 100%
   );
 }
 
@@ -68,7 +68,7 @@
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--accent);
-  text-shadow: 0 0 15px rgba(0, 245, 212, 0.4);
+  text-shadow: 0 0 15px rgba(var(--accent-rgb), 0.4);
   letter-spacing: 0.02em;
 }
 
@@ -82,7 +82,7 @@
 .depth-bar {
   width: 3px;
   height: 60px;
-  background: rgba(0, 245, 212, 0.1);
+  background: rgba(var(--accent-rgb), 0.1);
   border-radius: 2px;
   margin-top: 4px;
   position: relative;
@@ -97,7 +97,7 @@
   background: var(--accent-gradient);
   border-radius: 2px;
   transition: height 0.5s ease;
-  box-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
 }
 
 /* ===== BUBBLE RISE ANIMATION (CSS backup for simple bubbles) ===== */
@@ -121,7 +121,7 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  border: 1px solid rgba(0, 245, 212, 0.3);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
   pointer-events: none;
   z-index: 9999;
   animation: clickRippleExpand 0.8s ease-out forwards;
@@ -181,7 +181,7 @@
   height: 120px;
   background: linear-gradient(
     to top,
-    rgba(0, 245, 212, 0.03),
+    rgba(var(--accent-rgb), 0.03),
     transparent
   );
   pointer-events: none;
@@ -195,7 +195,7 @@
   top: 0;
   bottom: 0;
   width: 0;
-  background: linear-gradient(90deg, rgba(0, 245, 212, 0.08), transparent);
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.08), transparent);
   transition: width 0.4s ease;
   border-radius: var(--radius-sm);
   pointer-events: none;
@@ -216,7 +216,7 @@
   background: linear-gradient(
     45deg,
     transparent 40%,
-    rgba(0, 245, 212, 0.03) 50%,
+    rgba(var(--accent-rgb), 0.03) 50%,
     transparent 60%
   );
   transform: rotate(0deg);
@@ -236,7 +236,7 @@
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.4s ease;
-  box-shadow: inset 0 0 30px rgba(0, 245, 212, 0.05);
+  box-shadow: inset 0 0 30px rgba(var(--accent-rgb), 0.05);
   pointer-events: none;
 }
 
@@ -252,7 +252,7 @@
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.3s ease;
-  background: radial-gradient(circle at center, rgba(0, 245, 212, 0.04), transparent 70%);
+  background: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.04), transparent 70%);
   pointer-events: none;
 }
 
@@ -273,7 +273,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 245, 212, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.15), transparent);
   transition: left 0.5s ease;
   pointer-events: none;
 }
@@ -290,10 +290,10 @@
 
 @keyframes inputGlow {
   0%, 100% {
-    box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.08), 0 0 10px rgba(0, 245, 212, 0.05);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.08), 0 0 10px rgba(var(--accent-rgb), 0.05);
   }
   50% {
-    box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.15), 0 0 20px rgba(0, 245, 212, 0.1);
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.15), 0 0 20px rgba(var(--accent-rgb), 0.1);
   }
 }
 
@@ -318,8 +318,8 @@
     background: radial-gradient(
       ellipse at center,
       transparent 40%,
-      rgba(6, 6, 20, 0.5) 80%,
-      rgba(6, 6, 20, 0.8) 100%
+      rgba(var(--bg-overlay-rgb), 0.5) 80%,
+      rgba(var(--bg-overlay-rgb), 0.8) 100%
     );
   }
 
