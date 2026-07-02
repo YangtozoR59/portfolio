@@ -292,14 +292,14 @@
 
   function initTheme() {
     const savedTheme = localStorage.getItem('portfolioTheme');
-    if (savedTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
-      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
-    } else {
+    if (savedTheme === 'light') {
       document.documentElement.removeAttribute('data-theme');
       themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
       if (themeMetaTag) themeMetaTag.setAttribute('content', '#f4f7f6');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
     }
   }
 
