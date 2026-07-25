@@ -165,6 +165,10 @@
       fish_contact_label: 'Contact',
       fish_cv_name: 'Étoile de Mer',
       fish_cv_label: 'Télécharger CV',
+      mode_toggle_fishing: 'Passer en mode pêche',
+      mode_toggle_classic: 'Passer en mode classique',
+      mode_name_fishing: 'Passer en mode pêche',
+      mode_name_classic: 'Passer en mode classique',
 
       // === CRYPTOLAB ===
       crypto_title: 'CryptoLab',
@@ -356,6 +360,10 @@
       fish_contact_label: 'Contact',
       fish_cv_name: 'Starfish',
       fish_cv_label: 'Download CV',
+      mode_toggle_fishing: 'Switch to fishing mode',
+      mode_toggle_classic: 'Switch to classic mode',
+      mode_name_fishing: 'Switch to fishing mode',
+      mode_name_classic: 'Switch to classic mode',
 
       // === CRYPTOLAB ===
       crypto_title: 'CryptoLab',
