@@ -905,6 +905,7 @@ h1, h2, h3, h4 {
   border-top: 1px solid rgba(var(--accent-rgb), 0.06);
   justify-content: center;
   max-width: 780px;
+  grid-column: 1 / -1;
 }
 .tech-logo-item {
   display: flex;
