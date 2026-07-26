@@ -28,6 +28,8 @@
       // === DASHBOARD HEADER ===
       dash_greeting: 'Bienvenue sur mon espace',
       btn_download_cv: 'Télécharger mon CV',
+      btn_download_cv_fr: 'CV Français',
+      btn_download_cv_en: 'CV Anglais',
 
       // === STATS ===
       stats_title: "Vue d'ensemble",
@@ -58,6 +60,7 @@
 
       // === SKILLS ===
       skills_title: 'Compétences techniques',
+      skills_frameworks_title: 'Frameworks JavaScript',
 
       // === PROJECTS ===
       projects_title: 'Projets sélectionnés',
@@ -223,6 +226,8 @@
       // === DASHBOARD HEADER ===
       dash_greeting: 'Welcome to my space',
       btn_download_cv: 'Download my CV',
+      btn_download_cv_fr: 'CV French',
+      btn_download_cv_en: 'CV English',
 
       // === STATS ===
       stats_title: 'Overview',
@@ -253,6 +258,7 @@
 
       // === SKILLS ===
       skills_title: 'Technical skills',
+      skills_frameworks_title: 'JavaScript frameworks',
 
       // === PROJECTS ===
       projects_title: 'Selected projects',

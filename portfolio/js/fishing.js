@@ -604,7 +604,7 @@
         }
       } else if (fish.sp.id === 'cv') {
         if (content) {
-          content.innerHTML = `<div class="cv-catch-content"><h3>📄 ${t('cv_download_title', 'Télécharger mon CV')}</h3><p>${t('cv_catch_text', "Vous avez attrapé l'Étoile de Mer ! Récupérez mon CV.")}</p><div class="cv-btns"><a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV Français</a><a href="./source/CV_Caleb_Yang en-US.pdf" download="CV_Caleb_Yang_EN.pdf" class="btn-download-cv"><i class="bi bi-file-earmark-arrow-down"></i> CV English</a></div></div>`;
+          content.innerHTML = `<div class="cv-catch-content"><h3>📄 ${t('cv_download_title', 'Télécharger mon CV')}</h3><p>${t('cv_catch_text', "Vous avez attrapé l'Étoile de Mer ! Récupérez mon CV.")}</p><div class="cv-btns"><a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang_FR.pdf" class="btn-download-cv" aria-label="${t('btn_download_cv_fr', 'CV Français')}"><i class="bi bi-file-earmark-arrow-down"></i> ${t('btn_download_cv_fr', 'CV Français')}</a><a href="./source/CV_Caleb_Yang en-US.pdf" download="CV_Caleb_Yang_EN.pdf" class="btn-download-cv" aria-label="${t('btn_download_cv_en', 'CV English')}"><i class="bi bi-file-earmark-arrow-down"></i> ${t('btn_download_cv_en', 'CV English')}</a></div></div>`;
         }
       }
 

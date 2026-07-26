@@ -439,14 +439,26 @@
         <span></span><span></span><span></span>
       </button>
       <h1 class="mobile-brand">Caleb Yang</h1>
-      <a
-        href="./source/CV_Caleb_Yang FR.pdf"
-        download="CV_Caleb_Yang.pdf"
-        class="mobile-cv-btn"
-        aria-label="Télécharger CV"
-      >
-        <i class="bi bi-download"></i>
-      </a>
+      <div class="mobile-cv-actions">
+        <a
+          href="./source/CV_Caleb_Yang FR.pdf"
+          download="CV_Caleb_Yang.pdf"
+          class="mobile-cv-btn"
+          aria-label="Télécharger CV Français"
+        >
+          <i class="bi bi-file-earmark-arrow-down"></i>
+          <span>FR</span>
+        </a>
+        <a
+          href="./source/CV_Caleb_Yang en-US.pdf"
+          download="CV_Caleb_Yang_EN.pdf"
+          class="mobile-cv-btn"
+          aria-label="Télécharger CV Anglais"
+        >
+          <i class="bi bi-file-earmark-arrow-down"></i>
+          <span>EN</span>
+        </a>
+      </div>
     </header>
 
     <!-- ========== MAIN DASHBOARD ========== -->
@@ -461,14 +473,24 @@
             <span class="dash-date" id="liveDate"></span>
           </p>
         </div>
-        <div class="dash-header-right">
+        <div class="dash-header-right cv-download-group">
           <a
             href="./source/CV_Caleb_Yang FR.pdf"
-            download="CV_Caleb_Yang.pdf"
+            download="CV_Caleb_Yang_FR.pdf"
             class="btn-download-cv"
+            aria-label="Télécharger CV Français"
           >
             <i class="bi bi-file-earmark-arrow-down"></i>
-            <span data-i18n="btn_download_cv">Télécharger mon CV</span>
+            <span data-i18n="btn_download_cv_fr">CV Français</span>
+          </a>
+          <a
+            href="./source/CV_Caleb_Yang en-US.pdf"
+            download="CV_Caleb_Yang_EN.pdf"
+            class="btn-download-cv"
+            aria-label="Télécharger CV Anglais"
+          >
+            <i class="bi bi-file-earmark-arrow-down"></i>
+            <span data-i18n="btn_download_cv_en">CV Anglais</span>
           </a>
         </div>
       </header>
@@ -698,88 +720,23 @@
               </div>
               <div class="skill-bar-item">
                 <div class="skill-info">
-                  <span>Docker</span><span class="skill-pct">70%</span>
-                </div>
-                <div class="skill-track">
-                  <div class="skill-fill" data-width="70"></div>
-                </div>
-              </div>
-              <div class="skill-bar-item">
-                <div class="skill-info">
-                  <span>Git / GitHub</span><span class="skill-pct">90%</span>
-                </div>
-                <div class="skill-track">
-                  <div class="skill-fill" data-width="90"></div>
-                </div>
-              </div>
-              <div class="skill-bar-item">
-                <div class="skill-info">
-                  <span>Firebase</span><span class="skill-pct">72%</span>
+                  <span>CI/CD & Docker</span><span class="skill-pct">72%</span>
                 </div>
                 <div class="skill-track">
                   <div class="skill-fill" data-width="72"></div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Tech icons row -->
-          <div class="tech-icons-row">
-            <img src="./source/laravel.svg" alt="Laravel" title="Laravel" />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
-              alt="Flutter"
-              title="Flutter"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-              alt="Node.js"
-              title="Node.js"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
-              alt="PostgreSQL"
-              title="PostgreSQL"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-              alt="MySQL"
-              title="MySQL"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-              alt="Docker"
-              title="Docker"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-              alt="Git"
-              title="Git"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg"
-              alt="Firebase"
-              title="Firebase"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-              alt="JavaScript"
-              title="JavaScript"
-            />
-            <img
-              src="./source/tailwind.svg"
-              alt="Tailwind"
-              title="Tailwind CSS"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
-              alt="Bootstrap"
-              title="Bootstrap"
-            />
-            <img
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-              alt="GitHub"
-              title="GitHub"
-            />
+            <div class="skill-icons-label" data-i18n="skills_frameworks_title">Frameworks</div>
+            <div class="tech-icons-row" aria-label="JavaScript frameworks">
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/react.svg" alt="React" title="React" />
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nextdotjs.svg" alt="Next.js" title="Next.js" />
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/angular.svg" alt="Angular" title="Angular" />
+              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/vuedotjs.svg" alt="Vue.js" title="Vue.js" />
+              <img src="/source/tailwind.svg" alt="Tailwind CSS" title="Tailwind CSS" />
+              <img src="/source/bootstrap-plain-wordmark.svg" alt="Bootstrap" title="Bootstrap" />
+              <img src="/source/laravel.svg" alt="Laravel" title="Laravel" />
+            </div>
           </div>
         </div>
       </div>
