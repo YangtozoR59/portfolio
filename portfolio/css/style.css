@@ -924,8 +924,8 @@ h1, h2, h3, h4 {
 .tech-icons-row img {
   width: 36px; height: 36px;
   transition: all var(--transition-spring);
-  filter: grayscale(.6) brightness(0.8);
-  opacity: .7;
+  filter: none;
+  opacity: .92;
   animation: tech-icon-glow 4.8s linear infinite;
 }
 .tech-icons-row .tech-logo-item:nth-child(1) img { animation-delay: 0s; }
@@ -951,10 +951,10 @@ h1, h2, h3, h4 {
 }
 @keyframes tech-icon-glow {
   0%, 100% { filter: grayscale(.6) brightness(0.8); opacity: .7; transform: translateY(0) scale(1); }
-  20% { filter: grayscale(0) brightness(1.1); opacity: 1; transform: translateY(-3px) scale(1.05); }
-  40% { filter: grayscale(.4) brightness(0.95); opacity: .85; transform: translateY(-1px) scale(1.02); }
+  20% { filter: grayscale(0) brightness(1.1); opacity: 1; transform: translateY(-4px) scale(1.2); }
+  40% { filter: grayscale(.4) brightness(0.95); opacity: .9; transform: translateY(-2px) scale(1.1); }
   60% { filter: grayscale(.6) brightness(0.9); opacity: .75; transform: translateY(0) scale(1); }
-  80% { filter: grayscale(.5) brightness(1); opacity: .8; transform: translateY(-2px) scale(1.03); }
+  80% { filter: grayscale(.5) brightness(1); opacity: .85; transform: translateY(-2px) scale(1.1); }
 }
 
 /* ==========================================
