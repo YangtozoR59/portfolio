@@ -60,7 +60,6 @@
 
       // === SKILLS ===
       skills_title: 'Compétences techniques',
-      skills_frameworks_title: 'Frameworks JavaScript',
 
       // === PROJECTS ===
       projects_title: 'Projets sélectionnés',
@@ -258,7 +257,6 @@
 
       // === SKILLS ===
       skills_title: 'Technical skills',
-      skills_frameworks_title: 'JavaScript frameworks',
 
       // === PROJECTS ===
       projects_title: 'Selected projects',
