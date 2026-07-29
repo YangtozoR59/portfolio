@@ -6,30 +6,30 @@
 /* ===== DESIGN TOKENS ===== */
 :root {
   /* LIGHT THEME (PRIMARY) */
-  --bg-body: #f4f7f6;
-  --bg-body-deep: #e9ecef;
-  --bg-body-bottom: #dde2e5;
-  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-body: #f5f7fb;
+  --bg-body-deep: #eef2f7;
+  --bg-body-bottom: #e5eaf2;
+  --bg-card: #ffffff;
   --bg-card-solid: #ffffff;
-  --bg-sidebar: rgba(255, 255, 255, 0.95);
-  --bg-sidebar-hover: rgba(0, 180, 216, 0.08);
-  --bg-sidebar-active: rgba(0, 180, 216, 0.12);
+  --bg-sidebar: #ffffff;
+  --bg-sidebar-hover: rgba(37, 99, 235, 0.06);
+  --bg-sidebar-active: rgba(37, 99, 235, 0.1);
 
-  --text-primary: #2b2d42;
-  --text-secondary: #4a4e69;
-  --text-tertiary: #8d99ae;
-  --text-sidebar: rgba(43, 45, 66, 0.7);
-  --text-sidebar-active: #0077b6;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-sidebar: #475569;
+  --text-sidebar-active: #1d4ed8;
 
-  --accent-rgb: 0, 119, 182;
+  --accent-rgb: 59, 130, 246;
   --bg-overlay-rgb: 255, 255, 255;
   --bg-card-rgb: 255, 255, 255;
   --text-rgb: 43, 45, 66;
 
-  --accent: #0077b6;
-  --accent-light: #00b4d8;
-  --accent-glow: rgba(0, 119, 182, 0.12);
-  --accent-gradient: linear-gradient(135deg, #0077b6, #00b4d8);
+  --accent: #2563eb;
+  --accent-light: #60a5fa;
+  --accent-glow: rgba(37, 99, 235, 0.08);
+  --accent-gradient: linear-gradient(135deg, #2563eb, #3b82f6);
 
   --bio-blue: #00b4d8;
   --bio-violet: #7209b7;
@@ -39,25 +39,25 @@
   --warning: #f77f00;
   --danger: #ef476f;
 
-  --glow-cyan: 0 0 20px rgba(0, 180, 216, 0.3);
-  --glow-blue: 0 0 20px rgba(0, 119, 182, 0.3);
-  --glow-violet: 0 0 20px rgba(114, 9, 183, 0.3);
+  --glow-cyan: 0 0 12px rgba(37, 99, 235, 0.12);
+  --glow-blue: 0 0 12px rgba(59, 130, 246, 0.12);
+  --glow-violet: 0 0 12px rgba(114, 9, 183, 0.12);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-  --shadow-card-hover: 0 12px 28px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.04);
-  --shadow-sidebar: 4px 0 20px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-card-hover: 0 6px 16px rgba(15, 23, 42, 0.08);
+  --shadow-sidebar: 4px 0 16px rgba(15, 23, 42, 0.05);
 
-  --border-glow: 1px solid rgba(0, 0, 0, 0.06);
-  --border-glow-hover: 1px solid rgba(0, 119, 182, 0.2);
+  --border-glow: 1px solid #e2e8f0;
+  --border-glow-hover: 1px solid rgba(37, 99, 235, 0.25);
 
   --text-shadow-glow: none;
-  --box-shadow-glow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --box-shadow-glow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
-  --btn-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  --btn-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --border-subtle: 1px solid rgba(0, 0, 0, 0.08);
-  --border-subtle-hover: 1px solid rgba(0, 119, 182, 0.3);
+  --box-shadow-glow: 0 4px 10px rgba(37, 99, 235, 0.08);
+  --box-shadow-glow-hover: 0 8px 18px rgba(37, 99, 235, 0.12);
+  --btn-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --btn-shadow-hover: 0 4px 12px rgba(15, 23, 42, 0.1);
+  --border-subtle: 1px solid #e2e8f0;
+  --border-subtle-hover: 1px solid #93c5fd;
   --nav-indicator-glow: none;
 
   --radius-sm: 8px;
@@ -147,7 +147,7 @@ html {
 
 body {
   font-family: var(--font-main);
-  background: linear-gradient(180deg, var(--bg-body) 0%, var(--bg-body-deep) 40%, var(--bg-body-bottom) 100%);
+  background: #f8fafc;
   background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
@@ -158,6 +158,22 @@ body {
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
+
+#abyssCanvas,
+.dive-lamp,
+.abyss-vignette,
+.depth-indicator,
+.fishing-mode,
+.fishing-intro,
+.catch-reveal,
+.mode-toggle,
+.gol-toggle,
+.crypto-toggle,
+.catch-journal,
+.crypto-mode,
+.gol-mode {
+  display: none !important;
+}
 
 h1, h2, h3, h4 {
   font-weight: 700;
@@ -530,8 +546,8 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 8px;
   padding: 10px 22px;
-  background: var(--accent-gradient);
-  color: var(--bg-body);
+  background: #1d4ed8;
+  color: #ffffff;
   font-weight: 700;
   font-size: .88rem;
   border-radius: var(--radius-md);
@@ -540,9 +556,10 @@ h1, h2, h3, h4 {
   border: none;
 }
 .btn-download-cv:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--btn-shadow-hover);
-  color: var(--bg-body);
+  background: #1e40af;
+  color: #ffffff;
 }
 .btn-download-cv i { font-size: 1.1rem; }
 
@@ -568,8 +585,6 @@ h1, h2, h3, h4 {
   box-shadow: var(--shadow-card);
   transition: all var(--transition-base);
   border: var(--border-glow);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   position: relative;
   overflow: hidden;
 }
@@ -626,18 +641,18 @@ h1, h2, h3, h4 {
 }
 
 .stat-card {
-  background: rgba(var(--accent-rgb), 0.03);
+  background: #f8fbff;
   border-radius: var(--radius-md);
   padding: 20px 16px;
   text-align: center;
   transition: all var(--transition-spring);
-  border: 1px solid rgba(var(--accent-rgb), 0.06);
+  border: 1px solid #e2e8f0;
 }
 .stat-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: var(--box-shadow-glow);
   border-color: var(--border-subtle-hover);
-  background: rgba(var(--accent-rgb), 0.06);
+  background: #f5faff;
 }
 
 .stat-icon {
@@ -677,10 +692,10 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
   position: relative;
   overflow: hidden;
-  border-color: rgba(155, 77, 255, 0.15);
+  border-color: rgba(37, 99, 235, 0.12);
 }
 .panel-quote:hover {
-  border-color: rgba(155, 77, 255, 0.3);
+  border-color: rgba(37, 99, 235, 0.2);
 }
 .panel-quote .panel-header {
   border-bottom-color: rgba(155, 77, 255, 0.1);
@@ -699,8 +714,8 @@ h1, h2, h3, h4 {
   position: absolute;
   top: 20px; right: 24px;
   font-size: 8rem;
-  font-family: var(--font-serif);
-  color: rgba(155, 77, 255, 0.06);
+  font-family: var(--font-main);
+  color: rgba(37, 99, 235, 0.06);
   line-height: 1;
   pointer-events: none;
 }
@@ -714,8 +729,8 @@ h1, h2, h3, h4 {
 }
 
 .quote-text {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-family: var(--font-main);
+  font-size: 1.05rem;
   font-style: italic;
   line-height: 1.7;
   color: var(--text-primary);

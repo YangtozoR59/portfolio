@@ -22,11 +22,11 @@
       nav_contact: 'Contact',
 
       // === SIDEBAR ===
-      sidebar_role: 'Software Engineer',
+      sidebar_role: 'Ingénieur logiciel',
       sidebar_location: 'Ngaoundéré, Cameroun',
 
       // === DASHBOARD HEADER ===
-      dash_greeting: 'Bienvenue sur mon espace',
+      dash_greeting: 'Portfolio professionnel',
       btn_download_cv: 'Télécharger mon CV',
       btn_download_cv_fr: 'CV Français',
       btn_download_cv_en: 'CV Anglais',
@@ -219,11 +219,11 @@
       nav_contact: 'Contact',
 
       // === SIDEBAR ===
-      sidebar_role: 'Software Engineer',
+      sidebar_role: 'Software engineer',
       sidebar_location: 'Ngaoundéré, Cameroon',
 
       // === DASHBOARD HEADER ===
-      dash_greeting: 'Welcome to my space',
+      dash_greeting: 'Professional portfolio',
       btn_download_cv: 'Download my CV',
       btn_download_cv_fr: 'CV French',
       btn_download_cv_en: 'CV English',
