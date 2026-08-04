@@ -121,6 +121,10 @@
   </head>
 
   <body>
+    <!-- Skyscraper Ambient Canvas Background -->
+    <canvas id="skylineCanvas"></canvas>
+    <div class="skyscraper-glass-sheen"></div>
+
     <!-- Floating Top Control Bar (Language & Theme Toggles) -->
     <div class="top-controls-bar">
       <button class="control-btn lang-toggle" id="langToggle" title="Switch language" aria-label="Switch language">
@@ -1292,6 +1296,20 @@
 
     <!-- Overlay for mobile sidebar -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Quick View Project Modal -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="project-modal-overlay" id="modalOverlay"></div>
+      <div class="project-modal-container">
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fermer"><i class="bi bi-x-lg"></i></button>
+        <div class="modal-body" id="modalBody">
+          <!-- Dynamic Modal Content -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Skyscraper Background Script -->
+    <script src="./js/skyscraper-bg.js"></script>
 
     <!-- Custom JS -->
     <script src="./js/script.js"></script>

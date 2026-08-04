@@ -384,6 +384,80 @@
         });
       });
     });
+  // ===== 3D CARD PERSPECTIVE TILT =====
+  const tiltCards = document.querySelectorAll('.project-card, .tech-card');
+  tiltCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
+  });
+
+  // ===== PROJECT QUICK VIEW MODAL =====
+  const projectModal = document.getElementById('projectModal');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const modalBody = document.getElementById('modalBody');
+
+  function openProjectModal(card) {
+    if (!projectModal || !modalBody) return;
+
+    const img = card.querySelector('.project-img img')?.src || '';
+    const title = card.querySelector('h4')?.textContent || '';
+    const desc = card.querySelector('.project-body p')?.textContent || '';
+    const role = card.querySelector('.project-role')?.textContent || '';
+    const date = card.querySelector('.project-date')?.textContent || '';
+    const tech = card.querySelector('.project-tech')?.innerHTML || '';
+    const links = Array.from(card.querySelectorAll('.project-link')).map(a => a.outerHTML).join(' ');
+
+    modalBody.innerHTML = `
+      <div class="modal-project-img">
+        ${img ? `<img src="${img}" alt="${title}" />` : ''}
+      </div>
+      <div class="modal-project-info">
+        <h3>${title}</h3>
+        ${role ? `<p class="modal-role"><i class="bi bi-person-badge"></i> ${role}</p>` : ''}
+        <p class="modal-desc">${desc}</p>
+        <div class="modal-tech">${tech}</div>
+        ${date ? `<div class="modal-date"><i class="bi bi-calendar3"></i> ${date}</div>` : ''}
+        <div class="modal-links">${links}</div>
+      </div>
+    `;
+
+    projectModal.classList.add('open');
+    projectModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
   }
+
+  function closeProjectModal() {
+    if (!projectModal) return;
+    projectModal.classList.remove('open');
+    projectModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      openProjectModal(card);
+    });
+  });
+
+  modalOverlay?.addEventListener('click', closeProjectModal);
+  modalCloseBtn?.addEventListener('click', closeProjectModal);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeProjectModal();
+  });
 
 })();
