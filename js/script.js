@@ -266,7 +266,6 @@
         formMessage.textContent = t('contact_error', "❌ Erreur lors de l'envoi. Veuillez réessayer.");
         formMessage.className = 'form-message error';
       }
-
       btn.innerHTML = originalText;
       btn.disabled = false;
 
@@ -339,9 +338,16 @@
     }
   }
 
-  document.querySelectorAll('.theme-toggle').forEach(btn => {
-    btn.addEventListener('click', toggleTheme);
+  // Global event delegation for theme buttons
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.theme-toggle');
+    if (btn) {
+      e.preventDefault();
+      toggleTheme();
+    }
   });
+
+  window.toggleTheme = toggleTheme;
   initTheme();
 
   // ===== PROJECT CATEGORY FILTERING =====
@@ -350,27 +356,21 @@
 
   if (filterBtns.length > 0 && projectCards.length > 0) {
     filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.dataset.filter;
+        const filter = btn.dataset.filter || 'all';
         projectCards.forEach(card => {
           const categories = (card.dataset.category || '').split(' ');
           if (filter === 'all' || categories.includes(filter)) {
-            card.style.display = '';
-            requestAnimationFrame(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            });
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
           } else {
+            card.style.display = 'none';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(15px)';
-            setTimeout(() => {
-              if (!card.classList.contains('active-filter')) {
-                card.style.display = 'none';
-              }
-            }, 250);
           }
         });
       });
@@ -383,31 +383,27 @@
 
   if (skillFilterBtns.length > 0 && techCards.length > 0) {
     skillFilterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         skillFilterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.dataset.skillFilter;
+        const filter = btn.dataset.skillFilter || 'all';
         techCards.forEach(card => {
           const category = card.dataset.techCat || '';
           if (filter === 'all' || category === filter) {
-            card.style.display = '';
-            requestAnimationFrame(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            });
+            card.style.display = 'flex';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
           } else {
+            card.style.display = 'none';
             card.style.opacity = '0';
-            card.style.transform = 'translateY(15px)';
-            setTimeout(() => {
-              if (btn.dataset.skillFilter !== 'all' && card.dataset.techCat !== btn.dataset.skillFilter) {
-                card.style.display = 'none';
-              }
-            }, 250);
           }
         });
       });
     });
+  }
+
   // ===== 3D CARD PERSPECTIVE TILT =====
   const tiltCards = document.querySelectorAll('.project-card, .tech-card');
   tiltCards.forEach(card => {
