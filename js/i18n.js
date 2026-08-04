@@ -25,11 +25,22 @@
       sidebar_role: 'Ingénieur logiciel',
       sidebar_location: 'Ngaoundéré, Cameroun',
 
-      // === DASHBOARD HEADER ===
+      // === DASHBOARD HEADER & HERO ===
       dash_greeting: 'Portfolio professionnel',
+      hero_status: '🟢 Disponible pour opportunités Freelance & CDI',
+      hero_tagline: 'Software Engineer • Full-Stack Web & Mobile',
+      hero_bio_short: 'Spécialisé en <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. Je conçois, architecte et déploie des applications web et mobiles performantes, robustes et orientées utilisateur.',
+      hero_btn_projects: 'Explorer les projets',
+      hero_btn_contact: 'Contact',
       btn_download_cv: 'Télécharger mon CV',
       btn_download_cv_fr: 'CV Français',
       btn_download_cv_en: 'CV Anglais',
+
+      // === FILTERS ===
+      filter_all: 'Tous',
+      filter_web: 'Full-Stack & Web',
+      filter_mobile: 'Mobile',
+      filter_interactive: '3D & Outils',
 
       // === STATS ===
       stats_title: "Vue d'ensemble",
@@ -222,11 +233,22 @@
       sidebar_role: 'Software engineer',
       sidebar_location: 'Ngaoundéré, Cameroon',
 
-      // === DASHBOARD HEADER ===
+      // === DASHBOARD HEADER & HERO ===
       dash_greeting: 'Professional portfolio',
+      hero_status: '🟢 Open to Freelance & Full-Time opportunities',
+      hero_tagline: 'Software Engineer • Full-Stack Web & Mobile',
+      hero_bio_short: 'Specialized in <strong>Laravel</strong>, <strong>Express.js</strong> and <strong>Flutter</strong>. I design, architect and deliver robust, high-performance web and mobile applications.',
+      hero_btn_projects: 'Explore Projects',
+      hero_btn_contact: 'Contact Me',
       btn_download_cv: 'Download my CV',
       btn_download_cv_fr: 'CV French',
       btn_download_cv_en: 'CV English',
+
+      // === FILTERS ===
+      filter_all: 'All',
+      filter_web: 'Full-Stack & Web',
+      filter_mobile: 'Mobile',
+      filter_interactive: '3D & Tools',
 
       // === STATS ===
       stats_title: 'Overview',

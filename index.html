@@ -87,10 +87,10 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./site.webmanifest" />
 
     <!-- Mobile Config -->
     <meta name="theme-color" content="#0A0A1F" />
@@ -114,7 +114,7 @@
     />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
     <!-- i18n (must load before other scripts) -->
     <script src="./js/i18n.js"></script>
@@ -206,7 +206,7 @@
       </div>
     </aside>
 
-    ========== MOBILE HEADER ==========
+    <!-- ========== MOBILE HEADER ========== -->
     <header class="mobile-header" id="mobileHeader">
       <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
@@ -216,35 +216,45 @@
 
     <!-- ========== MAIN DASHBOARD ========== -->
     <main class="dashboard">
-      <!-- Dashboard Header -->
-      <header class="dash-header" id="dashboard">
-        <div class="dash-header-left">
-          <h1 class="dash-greeting" data-i18n="dash_greeting">Bienvenue sur mon espace</h1>
-          <p class="dash-subtitle">
-            <span class="dash-clock" id="liveClock"></span>
-            <span class="dash-separator">·</span>
-            <span class="dash-date" id="liveDate"></span>
+      <!-- Hero / Dashboard Header -->
+      <header class="dash-header hero-panel reveal-card" id="dashboard">
+        <div class="hero-left">
+          <div class="hero-status-pill">
+            <span class="status-dot"></span>
+            <span data-i18n="hero_status">🟢 Disponible pour opportunités Freelance & CDI</span>
+          </div>
+          <h1 class="hero-title">Caleb Yang</h1>
+          <p class="hero-tagline" data-i18n="hero_tagline">Software Engineer • Full-Stack Web & Mobile</p>
+          <p class="hero-bio-short" data-i18n="hero_bio_short">
+            Spécialisé en <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. Je conçois, architecte et déploie des applications web et mobiles performantes, robustes et orientées utilisateur.
           </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-hero btn-hero-primary">
+              <i class="bi bi-rocket-takeoff"></i>
+              <span data-i18n="hero_btn_projects">Explorer les projets</span>
+            </a>
+            <a href="./source/CV_Caleb_Yang FR.pdf" download="CV_Caleb_Yang_FR.pdf" class="btn-hero btn-hero-secondary">
+              <i class="bi bi-file-earmark-arrow-down"></i>
+              <span data-i18n="btn_download_cv_fr">CV Français</span>
+            </a>
+            <a href="./source/CV_Caleb_Yang en-US.pdf" download="CV_Caleb_Yang_EN.pdf" class="btn-hero btn-hero-secondary">
+              <i class="bi bi-file-earmark-arrow-down"></i>
+              <span data-i18n="btn_download_cv_en">CV Anglais</span>
+            </a>
+            <a href="#contact" class="btn-hero btn-hero-outline">
+              <i class="bi bi-envelope"></i>
+              <span data-i18n="hero_btn_contact">Contact</span>
+            </a>
+          </div>
         </div>
-        <div class="dash-header-right cv-download-group">
-          <a
-            href="./source/CV_Caleb_Yang FR.pdf"
-            download="CV_Caleb_Yang_FR.pdf"
-            class="btn-download-cv"
-            aria-label="Télécharger CV Français"
-          >
-            <i class="bi bi-file-earmark-arrow-down"></i>
-            <span data-i18n="btn_download_cv_fr">CV Français</span>
-          </a>
-          <a
-            href="./source/CV_Caleb_Yang en-US.pdf"
-            download="CV_Caleb_Yang_EN.pdf"
-            class="btn-download-cv"
-            aria-label="Télécharger CV Anglais"
-          >
-            <i class="bi bi-file-earmark-arrow-down"></i>
-            <span data-i18n="btn_download_cv_en">CV Anglais</span>
-          </a>
+        <div class="hero-right">
+          <div class="live-clock-badge">
+            <i class="bi bi-clock"></i>
+            <div>
+              <div class="dash-clock" id="liveClock"></div>
+              <div class="dash-date" id="liveDate"></div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -498,15 +508,15 @@
                 <span>Vue.js</span>
               </div>
               <div class="tech-logo-item">
-                <img class="tech-logo" src="/source/tailwind.svg" alt="Tailwind CSS" title="Tailwind CSS" />
+                <img class="tech-logo" src="./source/tailwind.svg" alt="Tailwind CSS" title="Tailwind CSS" />
                 <span>Tailwind</span>
               </div>
               <div class="tech-logo-item">
-                <img class="tech-logo" src="/source/bootstrap-plain-wordmark.svg" alt="Bootstrap" title="Bootstrap" />
+                <img class="tech-logo" src="./source/bootstrap-plain-wordmark.svg" alt="Bootstrap" title="Bootstrap" />
                 <span>Bootstrap</span>
               </div>
               <div class="tech-logo-item">
-                <img class="tech-logo" src="/source/laravel.svg" alt="Laravel" title="Laravel" />
+                <img class="tech-logo" src="./source/laravel.svg" alt="Laravel" title="Laravel" />
                 <span>Laravel</span>
               </div>
               <div class="tech-logo-item">
@@ -549,13 +559,21 @@
       <!-- ===== ROW 4 : Projects ===== -->
       <div class="dash-row row-projects" id="projects">
         <div class="panel panel-projects reveal-card">
-          <div class="panel-header">
-            <i class="bi bi-kanban"></i>
-            <h3 data-i18n="projects_title">Projets sélectionnés</h3>
+          <div class="panel-header projects-header-flex">
+            <div class="panel-header-left">
+              <i class="bi bi-kanban"></i>
+              <h3 data-i18n="projects_title">Projets sélectionnés</h3>
+            </div>
+            <div class="project-filters" id="projectFilters">
+              <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Tous</button>
+              <button class="filter-btn" data-filter="web" data-i18n="filter_web">Full-Stack & Web</button>
+              <button class="filter-btn" data-filter="mobile" data-i18n="filter_mobile">Mobile</button>
+              <button class="filter-btn" data-filter="interactive" data-i18n="filter_interactive">3D & Outils</button>
+            </div>
           </div>
           <div class="projects-grid">
             <!-- Project 11 — Pulse (P.A.E.S.) -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="interactive">
               <div class="project-img">
                 <img
                   src="./source/pulse.png"
@@ -611,7 +629,7 @@
             </div>
 
             <!-- Project 12 — Evodevs Team Website -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/evodevs.png"
@@ -662,7 +680,7 @@
             </div>
 
             <!-- Project 13 — Evodevs Store Bot -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/evodevs-bot.png"
@@ -708,7 +726,7 @@
             </div>
 
             <!-- Project 1 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/acc.png"
@@ -758,7 +776,7 @@
             </div>
 
             <!-- Project 2 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img src="./source/c5.png" alt="EGEM Meiganga" loading="lazy" />
               </div>
@@ -799,7 +817,7 @@
             </div>
 
             <!-- Project 3 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/c1.png"
@@ -842,7 +860,7 @@
             </div>
 
             <!-- Project 4 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img src="./source/c3.png" alt="Mutuelle IUT" loading="lazy" />
               </div>
@@ -877,7 +895,7 @@
             </div>
 
             <!-- Project 5 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/c2.png"
@@ -922,7 +940,7 @@
             </div>
 
             <!-- Project 6 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img src="./source/c10.png" alt="MATHS237" loading="lazy" />
               </div>
@@ -958,9 +976,9 @@
             </div>
 
             <!-- Project 7 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
-                <img src="./source/card.svg" alt="AEFCA" loading="lazy" />
+                <img src="./source/aefca.png" alt="AEFCA" loading="lazy" />
               </div>
               <div class="project-body">
                 <h4 data-i18n="project_7_title">AEFCA — Cartes membres</h4>
@@ -993,11 +1011,9 @@
             </div>
 
             <!-- Project 8 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
-                <div class="project-img-placeholder">
-                  <i class="bi bi-graph-up"></i>
-                </div>
+                <img src="./source/sygalin.png" alt="Module statistique — SYGALIN" loading="lazy" />
               </div>
               <div class="project-body">
                 <h4 data-i18n="project_8_title">Module statistique — SYGALIN</h4>
@@ -1030,7 +1046,7 @@
             </div>
 
             <!-- Project 9 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="web">
               <div class="project-img">
                 <img
                   src="./source/c4.png"
@@ -1064,7 +1080,7 @@
             </div>
 
             <!-- Project 10 -->
-            <div class="project-card reveal-card">
+            <div class="project-card reveal-card" data-category="interactive">
               <div class="project-img">
                 <div class="project-img-placeholder" style="background: linear-gradient(135deg, var(--bg-card-solid), var(--bg-body-deep)); display: flex; align-items: center; justify-content: center; height: 100%;">
                   <i class="bi bi-shield-lock" style="font-size: 3rem; color: #6366f1;"></i>

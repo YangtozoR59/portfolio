@@ -320,4 +320,37 @@
   themeToggle?.addEventListener('click', toggleTheme);
   initTheme();
 
+  // ===== PROJECT CATEGORY FILTERING =====
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  if (filterBtns.length > 0 && projectCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const categories = (card.dataset.category || '').split(' ');
+          if (filter === 'all' || categories.includes(filter)) {
+            card.style.display = '';
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(15px)';
+            setTimeout(() => {
+              if (!card.classList.contains('active-filter')) {
+                card.style.display = 'none';
+              }
+            }, 250);
+          }
+        });
+      });
+    });
+  }
+
 })();
