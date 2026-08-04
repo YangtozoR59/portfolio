@@ -149,31 +149,44 @@
     });
   }
 
-  // ===== INTERSECTION OBSERVER — Reveal Cards =====
+  // ===== INTERSECTION OBSERVER & IMMEDIATE REVEAL =====
+  function revealAllCards() {
+    document.querySelectorAll('.reveal-card').forEach(card => {
+      card.classList.add('visible');
+    });
+    animateCounters();
+    animateSkillBars();
+  }
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
 
-        // Trigger counters if stats panel
         if (entry.target.classList.contains('panel-stats')) {
           animateCounters();
         }
 
-        // Trigger skill bars if skills panel
         if (entry.target.classList.contains('panel-skills')) {
           animateSkillBars();
         }
       }
     });
   }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0,
+    rootMargin: '100px 0px 100px 0px'
   });
 
   document.querySelectorAll('.reveal-card').forEach(card => {
+    card.classList.add('visible');
     revealObserver.observe(card);
   });
+
+  // Failsafe triggers to guarantee content visibility on all browsers/devices
+  revealAllCards();
+  document.addEventListener('DOMContentLoaded', revealAllCards);
+  window.addEventListener('load', revealAllCards);
+  setTimeout(revealAllCards, 100);
 
   // ===== SIDEBAR NAVIGATION — Active Section =====
   const sections = document.querySelectorAll('[id]');

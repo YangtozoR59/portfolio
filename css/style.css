@@ -1858,9 +1858,9 @@ h1, h2, h3, h4 {
    ========================================== */
 
 .reveal-card {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1);
 }
 .reveal-card.visible {
   opacity: 1;
