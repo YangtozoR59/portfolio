@@ -353,4 +353,37 @@
     });
   }
 
+  // ===== SKILL CATEGORY FILTERING =====
+  const skillFilterBtns = document.querySelectorAll('.skill-filter-btn');
+  const techCards = document.querySelectorAll('.tech-card');
+
+  if (skillFilterBtns.length > 0 && techCards.length > 0) {
+    skillFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        skillFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.skillFilter;
+        techCards.forEach(card => {
+          const category = card.dataset.techCat || '';
+          if (filter === 'all' || category === filter) {
+            card.style.display = '';
+            requestAnimationFrame(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            });
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(15px)';
+            setTimeout(() => {
+              if (btn.dataset.skillFilter !== 'all' && card.dataset.techCat !== btn.dataset.skillFilter) {
+                card.style.display = 'none';
+              }
+            }, 250);
+          }
+        });
+      });
+    });
+  }
+
 })();

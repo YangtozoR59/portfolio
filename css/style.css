@@ -669,30 +669,77 @@ h1, h2, h3, h4 {
   color: var(--text-tertiary);
 }
 
-/* Project Category Filters */
-.projects-header-flex {
+/* Floating Top Control Bar (Theme & Language Toggles) */
+.top-controls-bar {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  background: rgba(var(--bg-card-rgb), 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--border-glow);
+  border-radius: 50px;
+  box-shadow: var(--shadow-sidebar);
+}
+
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 14px;
+  height: 36px;
+  border-radius: 30px;
+  background: transparent;
+  color: var(--text-primary);
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.control-btn:hover {
+  background: var(--bg-sidebar-hover);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.control-btn i {
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+
+/* Skills Header & Filters */
+.skills-header-flex {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  margin-bottom: 24px;
   width: 100%;
 }
 
-.panel-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.panel-subtitle {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
 }
 
-.project-filters {
+.skill-filters {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
 
-.filter-btn {
+.skill-filter-btn {
   padding: 6px 16px;
   border-radius: 30px;
   background: rgba(var(--accent-rgb), 0.06);
@@ -704,20 +751,139 @@ h1, h2, h3, h4 {
   transition: all var(--transition-fast);
 }
 
-.filter-btn:hover {
+.skill-filter-btn:hover {
   color: var(--accent);
   border-color: var(--accent);
 }
 
-.filter-btn.active {
+.skill-filter-btn.active {
   background: var(--accent);
   color: #ffffff !important;
   border-color: var(--accent);
   box-shadow: var(--btn-shadow);
 }
 
-.project-card {
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow var(--transition-fast);
+/* Tech Ecosystem Grid */
+.tech-ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.tech-card {
+  background: var(--bg-card);
+  border: var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--accent-rgb), 0.4);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.tech-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.tech-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-md);
+  background: rgba(var(--accent-rgb), 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: var(--border-subtle);
+}
+
+.tech-card-icon img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.tech-card-meta h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-expert {
+  background: rgba(6, 214, 160, 0.12);
+  color: var(--success);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+}
+
+.badge-advanced {
+  background: rgba(59, 130, 246, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.badge-operational {
+  background: rgba(247, 127, 0, 0.12);
+  color: var(--warning);
+  border: 1px solid rgba(247, 127, 0, 0.3);
+}
+
+.tech-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.tech-card-projects {
+  border-top: 1px dashed rgba(var(--accent-rgb), 0.12);
+  padding-top: 12px;
+}
+
+.tech-card-projects small {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.tech-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.proj-tag {
+  font-size: 0.73rem;
+  padding: 3px 8px;
+  background: rgba(var(--accent-rgb), 0.05);
+  border-radius: 6px;
+  color: var(--text-primary);
+  border: 1px solid rgba(var(--accent-rgb), 0.1);
+  font-weight: 500;
 }
 
 .btn-download-cv {

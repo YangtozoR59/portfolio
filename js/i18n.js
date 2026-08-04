@@ -25,8 +25,20 @@
       sidebar_role: 'Ingénieur logiciel',
       sidebar_location: 'Ngaoundéré, Cameroun',
 
-      // === DASHBOARD HEADER & HERO ===
-      dash_greeting: 'Portfolio professionnel',
+      // === SKILLS OVERHAUL ===
+      skills_title: 'Écosystème & Compétences',
+      skills_subtitle: "Technologies maîtrisées et applications réelles sur mes différents projets",
+      skill_filter_all: 'Toutes les tech',
+      skill_filter_backend: 'Backend & Data',
+      skill_filter_frontend: 'Frontend & UI',
+      skill_filter_mobile: 'Mobile',
+      skill_filter_devops: 'DevOps & Architecture',
+      badge_expert: 'Expert',
+      badge_advanced: 'Maîtrisé',
+      badge_operational: 'Opérationnel',
+      used_in_label: 'Projets réels :',
+      
+      // === HERO ===
       hero_status: '🟢 Disponible pour opportunités Freelance & CDI',
       hero_tagline: 'Software Engineer • Full-Stack Web & Mobile',
       hero_bio_short: 'Spécialisé en <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. Je conçois, architecte et déploie des applications web et mobiles performantes, robustes et orientées utilisateur.',
@@ -231,7 +243,18 @@
 
       // === SIDEBAR ===
       sidebar_role: 'Software engineer',
-      sidebar_location: 'Ngaoundéré, Cameroon',
+      // === SKILLS OVERHAUL ===
+      skills_title: 'Tech Ecosystem & Capabilities',
+      skills_subtitle: 'Mastered technologies and real-world applications across my projects',
+      skill_filter_all: 'All Tech',
+      skill_filter_backend: 'Backend & Data',
+      skill_filter_frontend: 'Frontend & UI',
+      skill_filter_mobile: 'Mobile',
+      skill_filter_devops: 'DevOps & Architecture',
+      badge_expert: 'Expert',
+      badge_advanced: 'Advanced',
+      badge_operational: 'Proficient',
+      used_in_label: 'Used in:',
 
       // === DASHBOARD HEADER & HERO ===
       dash_greeting: 'Professional portfolio',
@@ -500,9 +523,17 @@
   // Expose globally
   window._i18n = { t, setLanguage, getCurrentLang, toggle, translations };
 
-  // Auto-apply on load
+  // Auto-apply on load & attach listener
   document.addEventListener('DOMContentLoaded', () => {
     setLanguage(currentLang);
+
+    const langBtn = document.getElementById('langToggle');
+    if (langBtn) {
+      langBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggle();
+      });
+    }
   });
 
 })();
