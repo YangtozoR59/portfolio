@@ -213,10 +213,21 @@
 
     <!-- ========== MOBILE HEADER ========== -->
     <header class="mobile-header" id="mobileHeader">
-      <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
-      <h1 class="mobile-brand">Caleb Yang</h1>
+      <div class="mobile-header-left">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+        <h1 class="mobile-brand">Caleb Yang</h1>
+      </div>
+      <div class="mobile-header-controls">
+        <button class="control-btn lang-toggle" id="langToggleMobile" title="Switch language" aria-label="Switch language">
+          <i class="bi bi-globe"></i>
+          <span class="lang-label">🇬🇧 EN</span>
+        </button>
+        <button class="control-btn theme-toggle" id="themeToggleMobile" title="Basculer thème clair/sombre" aria-label="Basculer thème clair/sombre">
+          <i class="bi bi-moon-fill" id="themeToggleIconMobile"></i>
+        </button>
+      </div>
     </header>
 
     <!-- ========== MAIN DASHBOARD ========== -->

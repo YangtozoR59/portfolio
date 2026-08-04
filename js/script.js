@@ -285,39 +285,50 @@
     }
   });
 
-  // ===== THEME TOGGLE =====
-  const themeToggle = document.getElementById('themeToggle');
-  const themeToggleIcon = document.getElementById('themeToggleIcon');
+  // ===== THEME TOGGLE (DESKTOP & MOBILE) =====
   const themeMetaTag = document.querySelector('meta[name="theme-color"]');
+
+  function updateThemeIcons(isDark) {
+    document.querySelectorAll('.theme-toggle i').forEach(icon => {
+      if (isDark) {
+        icon.className = 'bi bi-sun-fill';
+      } else {
+        icon.className = 'bi bi-moon-fill';
+      }
+    });
+  }
 
   function initTheme() {
     const savedTheme = localStorage.getItem('portfolioTheme');
     if (savedTheme === 'light') {
       document.documentElement.removeAttribute('data-theme');
-      themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
-      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f4f7f6');
+      updateThemeIcons(false);
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f8fafc');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
-      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
-      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
+      updateThemeIcons(true);
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#060913');
     }
   }
 
   function toggleTheme() {
-    if (document.documentElement.hasAttribute('data-theme')) {
+    const isDark = document.documentElement.hasAttribute('data-theme');
+    if (isDark) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('portfolioTheme', 'light');
-      themeToggleIcon?.classList.replace('bi-sun-fill', 'bi-moon-fill');
-      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f4f7f6');
+      updateThemeIcons(false);
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#f8fafc');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
       localStorage.setItem('portfolioTheme', 'dark');
-      themeToggleIcon?.classList.replace('bi-moon-fill', 'bi-sun-fill');
-      if (themeMetaTag) themeMetaTag.setAttribute('content', '#0A0A1F');
+      updateThemeIcons(true);
+      if (themeMetaTag) themeMetaTag.setAttribute('content', '#060913');
     }
   }
 
-  themeToggle?.addEventListener('click', toggleTheme);
+  document.querySelectorAll('.theme-toggle').forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
   initTheme();
 
   // ===== PROJECT CATEGORY FILTERING =====

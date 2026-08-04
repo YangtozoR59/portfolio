@@ -496,17 +496,11 @@
       if (val) el.setAttribute('aria-label', val);
     });
 
-    // Update the language toggle button
-    const langBtn = document.getElementById('langToggle');
-    if (langBtn) {
-      const switchLabel = t('lang_switch_label');
-      langBtn.querySelector('.lang-label').textContent = switchLabel;
-    }
-
-    // Refresh fishing game labels if game exists
-    if (window._fishingGame && window._fishingGame.refreshLanguage) {
-      window._fishingGame.refreshLanguage();
-    }
+    // Update all language toggle buttons (desktop & mobile)
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+      const label = btn.querySelector('.lang-label');
+      if (label) label.textContent = t('lang_switch_label');
+    });
 
     // Dispatch event for other modules
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: { lang } }));
@@ -523,17 +517,16 @@
   // Expose globally
   window._i18n = { t, setLanguage, getCurrentLang, toggle, translations };
 
-  // Auto-apply on load & attach listener
+  // Auto-apply on load & attach listeners
   document.addEventListener('DOMContentLoaded', () => {
     setLanguage(currentLang);
 
-    const langBtn = document.getElementById('langToggle');
-    if (langBtn) {
-      langBtn.addEventListener('click', (e) => {
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
         e.preventDefault();
         toggle();
       });
-    }
+    });
   });
 
 })();
