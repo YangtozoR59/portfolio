@@ -41,7 +41,7 @@
       // === HERO ===
       hero_status: '🟢 Disponible pour opportunités Freelance & CDI',
       hero_tagline: 'Software Engineer • Full-Stack Web & Mobile',
-      hero_bio_short: 'Spécialisé en <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. Je conçois, architecte et déploie des applications web et mobiles performantes, robustes et orientées utilisateur.',
+      hero_bio_short: 'Développeur Full-Stack spécialisé dans les applications Web, Mobile, Telegram et IA. Je conçois, architecte et déploie des applications performantes, robustes et orientées utilisateur.',
       hero_btn_projects: 'Explorer les projets',
       hero_btn_contact: 'Contact',
       btn_download_cv: 'Télécharger mon CV',
@@ -66,9 +66,9 @@
 
       // === BIO ===
       bio_title: 'À propos de moi',
-      bio_p1: "Ingénieur logiciel Full-Stack junior orienté produit, spécialisé en <strong>Laravel</strong>, <strong>Express.js</strong> et <strong>Flutter</strong>. Je maîtrise CI/CD, Docker et les bonnes pratiques de versioning.",
-      bio_p2: "J'ai piloté le développement de solutions de gestion interne et d'un site vitrine pour la <strong>Mutuelle de l'IUT de Ngaoundéré</strong>, et mené un projet chez <strong>MATHS237</strong>, avec un fort souci de performance, qualité et UX.",
-      bio_p3: "Compétences en SQL et NoSQL, statistiques et visualisation. Communicant efficace, bilingue <strong>français/anglais</strong>.",
+      bio_p1: "Architecte logiciel spécialisé dans la conception et la livraison de produits web évolutifs et maintenables.",
+      bio_p2: "Je soutiens les équipes de la définition du produit au déploiement (architecture MVC, UML), en automatisant les pipelines (CI/CD, DevOps, Cloud).",
+      bio_p3: "Expérimenté en gestion de projet Agile, code propre et visualisation de données, je cherche un poste où je peux diriger l'architecture produit et accélérer les cycles de sortie.",
 
       // === SITUATION ===
       situation_title: 'Situation actuelle',
@@ -260,7 +260,7 @@
       dash_greeting: 'Professional portfolio',
       hero_status: '🟢 Open to Freelance & Full-Time opportunities',
       hero_tagline: 'Software Engineer • Full-Stack Web & Mobile',
-      hero_bio_short: 'Specialized in <strong>Laravel</strong>, <strong>Express.js</strong> and <strong>Flutter</strong>. I design, architect and deliver robust, high-performance web and mobile applications.',
+      hero_bio_short: 'Full-Stack developer specializing in web, mobile, Telegram and AI applications. I design, architect and deploy high-performance, robust and user-oriented applications.',
       hero_btn_projects: 'Explore Projects',
       hero_btn_contact: 'Contact Me',
       btn_download_cv: 'Download my CV',
@@ -285,9 +285,9 @@
 
       // === BIO ===
       bio_title: 'About me',
-      bio_p1: "Product-oriented Junior Full-Stack Software Engineer, specialized in <strong>Laravel</strong>, <strong>Express.js</strong> and <strong>Flutter</strong>. Proficient in CI/CD, Docker and version control best practices.",
-      bio_p2: "Led the development of internal management solutions and a showcase website for the <strong>IUT Ngaoundéré Mutual Fund</strong>, and spearheaded a project at <strong>MATHS237</strong>, with strong focus on performance, quality and UX.",
-      bio_p3: "Skilled in SQL and NoSQL, statistics and data visualization. Effective communicator, bilingual <strong>French/English</strong>.",
+      bio_p1: "Software architect focused on designing and delivering scalable and maintainable web products.",
+      bio_p2: "I support teams from product definition to deployment (MVC architecture, UML), automating pipelines (CI/CD, DevOps, Cloud).",
+      bio_p3: "Experienced in Agile project management, clean code, and data visualization, I’m looking for a role where I can lead product architecture and speed up release cycles.",
 
       // === SITUATION ===
       situation_title: 'Current status',
