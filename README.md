@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 Caleb Yang — Portfolio
+# Caleb Yang — Portfolio
 
 **Software Engineer • Full-Stack Web & Mobile**
 
@@ -16,25 +16,25 @@ Un portfolio interactif, élégant et moderne présentant mes projets, compéten
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](#)
 
-[🌐 Voir le site en direct](https://itzcyd.vercel.app) · [🐛 Signaler un bug](https://github.com/YangtozoR59/portfolio/issues) · [✨ Suggérer une amélioration](https://github.com/YangtozoR59/portfolio/issues)
+[ Voir le site en direct](https://itzcyd.vercel.app) · [ Signaler un bug](https://github.com/YangtozoR59/portfolio/issues) · [ Suggérer une amélioration](https://github.com/YangtozoR59/portfolio/issues)
 
 </div>
 
 ---
 
-## ✨ Fonctionnalités clés
+##  Fonctionnalités clés
 
-- 💎 **Section Hero moderne** — Présentation claire et percutante (expertises, boutons d'action rapide, statut de disponibilité)
-- 🗂️ **Filtres de projets interactifs** — Tri dynamique des projets par catégorie (*Tous*, *Full-Stack & Web*, *Mobile*, *3D & Outils*)
-- 🔐 **CryptoLab** — Mini-outil pédagogique interactif de cryptographie classique (César, Vigenère, Hill)
-- 🌍 **Bilingue FR / EN** — Basculement instantané de la langue (Français et Anglais)
-- 🌓 **Thème Sombre / Clair** — Basculement fluide avec mémorisation de la préférence
-- 📄 **CV téléchargeable** — En Français (FR) et en Anglais (EN)
-- 📱 **Design Responsive & Glassmorphism** — Expérience optimisée sur mobiles, tablettes et écrans 4K
+-  **Section Hero moderne** — Présentation claire et percutante (expertises, boutons d'action rapide, statut de disponibilité)
+-  **Filtres de projets interactifs** — Tri dynamique des projets par catégorie (*Tous*, *Full-Stack & Web*, *Mobile*, *3D & Outils*)
+-  **CryptoLab** — Mini-outil pédagogique interactif de cryptographie classique (César, Vigenère, Hill)
+-  **Bilingue FR / EN** — Basculement instantané de la langue (Français et Anglais)
+-  **Thème Sombre / Clair** — Basculement fluide avec mémorisation de la préférence
+-  **CV téléchargeable** — En Français (FR) et en Anglais (EN)
+-  **Design Responsive & Glassmorphism** — Expérience optimisée sur mobiles, tablettes et écrans 4K
 
 ---
 
-## 🛠️ Stack Technique & Outils
+##  Stack Technique & Outils
 
 | Catégorie | Technologies & Outils |
 |---|---|
@@ -45,7 +45,7 @@ Un portfolio interactif, élégant et moderne présentant mes projets, compéten
 
 ---
 
-## 📂 Structure du projet
+##  Structure du projet
 
 ```
 portfolio/
@@ -66,7 +66,7 @@ portfolio/
 
 ---
 
-## 🚀 Installation & Lancement local
+##  Installation & Lancement local
 
 ```bash
 # 1. Cloner le dépôt
@@ -81,19 +81,19 @@ Ouvrez ensuite `http://localhost:3000` dans votre navigateur.
 
 ---
 
-## 📬 Contact & Réseaux
+##  Contact & Réseaux
 
-- 📧 **Email** : [calebyangcyd@gmail.com](mailto:calebyangcyd@gmail.com)
-- 💬 **WhatsApp** : [+237 698 448 024](https://wa.me/237698448024)
-- ✈️ **Telegram** : [@ItzCyd](https://t.me/ItzCyd)
-- 🐙 **GitHub** : [@YangtozoR59](https://github.com/YangtozoR59)
+-  **Email** : [calebyangcyd@gmail.com](mailto:calebyangcyd@gmail.com)
+-  **WhatsApp** : [+237 698 448 024](https://wa.me/237698448024)
+-  **Telegram** : [@ItzCyd](https://t.me/ItzCyd)
+-  **GitHub** : [@YangtozoR59](https://github.com/YangtozoR59)
 
 ---
 
-## 📄 Licence
+##  Licence
 
 Ce projet est sous licence [MIT](LICENSE) — libre réutilisation avec mention de l'auteur original.
 
 <div align="center">
-Fait avec ❤️ par <a href="https://itzcyd.vercel.app">Caleb Yang</a>
+Fait par <a href="https://itzcyd.vercel.app">Caleb Yang</a>
 </div>
