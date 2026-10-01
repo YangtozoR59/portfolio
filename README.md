@@ -1,99 +1,37 @@
-<div align="center">
-
 # Caleb Yang — Portfolio
 
-**Software Engineer • Full-Stack Web & Mobile**
+Portfolio personnel de Caleb Yang, ingénieur logiciel full-stack basé au Cameroun. La direction visuelle actuelle adopte une esthétique studio sombre, typographique et orientée études de cas.
 
-Un portfolio interactif, élégant et moderne présentant mes projets, compétences et services en ingénierie logicielle.
+## Contenu
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge)](https://itzcyd.vercel.app)
-[![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black?style=for-the-badge&logo=vercel)](https://itzcyd.vercel.app)
-[![License](https://img.shields.io/github/license/YangtozoR59/portfolio?style=for-the-badge)](LICENSE)
+- Présentation personnelle, disponibilité et approche produit
+- Sélection de projets : Evodev Store, Entreprise du Pays, Pulse Automata et LiveHouse237
+- Compétences web, backend, mobile et transmission
+- Liens directs vers le CV, GitHub, LinkedIn, WhatsApp et email
+- Navigation responsive avec menu mobile, loader d'entrée, logos de technologies et animations progressives respectueuses de `prefers-reduced-motion`
 
-[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)](#)
-[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)](#)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](#)
+## Lancer le site
 
-[ Voir le site en direct](https://itzcyd.vercel.app) · [ Signaler un bug](https://github.com/YangtozoR59/portfolio/issues) · [ Suggérer une amélioration](https://github.com/YangtozoR59/portfolio/issues)
-
-</div>
-
----
-
-##  Fonctionnalités clés
-
--  **Section Hero moderne** — Présentation claire et percutante (expertises, boutons d'action rapide, statut de disponibilité)
--  **Filtres de projets interactifs** — Tri dynamique des projets par catégorie (*Tous*, *Full-Stack & Web*, *Mobile*, *3D & Outils*)
--  **CryptoLab** — Mini-outil pédagogique interactif de cryptographie classique (César, Vigenère, Hill)
--  **Bilingue FR / EN** — Basculement instantané de la langue (Français et Anglais)
--  **Thème Sombre / Clair** — Basculement fluide avec mémorisation de la préférence
--  **CV téléchargeable** — En Français (FR) et en Anglais (EN)
--  **Design Responsive & Glassmorphism** — Expérience optimisée sur mobiles, tablettes et écrans 4K
-
----
-
-##  Stack Technique & Outils
-
-| Catégorie | Technologies & Outils |
-|---|---|
-| **Back-end** | Laravel (PHP), Express.js (Node.js), REST APIs, MySQL, PostgreSQL |
-| **Front-end** | JavaScript (ES6+), HTML5, CSS3 Vanilla (Glassmorphism), Tailwind CSS, Bootstrap |
-| **Mobile & 3D** | Flutter (Dart), Three.js |
-| **DevOps & Outils** | Docker, Git/GitHub, CI/CD, Vercel |
-
----
-
-##  Structure du projet
-
-```
-portfolio/
-├── index.html            # Page d'accueil principale
-├── css/
-│   ├── style.css         # Design system & styles du portfolio
-│   ├── crypto.css        # Styles pour l'outil CryptoLab
-│   └── underwater.css    # Styles d'ambiance
-├── js/
-│   ├── script.js         # Logique principale & filtres interactifs
-│   ├── i18n.js           # Module d'internationalisation FR/EN
-│   └── crypto.js         # Logique du CryptoLab
-├── source/               # Images, aperçus, logos & CVs (PDF)
-├── crypto-tool/          # Outil pédagogique Cryptolab
-├── LICENSE               # Licence MIT
-└── README.md             # Documentation du projet
-```
-
----
-
-##  Installation & Lancement local
+Le portfolio est un site statique. Ouvrir `index.html` directement fonctionne, mais un serveur local est recommandé :
 
 ```bash
-# 1. Cloner le dépôt
-git clone https://github.com/YangtozoR59/portfolio.git
-cd portfolio
-
-# 2. Lancer un serveur web local (ex: via npx serve, live-server, ou VS Code Live Server)
 npx serve .
 ```
 
-Ouvrez ensuite `http://localhost:3000` dans votre navigateur.
+Le mini-outil pédagogique reste disponible dans `crypto-tool/index.html`.
 
----
+## Organisation
 
-##  Contact & Réseaux
+```text
+index.html          Page principale
+css/style.css       Système visuel et responsive
+js/script.js        Menu mobile
+source/             Photos, aperçus de projets et CV PDF
+crypto-tool/        Outil CryptoLab indépendant
+```
 
--  **Email** : [calebyangcyd@gmail.com](mailto:calebyangcyd@gmail.com)
--  **WhatsApp** : [+237 698 448 024](https://wa.me/237698448024)
--  **Telegram** : [@ItzCyd](https://t.me/ItzCyd)
--  **GitHub** : [@YangtozoR59](https://github.com/YangtozoR59)
+## Contact
 
----
-
-##  Licence
-
-Ce projet est sous licence [MIT](LICENSE) — libre réutilisation avec mention de l'auteur original.
-
-<div align="center">
-Fait par <a href="https://itzcyd.vercel.app">Caleb Yang</a>
-</div>
+- Email : calebyangcyd@gmail.com
+- GitHub : https://github.com/YangtozoR59
+- WhatsApp : https://wa.me/237698448024
