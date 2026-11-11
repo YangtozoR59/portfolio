@@ -1,99 +1,39 @@
 <div align="center">
 
-# Caleb Yang — Portfolio
+# ⚡ Caleb Yang Damakoa (`@ItzCyd`) — Cyberpunk Netrunner Portfolio
 
-**Software Engineer • Full-Stack Web & Mobile**
+**Software Architect • Full-Stack Web, Mobile, Bots & AI • Co-Founder @ Evodevs 237**
 
-Un portfolio interactif, élégant et moderne présentant mes projets, compétences et services en ingénierie logicielle.
+Un portfolio Cyberpunk interactif (`CYD // NETRUNNER OS v2077`) regroupant l'ensemble de mes systèmes en production, mon parcours académique & professionnel, mes 7 certifications IA/ML, mes simulateurs embarqués (**CryptoLab**, **Automate de Conway**, **Dev Quest 2077**) et le compagnon de bureau interactif **Capri AI** en Drag & Drop.
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen?style=for-the-badge)](https://itzcyd.vercel.app)
-[![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black?style=for-the-badge&logo=vercel)](https://itzcyd.vercel.app)
+[![Live Demo](https://img.shields.io/badge/MAINFRAME-LIVE-05d9e8?style=for-the-badge)](https://itzcyd.vercel.app)
+[![Capri AI](https://img.shields.io/badge/COMPANION-CAPRI_AI-ff2a6d?style=for-the-badge)](https://github.com/lachydotmcg/capri-desktop)
 [![License](https://img.shields.io/github/license/YangtozoR59/portfolio?style=for-the-badge)](LICENSE)
 
-[![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)](#)
-[![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)](#)
-[![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](#)
-
-[ Voir le site en direct](https://itzcyd.vercel.app) · [ Signaler un bug](https://github.com/YangtozoR59/portfolio/issues) · [ Suggérer une amélioration](https://github.com/YangtozoR59/portfolio/issues)
-
 </div>
 
 ---
 
-##  Fonctionnalités clés
+## 🔥 Vision Artistique & Fonctionnalités
 
--  **Section Hero moderne** — Présentation claire et percutante (expertises, boutons d'action rapide, statut de disponibilité)
--  **Filtres de projets interactifs** — Tri dynamique des projets par catégorie (*Tous*, *Full-Stack & Web*, *Mobile*, *3D & Outils*)
--  **CryptoLab** — Mini-outil pédagogique interactif de cryptographie classique (César, Vigenère, Hill)
--  **Bilingue FR / EN** — Basculement instantané de la langue (Français et Anglais)
--  **Thème Sombre / Clair** — Basculement fluide avec mémorisation de la préférence
--  **CV téléchargeable** — En Français (FR) et en Anglais (EN)
--  **Design Responsive & Glassmorphism** — Expérience optimisée sur mobiles, tablettes et écrans 4K
-
----
-
-##  Stack Technique & Outils
-
-| Catégorie | Technologies & Outils |
-|---|---|
-| **Back-end** | Laravel (PHP), Express.js (Node.js), REST APIs, MySQL, PostgreSQL |
-| **Front-end** | JavaScript (ES6+), HTML5, CSS3 Vanilla (Glassmorphism), Tailwind CSS, Bootstrap |
-| **Mobile & 3D** | Flutter (Dart), Three.js |
-| **DevOps & Outils** | Docker, Git/GitHub, CI/CD, Vercel |
+- 🤖 **Compagnon Capri AI intégré (Drag & Drop & Physique temps réel)** — Inspiré de [`lachydotmcg/capri-desktop`](https://github.com/lachydotmcg/capri-desktop), Capri se balade de manière autonome sur les panneaux du portfolio, s'assoit sur les cartes, réagit au glisser-lâcher avec inertie (`tossed.webp`), danse (`dancing.gif`), déploie ses clones multi-agents au double-clic (`clones.gif`) et partage des anecdotes aléatoires (FR/EN) sur le parcours et les projets de Caleb.
+- 🌆 **Direction artistique Cyberpunk (Night City / Edgerunners HUD)** — Palette néon (`#05d9e8` Cyber Cyan, `#ff2a6d` Magenta, `#fcee0a` Cyber Yellow), panneaux biseautés, scanlines CRT et canvas interactif (pluie numérique + constellation neurale).
+- 🪪 **Scanner d'identité holographique multi-avatars** — Basculez en un clic entre l'illustration Comic Cyber (`profil.png`), le portrait Noir & Blanc (`profil2.jpg`) et la photo studio (`profil.jpg`).
+- 🚀 **Archive complète des 13 Missions & Projets** — *Pulse 3D (P.A.E.S.)*, *Evodevs Team Portal*, *Evodevs Store Telegram Bot*, *Accommodation / LiveHouse237*, *EGEM Meiganga*, *Entreprise du Pays*, *ERP Mutuelle IUT*, *MUIT E-Commerce*, *MATHS237*, *AEFCA*, *SYGALIN SAS*, *Grace Oil Gold* et *CryptoLab*.
+- 🏅 **7 Certifications IA & Machine Learning** — Galerie interactive avec inspecteur modal (`AI-Powered A/B Testing`, `Vibe Coding`, `Prompt Engineering`, `ML for Beginners`, `Project Planning with AI`, `Think Creatively with AI`, `Brainstorm with AI`).
+- 🧪 **Le Cyberdeck (3 laboratoires interactifs embarqués)** :
+  1. **CryptoLab Terminal** : Chiffrement/déchiffrement César, Force Brute, Vigenère et Matrices de Hill 2x2 modulo 26.
+  2. **Automate de Conway** : Jeu de la Vie interactif sur grille néon.
+  3. **Dev Quest 2077** : Mini-jeu hommage aux premiers commits du dépôt.
+- 🌐 **100% Bilingue FR / EN** — Traduction instantanée de toute l'interface et des dialogues de Capri AI.
 
 ---
 
-##  Structure du projet
+## 🔗 Liens & Réseaux Directs
 
-```
-portfolio/
-├── index.html            # Page d'accueil principale
-├── css/
-│   ├── style.css         # Design system & styles du portfolio
-│   ├── crypto.css        # Styles pour l'outil CryptoLab
-│   └── underwater.css    # Styles d'ambiance
-├── js/
-│   ├── script.js         # Logique principale & filtres interactifs
-│   ├── i18n.js           # Module d'internationalisation FR/EN
-│   └── crypto.js         # Logique du CryptoLab
-├── source/               # Images, aperçus, logos & CVs (PDF)
-├── crypto-tool/          # Outil pédagogique Cryptolab
-├── LICENSE               # Licence MIT
-└── README.md             # Documentation du projet
-```
-
----
-
-##  Installation & Lancement local
-
-```bash
-# 1. Cloner le dépôt
-git clone https://github.com/YangtozoR59/portfolio.git
-cd portfolio
-
-# 2. Lancer un serveur web local (ex: via npx serve, live-server, ou VS Code Live Server)
-npx serve .
-```
-
-Ouvrez ensuite `http://localhost:3000` dans votre navigateur.
-
----
-
-##  Contact & Réseaux
-
--  **Email** : [calebyangcyd@gmail.com](mailto:calebyangcyd@gmail.com)
--  **WhatsApp** : [+237 698 448 024](https://wa.me/237698448024)
--  **Telegram** : [@ItzCyd](https://t.me/ItzCyd)
--  **GitHub** : [@YangtozoR59](https://github.com/YangtozoR59)
-
----
-
-##  Licence
-
-Ce projet est sous licence [MIT](LICENSE) — libre réutilisation avec mention de l'auteur original.
-
-<div align="center">
-Fait par <a href="https://itzcyd.vercel.app">Caleb Yang</a>
-</div>
+- 💼 **LinkedIn** : [linkedin.com/in/caleb-yang-970b35387](https://www.linkedin.com/in/caleb-yang-970b35387)
+- 🎮 **Discord** : [discord.com/users/1487457053537472694](https://discord.com/users/1487457053537472694)
+- ✈️ **Telegram** : [@ItzCyd](https://t.me/ItzCyd)
+- 🐙 **GitHub** : [@YangtozoR59](https://github.com/YangtozoR59)
+- 💬 **WhatsApp** : [+237 698 448 024](https://wa.me/237698448024)
+- 📧 **Email** : [calebyangcyd@gmail.com](mailto:calebyangcyd@gmail.com)
